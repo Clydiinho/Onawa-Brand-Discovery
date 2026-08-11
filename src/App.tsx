@@ -12,6 +12,8 @@ import { VoiceTextArea } from "./components/VoiceTextArea";
 import { GoldenCircleSVG } from "./components/GoldenCircleSVG";
 import { PersonalitySlider } from "./components/PersonalitySlider";
 import { LoveHateMatrix } from "./components/LoveHateMatrix";
+import { StrategicVillainMatrix } from "./components/StrategicVillainMatrix";
+import { ExperienceRoadmap } from "./components/ExperienceRoadmap";
 import { LogoAnatomyGuide } from "./components/LogoAnatomyGuide";
 import { UVPBuilder } from "./components/UVPBuilder";
 import { BrandSummaryReport } from "./components/BrandSummaryReport";
@@ -68,6 +70,13 @@ const INITIAL_STATE: BrandQuestionnaireState = {
     values: ["Innovation", "Authenticity", "Precision"],
   },
 
+  strategicEnemy: "The Boring Status Quo & Over-Complicated Inefficiency",
+  positioningMatrix: {
+    x: 65,
+    y: 70,
+    quadrant: "Blue Ocean Gap (Disruptive + Progressive)",
+  },
+
   primaryArchetype: "creator",
   secondaryArchetype: "magician",
 
@@ -85,6 +94,15 @@ const INITIAL_STATE: BrandQuestionnaireState = {
   },
 
   logoType: "combination",
+
+  experienceRoadmap: {
+    phaseAssignments: {
+      discovery: ["website", "social_media"],
+      engagement: ["email_marketing", "sales_deck"],
+      purchase: ["unboxing", "product_ux"],
+      advocacy: ["customer_service", "community"],
+    },
+  },
 
   uvp: {
     offering: "",
@@ -640,13 +658,23 @@ export default function App() {
               </div>
             )}
 
-            {/* STEP 4: THE 12 ARCHETYPES (WILLOW MARKETING) */}
+            {/* STEP 4: STRATEGIC VILLAIN & POSITIONING MATRIX (MODULE 1) */}
             {state.currentStep === 4 && (
+              <StrategicVillainMatrix
+                enemy={state.strategicEnemy}
+                onEnemyChange={(enemy) => updateState({ strategicEnemy: enemy })}
+                matrix={state.positioningMatrix}
+                onMatrixChange={(matrix) => updateState({ positioningMatrix: matrix })}
+              />
+            )}
+
+            {/* STEP 5: THE 12 ARCHETYPES (WILLOW MARKETING) */}
+            {state.currentStep === 5 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">
-                    <Users className="w-4 h-4" />
-                    <span>Stage 04 • Willow Marketing's 12 Brand Archetypes</span>
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
+                    <Users className="w-4 h-4 text-[#C1FF00]" />
+                    <span>Stage 05 • Willow Marketing's 12 Brand Archetypes</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Archetype Personality Selection
@@ -785,13 +813,13 @@ export default function App() {
               </div>
             )}
 
-            {/* STEP 5: PERSONALITY SPECTRUM */}
-            {state.currentStep === 5 && (
+            {/* STEP 6: PERSONALITY SPECTRUM */}
+            {state.currentStep === 6 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">
-                    <Sliders className="w-4 h-4" />
-                    <span>Stage 05 • Personality Spectrum Sliders</span>
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
+                    <Sliders className="w-4 h-4 text-[#C1FF00]" />
+                    <span>Stage 06 • Personality Spectrum Sliders</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Brand Trait Dial & Spectrum Calibration
@@ -808,13 +836,13 @@ export default function App() {
               </div>
             )}
 
-            {/* STEP 6: LOVE/HATE MATRIX (FERNANDO IFRÁN) */}
-            {state.currentStep === 6 && (
+            {/* STEP 7: LOVE/HATE MATRIX (FERNANDO IFRÁN) */}
+            {state.currentStep === 7 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">
-                    <Quote className="w-4 h-4" />
-                    <span>Stage 06 • Fernando Ifrán's Love/Hate Matrix</span>
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
+                    <Quote className="w-4 h-4 text-[#C1FF00]" />
+                    <span>Stage 07 • Fernando Ifrán's Love/Hate Matrix</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Embrace vs. Avoid Keyword Matrix
@@ -831,13 +859,13 @@ export default function App() {
               </div>
             )}
 
-            {/* STEP 7: LOGO ANATOMY GUIDE */}
-            {state.currentStep === 7 && (
+            {/* STEP 8: LOGO ANATOMY GUIDE */}
+            {state.currentStep === 8 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">
-                    <Layers className="w-4 h-4" />
-                    <span>Stage 07 • Visual Discovery & Logo Anatomy</span>
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
+                    <Layers className="w-4 h-4 text-[#C1FF00]" />
+                    <span>Stage 08 • Visual Discovery & Logo Anatomy</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Logo Mark Architecture & Anatomy
@@ -854,13 +882,21 @@ export default function App() {
               </div>
             )}
 
-            {/* STEP 8: DYNAMIC UVP BUILDER */}
-            {state.currentStep === 8 && (
+            {/* STEP 9: THE EXPERIENCE ROADMAP (MODULE 2) */}
+            {state.currentStep === 9 && (
+              <ExperienceRoadmap
+                roadmap={state.experienceRoadmap}
+                onChange={(roadmap) => updateState({ experienceRoadmap: roadmap })}
+              />
+            )}
+
+            {/* STEP 10: DYNAMIC UVP BUILDER */}
+            {state.currentStep === 10 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase tracking-widest">
-                    <Sparkles className="w-4 h-4" />
-                    <span>Stage 08 • Dynamic UVP Builder</span>
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
+                    <Sparkles className="w-4 h-4 text-[#C1FF00]" />
+                    <span>Stage 10 • Dynamic UVP Builder</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Unique Value Proposition Architecture
@@ -879,8 +915,8 @@ export default function App() {
               </div>
             )}
 
-            {/* STEP 9: SUCCESS STATE HUB & BRAND SUMMARY REPORT */}
-            {state.currentStep === 9 && (
+            {/* STEP 11: SUCCESS STATE HUB & BRAND SUMMARY REPORT */}
+            {state.currentStep === 11 && (
               <div className="flex flex-col gap-10">
                 <SuccessStateHub
                   state={state}

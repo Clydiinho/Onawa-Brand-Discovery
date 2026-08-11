@@ -63,6 +63,18 @@ export interface AIAnalysisResult {
   strategicSummary: string;
 }
 
+export interface PositioningMatrixData {
+  x: number; // -100 (Corporate) to +100 (Disruptive)
+  y: number; // -100 (Traditional) to +100 (Progressive)
+  quadrant: string; // Quadrant name
+}
+
+export type RoadmapPhase = "discovery" | "engagement" | "purchase" | "advocacy";
+
+export interface ExperienceRoadmapData {
+  phaseAssignments: Record<RoadmapPhase, string[]>; // phase -> list of touchpoint IDs
+}
+
 export interface BrandQuestionnaireState {
   // Step 1: Foundation & Context
   brandName: string;
@@ -78,20 +90,27 @@ export interface BrandQuestionnaireState {
   // Step 3: Column Five's Brand Heart
   brandHeart: BrandHeartData;
 
-  // Step 4: Willow Marketing's 12 Archetypes
+  // Step 4: Strategic "Villain" & Positioning Matrix (Module 1)
+  strategicEnemy: string;
+  positioningMatrix: PositioningMatrixData;
+
+  // Step 5: Willow Marketing's 12 Archetypes
   primaryArchetype: string;
   secondaryArchetype: string;
 
-  // Step 5: Personality Spectrum
+  // Step 6: Personality Spectrum
   personality: PersonalitySpectrumData;
 
-  // Step 6: Fernando Ifrán's Love/Hate Matrix
+  // Step 7: Fernando Ifrán's Love/Hate Matrix
   keywords: LoveHateKeywords;
 
-  // Step 7: Logo Anatomy
+  // Step 8: Logo Anatomy
   logoType: "logomark" | "logotype" | "combination" | "emblem";
 
-  // Step 8: Dynamic UVP Builder
+  // Step 9: Experience Roadmap (Module 2)
+  experienceRoadmap: ExperienceRoadmapData;
+
+  // Step 10: Dynamic UVP Builder
   uvp: UVPData;
 
   // AI Generated Output (Optional)

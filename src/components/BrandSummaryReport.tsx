@@ -21,7 +21,9 @@ import {
   Loader2,
   AlertCircle,
   Send,
-  CheckCircle2
+  CheckCircle2,
+  Skull,
+  Compass
 } from "lucide-react";
 
 interface BrandSummaryReportProps {
@@ -95,13 +97,20 @@ export const BrandSummaryReport: React.FC<BrandSummaryReportProps> = ({
 
 ---
 
-## 3. 12 ARCHETYPES POSITIONING (Willow Marketing)
+## 3. STRATEGIC VILLAIN & POSITIONING MATRIX
+- **Strategic Enemy:** ${state.strategicEnemy || "Status Quo & Inefficiency"}
+- **Positioning Focus:** ${state.positioningMatrix?.quadrant || "Blue Ocean Gap"} (X: ${state.positioningMatrix?.x || 50}, Y: ${state.positioningMatrix?.y || 50})
+- *Clyde's Perspective:* "To be a hero to your customers, you must first define the villain you are rescuing them from."
+
+---
+
+## 4. 12 ARCHETYPES POSITIONING (Willow Marketing)
 - **Primary Archetype:** ${primaryArchInfo?.name || "Not chosen"} ("${primaryArchInfo?.motto || ""}")
 - **Secondary Archetype:** ${secondaryArchInfo?.name || "Not chosen"} ("${secondaryArchInfo?.motto || ""}")
 
 ---
 
-## 4. PERSONALITY SPECTRUM
+## 5. PERSONALITY SPECTRUM
 - Heritage vs. Progressive: ${state.personality.traditionalVsProgressive}%
 - Corporate vs. Disruptive: ${state.personality.corporateVsDisruptive}%
 - Quiet vs. Bold: ${state.personality.reservedVsBold}%
@@ -110,15 +119,25 @@ export const BrandSummaryReport: React.FC<BrandSummaryReportProps> = ({
 
 ---
 
-## 5. LOVE / HATE MATRIX (Fernando Ifrán)
+## 6. LOVE / HATE MATRIX (Fernando Ifrán)
 - **Embrace ("That's Us"):** ${state.keywords.love.join(", ") || "None"}
 - **Avoid ("Definitely Not Us"):** ${state.keywords.hate.join(", ") || "None"}
 
 ---
 
-## 6. LOGO ANATOMY & UVP
+## 7. EXPERIENCE ROADMAP (Customer Lifecycle Touchpoints)
+- **1. Discovery:** ${state.experienceRoadmap?.phaseAssignments?.discovery?.join(", ") || "None"}
+- **2. Engagement:** ${state.experienceRoadmap?.phaseAssignments?.engagement?.join(", ") || "None"}
+- **3. Purchase:** ${state.experienceRoadmap?.phaseAssignments?.purchase?.join(", ") || "None"}
+- **4. Advocacy:** ${state.experienceRoadmap?.phaseAssignments?.advocacy?.join(", ") || "None"}
+
+---
+
+## 8. LOGO ANATOMY & UVP
 - **Logo Type:** ${state.logoType.toUpperCase()}
 - **Unique Value Proposition:** Our ${state.uvp.offering || "[offering]"} is the only ${state.uvp.category || "[category]"} that ${state.uvp.benefit || "[benefit]"} for ${state.uvp.targetAudience || "[audience]"}.
+
+Proprietary Strategic Framework by Clyde Strydom for Onawa Studio.
 
 ${
   state.aiAnalysis
@@ -204,7 +223,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             className="px-3.5 py-2 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all"
           >
             <Send className="w-4 h-4 stroke-[2.5]" />
-            <span>Send to Strategist</span>
+            <span>Email Brief &amp; Google Doc (Gmail)</span>
           </button>
 
           {/* Primary Action 2: Download Style Guide PDF */}
@@ -686,7 +705,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             className="px-5 py-3 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-xl shrink-0 print:hidden"
           >
             <Send className="w-4 h-4 stroke-[2.5]" />
-            <span>Send to Clyde Strydom</span>
+            <span>Email Brief to Clyde &amp; Client</span>
           </button>
         </div>
 

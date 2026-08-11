@@ -155,6 +155,78 @@ export async function generateBrandStyleGuidePDF(
       </div>
     </div>
 
+    <!-- STRATEGIC POSITIONING, VILLAIN & EXPERIENCE ROADMAP PAGE -->
+    <div class="pdf-page" style="width: 800px; height: 1130px; padding: 50px 60px 80px 60px; background: #ffffff; color: #0f172a; box-sizing: border-box; position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 24px;">
+        <span style="font-size: 16px; font-weight: 900; color: #0f172a; letter-spacing: -0.01em;">The Onawa Studio Brand Blueprint: Curated for ${escapeHtml(brandTitle)} by Clyde Strydom</span>
+        <span style="font-size: 11px; font-weight: 700; color: #2563eb; text-transform: uppercase;">Strategic Positioning</span>
+      </div>
+
+      <!-- Defined Enemy Card -->
+      <div style="margin-bottom: 24px; padding: 20px; background: #fff1f2; border: 2px solid #f43f5e; border-radius: 16px;">
+        <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #e11d48; margin-bottom: 6px;">
+          The Strategic "Villain" (Defined Enemy)
+        </div>
+        <div style="font-size: 15px; font-weight: 800; color: #881337; line-height: 1.4;">
+          ${escapeHtml(state.strategicEnemy || "Status Quo & Inefficiency")}
+        </div>
+        <div style="font-size: 11px; font-style: italic; color: #be123c; margin-top: 8px;">
+          "Clyde's Perspective: To be a hero to your customers, you must first define the villain you are rescuing them from."
+        </div>
+      </div>
+
+      <!-- Market Positioning Matrix -->
+      <div style="margin-bottom: 28px;">
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #0284c7; margin: 0 0 12px 0;">
+          Market Positioning Matrix
+        </h3>
+
+        <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; background: #090d16; padding: 20px; border-radius: 16px; color: #ffffff;">
+          <!-- Mini SVG Representation -->
+          <div style="width: 180px; height: 180px; border: 1px solid #334155; position: relative; background: #020617; border-radius: 12px; margin: 0 auto;">
+            <div style="position: absolute; left: 50%; top: 10px; bottom: 10px; width: 1px; background: #00FFC2; opacity: 0.5;"></div>
+            <div style="position: absolute; top: 50%; left: 10px; right: 10px; height: 1px; background: #00FFC2; opacity: 0.5;"></div>
+            <div style="position: absolute; left: ${90 + ((state.positioningMatrix?.x || 50) / 100) * 70 - 8}px; top: ${90 - ((state.positioningMatrix?.y || 50) / 100) * 70 - 8}px; width: 16px; height: 16px; background: #C1FF00; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px #C1FF00;"></div>
+            <div style="position: absolute; top: 4px; width: 100%; text-align: center; font-size: 8px; font-family: monospace; color: #00FFC2; font-weight: bold;">PROGRESSIVE</div>
+            <div style="position: absolute; bottom: 4px; width: 100%; text-align: center; font-size: 8px; font-family: monospace; color: #64748b;">TRADITIONAL</div>
+            <div style="position: absolute; left: 4px; top: 80px; font-size: 8px; font-family: monospace; color: #64748b;">CORP</div>
+            <div style="position: absolute; right: 4px; top: 80px; font-size: 8px; font-family: monospace; color: #C1FF00; font-weight: bold;">DISRUPT</div>
+          </div>
+
+          <div>
+            <div style="font-size: 11px; font-weight: 800; color: #C1FF00; text-transform: uppercase; font-family: monospace; margin-bottom: 6px;">
+              Identified Quadrant Focus
+            </div>
+            <div style="font-size: 18px; font-weight: 900; color: #ffffff; margin-bottom: 8px;">
+              ${escapeHtml(state.positioningMatrix?.quadrant || "Blue Ocean Gap")}
+            </div>
+            <div style="font-size: 12px; color: #94a3b8; line-height: 1.5; font-family: monospace;">
+              Coordinates: X = ${state.positioningMatrix?.x || 50} (${(state.positioningMatrix?.x || 50) > 0 ? "Disruptive" : "Corporate"}), Y = ${state.positioningMatrix?.y || 50} (${(state.positioningMatrix?.y || 50) > 0 ? "Progressive" : "Traditional"})
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Roadmap Touchpoints -->
+      <div>
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #0d9488; margin: 0 0 12px 0;">
+          Experience Roadmap (Customer Lifecycle)
+        </h3>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          ${renderPdfRoadmapPhase("1. Discovery", state.experienceRoadmap?.phaseAssignments?.discovery, "#16a34a", "#f0fdf4")}
+          ${renderPdfRoadmapPhase("2. Engagement", state.experienceRoadmap?.phaseAssignments?.engagement, "#0284c7", "#f0f9ff")}
+          ${renderPdfRoadmapPhase("3. Purchase", state.experienceRoadmap?.phaseAssignments?.purchase, "#2563eb", "#eff6ff")}
+          ${renderPdfRoadmapPhase("4. Advocacy", state.experienceRoadmap?.phaseAssignments?.advocacy, "#9333ea", "#faf5ff")}
+        </div>
+      </div>
+
+      <!-- Mandatory Section Footer -->
+      <div style="position: absolute; bottom: 20px; left: 60px; right: 60px; font-size: 10px; color: #64748b; font-family: monospace; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
+        Proprietary Strategic Framework by Clyde Strydom for Onawa Studio.
+      </div>
+    </div>
+
     <!-- PAGE 3: ARCHETYPE & PERSONALITY SPECTRUM -->
     <div class="pdf-page" style="width: 800px; height: 1130px; padding: 50px 60px 80px 60px; background: #ffffff; color: #0f172a; box-sizing: border-box; position: relative;">
       <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 30px;">
@@ -382,6 +454,52 @@ function renderPdfSlider(leftLabel: string, rightLabel: string, value: number): 
       </div>
       <div style="height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; position: relative;">
         <div style="position: absolute; left: 0; top: 0; bottom: 0; width: ${value}%; background: linear-gradient(90deg, #f59e0b, #06b6d4); border-radius: 4px;"></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderPdfRoadmapPhase(
+  title: string,
+  touchpointIds: string[] = [],
+  color: string,
+  bgColor: string
+): string {
+  const touchpointNames: Record<string, string> = {
+    website: "Website & Web App",
+    social_media: "Social Media Channels",
+    unboxing: "Unboxing & Packaging",
+    customer_service: "Customer Service & Support",
+    retail: "Retail & Physical Space",
+    email_marketing: "Email Newsletters",
+    mobile_app: "Mobile Application",
+    sales_deck: "Sales Deck & Pitch",
+    events_expos: "Pop-Up Events & Expos",
+    community: "VIP Community Portal",
+    word_of_mouth: "Referral & Word of Mouth",
+    product_ux: "Product Quality & UX",
+  };
+
+  const labels = touchpointIds.map((id) => touchpointNames[id] || id);
+
+  return `
+    <div style="padding: 12px; background: ${bgColor}; border: 1px solid ${color}; border-radius: 12px;">
+      <div style="font-size: 11px; font-weight: 800; color: ${color}; text-transform: uppercase; margin-bottom: 6px;">
+        ${escapeHtml(title)}
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 4px;">
+        ${
+          labels.length > 0
+            ? labels
+                .map(
+                  (l) =>
+                    `<span style="font-size: 9px; font-weight: 700; padding: 2px 6px; background: #ffffff; color: #0f172a; border-radius: 6px; border: 1px solid #cbd5e1;">${escapeHtml(
+                      l
+                    )}</span>`
+                )
+                .join("")
+            : `<span style="font-size: 10px; color: #94a3b8; font-style: italic;">None assigned</span>`
+        }
       </div>
     </div>
   `;

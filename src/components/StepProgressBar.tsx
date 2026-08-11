@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, Sparkles, Flag, Heart, Users, Sliders, Hash, Layers, FileText } from "lucide-react";
+import { Check, Sparkles, Flag, Heart, Users, Sliders, Hash, Layers, FileText, Skull, Compass } from "lucide-react";
 
 export interface StepConfig {
   number: number;
@@ -33,41 +33,55 @@ export const QUESTIONNAIRE_STEPS: StepConfig[] = [
   },
   {
     number: 4,
+    id: "villain_matrix",
+    title: "Enemy & Matrix",
+    subtitle: "Villain & Positioning",
+    icon: Skull,
+  },
+  {
+    number: 5,
     id: "archetypes",
     title: "12 Archetypes",
     subtitle: "Brand Soul & Motto",
     icon: Users,
   },
   {
-    number: 5,
+    number: 6,
     id: "personality",
     title: "Personality Spectrum",
     subtitle: "Sliding Trait Scale",
     icon: Sliders,
   },
   {
-    number: 6,
+    number: 7,
     id: "love_hate",
     title: "Love/Hate Matrix",
     subtitle: "Traits to Embrace/Avoid",
     icon: Hash,
   },
   {
-    number: 7,
+    number: 8,
     id: "logo_anatomy",
     title: "Logo Anatomy",
     subtitle: "Logomark vs Type",
     icon: Layers,
   },
   {
-    number: 8,
+    number: 9,
+    id: "experience_roadmap",
+    title: "Experience Roadmap",
+    subtitle: "Journey & Touchpoints",
+    icon: Compass,
+  },
+  {
+    number: 10,
     id: "uvp",
     title: "UVP Builder",
     subtitle: "Value Proposition",
     icon: Sparkles,
   },
   {
-    number: 9,
+    number: 11,
     id: "summary",
     title: "Strategy Report",
     subtitle: "Executive Summary",
@@ -134,7 +148,7 @@ export const StepProgressBar: React.FC<StepProgressBarProps> = ({
         </div>
 
         {/* Desktop / Tablet Step Timeline */}
-        <div className="hidden lg:grid grid-cols-9 gap-1 items-center">
+        <div className="hidden lg:grid grid-cols-11 gap-1 items-center">
           {QUESTIONNAIRE_STEPS.map((step) => {
             const Icon = step.icon;
             const isCurrent = step.number === currentStep;
