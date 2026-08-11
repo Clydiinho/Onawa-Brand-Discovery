@@ -1,19 +1,32 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Sparkles, ArrowRight, Compass, ShieldAlert, Heart, Layers, Target, Wand2, Terminal } from "lucide-react";
+import { Sparkles, ArrowRight, Compass, ShieldAlert, Heart, Layers, Target, Wand2, Terminal, LogIn } from "lucide-react";
 
 interface WelcomeLandingPageProps {
   onInitialize: () => void;
   onOpenAuthModal?: () => void;
+  isAuthenticated?: boolean;
 }
 
 export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
   onInitialize,
   onOpenAuthModal,
+  isAuthenticated = false,
 }) => {
 
   return (
     <div className="relative min-h-[85vh] flex flex-col items-center justify-center py-10 px-4 text-center">
+      {/* Client Login Link - Top Right Corner */}
+      {onOpenAuthModal && !isAuthenticated && (
+        <button
+          type="button"
+          onClick={onOpenAuthModal}
+          className="absolute top-6 right-6 z-20 px-4 py-2 bg-slate-950/80 hover:bg-slate-900 border border-white/20 hover:border-[#00FFC2] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xl flex items-center gap-2 transition-all shadow-lg backdrop-blur-sm"
+        >
+          <LogIn className="w-3.5 h-3.5 text-[#00FFC2]" />
+          <span className="text-[#00FFC2]">Client Login</span>
+        </button>
+      )}
       {/* Designer Cutting Mat Grid Backdrop Overlay */}
       <div className="absolute inset-0 rounded-3xl pointer-events-none opacity-40 overflow-hidden border border-white/20">
         <div className="absolute top-3 left-4 font-mono text-[10px] text-[#C1FF00] tracking-widest uppercase">
@@ -117,27 +130,15 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
 
         {/* Large Neon-Pulsing Action Button */}
         <div className="pt-4 w-full flex flex-col items-center gap-3">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
-            <button
-              type="button"
-              onClick={onInitialize}
-              className="neon-btn-pulse flex-1 w-full relative group px-8 py-4 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-base uppercase tracking-widest rounded-2xl flex items-center justify-center gap-3 shadow-2xl transition-all cursor-pointer transform active:scale-95"
-            >
-              <Sparkles className="w-5 h-5 text-slate-950" />
-              <span>INITIALIZE DISCOVERY</span>
-              <ArrowRight className="w-5 h-5 text-slate-950 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            {onOpenAuthModal && (
-              <button
-                type="button"
-                onClick={onOpenAuthModal}
-                className="px-6 py-4 bg-slate-900 hover:bg-slate-800 border-2 border-slate-700 hover:border-[#00FFC2] text-white font-mono font-bold text-xs uppercase rounded-2xl flex items-center justify-center gap-2 transition-all"
-              >
-                <span>Client Auth Portal</span>
-              </button>
-            )}
-          </div>
+          <button
+            type="button"
+            onClick={onInitialize}
+            className="neon-btn-pulse relative group px-10 py-5 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-base uppercase tracking-widest rounded-2xl flex items-center justify-center gap-3 shadow-2xl transition-all cursor-pointer transform active:scale-95"
+          >
+            <Sparkles className="w-5 h-5 text-slate-950" />
+            <span>INITIALIZE DISCOVERY</span>
+            <ArrowRight className="w-5 h-5 text-slate-950 group-hover:translate-x-1 transition-transform" />
+          </button>
 
           <p className="text-xs font-mono text-slate-400 mt-2">
             © 2026 Onawa Studio | Strategy by Clyde Strydom

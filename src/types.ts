@@ -154,3 +154,11 @@ export interface BrandQuestionnaireState {
   currentStep: number;
 }
 
+// Navigation types for portal view
+export type PortalView = "discovery" | "moodboard" | "portal";
+
+export interface NavigationState {
+  activeView: PortalView;
+  sidebarOpen: boolean;
+}
+

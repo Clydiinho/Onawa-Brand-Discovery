@@ -5,6 +5,8 @@ import {
   AIAnalysisResult,
   ProjectType,
   ClientUserProfile,
+  PortalView,
+  NavigationState,
 } from "./types";
 import { BRAND_ARCHETYPES } from "./data/archetypes";
 import { StepProgressBar, QUESTIONNAIRE_STEPS } from "./components/StepProgressBar";
@@ -21,7 +23,7 @@ import { LogoAnatomyGuide } from "./components/LogoAnatomyGuide";
 import { UVPBuilder } from "./components/UVPBuilder";
 import { BrandSummaryReport } from "./components/BrandSummaryReport";
 import { SuccessStateHub } from "./components/SuccessStateHub";
-import { saveStrategySession } from "./lib/supabase";
+import { saveStrategySession, loadStrategySession, getDiscoveryStatus, DiscoveryStatus } from "./lib/supabase";
 import {
   Sparkles,
   ArrowRight,
@@ -51,7 +53,12 @@ import {
   Layers,
   User,
   ShieldCheck,
-  CheckCircle2
+  CheckCircle2,
+  LogOut,
+  LayoutDashboard,
+  Palette as PaletteIcon,
+  Menu,
+  ChevronRight
 } from "lucide-react";
 
 const LOCAL_STORAGE_KEY = "brand_discovery_questionnaire_v1";
@@ -152,6 +159,14 @@ export default function App() {
   const [newValueInput, setNewValueInput] = useState("");
   const [activeGoldenRing, setActiveGoldenRing] = useState<"why" | "how" | "what" | null>("why");
   const [loadingAI, setLoadingAI] = useState(false);
+  
+  // New state-based navigation
+  const [discoveryStatus, setDiscoveryStatus] = useState<DiscoveryStatus>("new");
+  const [loadingSession, setLoadingSession] = useState(false);
+  const [navigation, setNavigation] = useState<NavigationState>({
+    activeView: "discovery",
+    sidebarOpen: true,
+  });
 
   // Save to localStorage and Supabase
   useEffect(() => {
@@ -165,8 +180,80 @@ export default function App() {
     }
   }, [state]);
 
+  // Check discovery status when user authenticates
+  useEffect(() => {
+    const checkDiscoveryStatus = async () => {
+      if (state.clientProfile?.id && state.clientProfile.isAuthenticated) {
+        setLoadingSession(true);
+        try {
+          const status = await getDiscoveryStatus(state.clientProfile.id);
+          setDiscoveryStatus(status.status);
+          
+          // If in progress or completed, load the saved session
+          if (status.status !== "new") {
+            const savedSession = await loadStrategySession(state.clientProfile.id);
+            if (savedSession) {
+              setState((prev) => ({ ...prev, ...savedSession }));
+              setCompletedSteps(new Set(Array.from({ length: status.lastCompletedStep - 1 }, (_, i) => i + 1)));
+            }
+          }
+        } catch (err) {
+          console.warn("Failed to check discovery status:", err);
+        } finally {
+          setLoadingSession(false);
+        }
+      }
+    };
+
+    checkDiscoveryStatus();
+  }, [state.clientProfile?.id, state.clientProfile?.isAuthenticated]);
+
   const updateState = (updater: Partial<BrandQuestionnaireState>) => {
     setState((prev) => ({ ...prev, ...updater }));
+  };
+
+  const handleInitialize = async () => {
+    // Check if user is authenticated
+    if (!state.clientProfile?.isAuthenticated) {
+      // Not logged in - show auth modal
+      setIsAuthModalOpen(true);
+      return;
+    }
+
+    // User is authenticated - check discovery status
+    setLoadingSession(true);
+    try {
+      const status = await getDiscoveryStatus(state.clientProfile.id);
+      setDiscoveryStatus(status.status);
+
+      if (status.status === "completed") {
+        // Completed user - take to Client Portal View
+        setNavigation({ activeView: "portal", sidebarOpen: true });
+        setShowLandingPage(false);
+      } else if (status.status === "in_progress") {
+        // In-progress user - resume from last completed field
+        const savedSession = await loadStrategySession(state.clientProfile.id);
+        if (savedSession) {
+          setState((prev) => ({ ...prev, ...savedSession }));
+          setCompletedSteps(new Set(Array.from({ length: status.lastCompletedStep - 1 }, (_, i) => i + 1)));
+          updateState({ currentStep: status.lastCompletedStep });
+        }
+        setNavigation({ activeView: "discovery", sidebarOpen: true });
+        setShowLandingPage(false);
+      } else {
+        // New user - start from Section 1
+        updateState({ currentStep: 1 });
+        setNavigation({ activeView: "discovery", sidebarOpen: true });
+        setShowLandingPage(false);
+      }
+    } catch (err) {
+      console.warn("Failed to initialize discovery:", err);
+      // Fallback - start fresh
+      updateState({ currentStep: 1 });
+      setShowLandingPage(false);
+    } finally {
+      setLoadingSession(false);
+    }
   };
 
   const handleSynthesizeAI = async () => {
@@ -190,6 +277,29 @@ export default function App() {
     } finally {
       setLoadingAI(false);
     }
+  };
+
+  const handleLogout = () => {
+    // Clear auth state and return to landing
+    setState((prev) => ({
+      ...prev,
+      clientProfile: {
+        id: "guest_client",
+        email: "client@onawastudio.com",
+        fullName: "Valued Client",
+        companyName: "Strategy Client",
+        isAuthenticated: false,
+      },
+    }));
+    setDiscoveryStatus("new");
+    setNavigation({ activeView: "discovery", sidebarOpen: true });
+    setShowLandingPage(true);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+  };
+
+  const handleNavigationChange = (view: PortalView) => {
+    setNavigation((prev) => ({ ...prev, activeView: view }));
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleNextStep = () => {
@@ -273,11 +383,9 @@ export default function App() {
             className="w-full flex-1 flex flex-col justify-center"
           >
             <WelcomeLandingPage
-              onInitialize={() => {
-                setShowLandingPage(false);
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
+              onInitialize={handleInitialize}
               onOpenAuthModal={() => setIsAuthModalOpen(true)}
+              isAuthenticated={state.clientProfile?.isAuthenticated || false}
             />
           </motion.div>
         ) : (
@@ -288,30 +396,36 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="w-full flex-1 flex flex-col"
           >
-            {/* Client Welcome Header Banner */}
-            <div className="bg-slate-950/90 border-b border-[#00FFC2]/30 px-4 py-2 flex flex-wrap items-center justify-between text-xs gap-2">
-              <div className="flex items-center gap-2">
+            {/* Fixed Header with Welcome & Logout */}
+            <div className="bg-slate-950/95 border-b border-[#00FFC2]/30 px-4 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md">
+              <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-[#00FFC2] animate-pulse shrink-0" />
-                <span className="text-slate-200 font-medium">
+                <span className="text-slate-200 font-medium text-sm">
                   {state.clientProfile?.isAuthenticated ? (
                     <>
-                      Welcome, <strong className="text-[#C1FF00] font-extrabold">{state.clientProfile.fullName}</strong>. Your strategy session with Clyde Strydom is in progress.
+                      Welcome, <strong className="text-[#C1FF00] font-extrabold">{state.clientProfile.fullName}</strong>
                     </>
                   ) : (
                     <>
-                      Welcome, <strong className="text-white font-bold">{state.clientProfile?.fullName || "Valued Client"}</strong>. Your strategy session with Clyde Strydom is in progress.
+                      Welcome, <strong className="text-white font-bold">{state.clientProfile?.fullName || "Valued Client"}</strong>
                     </>
                   )}
                 </span>
+                {loadingSession && (
+                  <div className="flex items-center gap-2 text-xs text-slate-400">
+                    <div className="w-3 h-3 border-2 border-[#C1FF00] border-t-transparent rounded-full animate-spin" />
+                    <span>Loading session...</span>
+                  </div>
+                )}
               </div>
 
               <button
                 type="button"
-                onClick={() => setIsAuthModalOpen(true)}
-                className="px-3 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#C1FF00] text-[#C1FF00] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
+                onClick={handleLogout}
+                className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#FF002B] text-[#FF002B] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
               >
-                <User className="w-3.5 h-3.5" />
-                <span>{state.clientProfile?.isAuthenticated ? `Profile (${state.clientProfile.fullName.split(" ")[0]})` : "Sign In / Auth"}</span>
+                <LogOut className="w-3.5 h-3.5" />
+                <span>Log Out</span>
               </button>
             </div>
 
@@ -1046,7 +1160,13 @@ export default function App() {
   isOpen={isAuthModalOpen}
   onClose={() => setIsAuthModalOpen(false)}
   currentProfile={state.clientProfile}
-  onProfileUpdated={(updatedProfile) => updateState({ clientProfile: updatedProfile })}
+  onProfileUpdated={(updatedProfile) => {
+    updateState({ clientProfile: updatedProfile });
+    // If user just authenticated, trigger discovery status check
+    if (updatedProfile.isAuthenticated) {
+      setShowLandingPage(false);
+    }
+  }}
 />
 </div>
 );
