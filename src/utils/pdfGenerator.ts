@@ -79,7 +79,68 @@ export async function generateBrandStyleGuidePDF(
       </div>
 
       <div style="position: absolute; bottom: 20px; left: 60px; right: 60px; font-size: 10px; color: #64748b; font-family: monospace; text-align: center;">
-        © 2026 Onawa Studio | Strategy by Clyde Strydom
+        © 2026 Onawa Studio • Custom discovery tool utilizing Simon Sinek’s Golden Circle mixed with Clyde Strydom’s 17+ years of experience
+      </div>
+    </div>
+
+    <!-- PAGE 5: VISUAL MOOD BOARD SNAPSHOT & ARCHETYPE DEEP DIVE -->
+    <div class="pdf-page" style="width: 800px; height: 1130px; padding: 50px 60px 80px 60px; background: #ffffff; color: #0f172a; box-sizing: border-box; position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0f172a; padding-bottom: 12px; margin-bottom: 24px;">
+        <span style="font-size: 16px; font-weight: 900; color: #0f172a; letter-spacing: -0.01em;">The Onawa Studio Brand Blueprint: Curated for ${escapeHtml(brandTitle)} by Clyde Strydom</span>
+        <span style="font-size: 11px; font-weight: 700; color: #a855f7; text-transform: uppercase;">Visual Direction</span>
+      </div>
+
+      <div style="margin-bottom: 24px;">
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #a855f7; margin: 0 0 12px 0;">
+          Interactive Mood Board Snapshot (Fabric.js Aesthetic Canvas)
+        </h3>
+        ${
+          state.moodBoard?.canvasSnapshotDataUrl
+            ? `
+            <div style="width: 100%; height: 380px; background: #020617; border: 2px solid #334155; border-radius: 16px; overflow: hidden; display: flex; items-center; justify-center;">
+              <img src="${state.moodBoard.canvasSnapshotDataUrl}" style="width: 100%; height: 100%; object-fit: contain;" />
+            </div>
+          `
+            : `
+            <div style="padding: 40px; background: #020617; border: 2px dashed #334155; border-radius: 16px; text-align: center; color: #94a3b8; font-family: monospace; font-size: 12px;">
+              [Visual Direction Mood Board State Recorded: ${state.moodBoard?.elements?.length || 0} aesthetic elements on canvas]
+            </div>
+          `
+        }
+      </div>
+
+      <!-- Archetype Summary & Golden Circle Synthesis -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        <div style="padding: 20px; background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 16px;">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #9333ea; margin-bottom: 6px;">
+            Primary Archetype DNA
+          </div>
+          <div style="font-size: 16px; font-weight: 900; color: #581c87; margin-bottom: 4px;">
+            ${escapeHtml(primaryArch?.name || "Selected Archetype")}
+          </div>
+          <div style="font-size: 12px; font-style: italic; font-weight: 700; color: #7e22ce; margin-bottom: 8px;">
+            "${escapeHtml(primaryArch?.motto || "")}"
+          </div>
+          <div style="font-size: 11px; color: #3b0764; line-height: 1.5;">
+            ${escapeHtml(primaryArch?.traitSummary || "")}
+          </div>
+        </div>
+
+        <div style="padding: 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 16px;">
+          <div style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: #16a34a; margin-bottom: 6px;">
+            Golden Circle Purpose Core
+          </div>
+          <div style="font-size: 12px; font-weight: 800; color: #14532d; margin-bottom: 6px;">
+            WHY WE EXIST:
+          </div>
+          <div style="font-size: 11px; color: #166534; line-height: 1.5; font-style: italic;">
+            "${escapeHtml(state.goldenCircle.why || "To innovate and redefine industry standards.")}"
+          </div>
+        </div>
+      </div>
+
+      <div style="position: absolute; bottom: 20px; left: 60px; right: 60px; font-size: 10px; color: #64748b; font-family: monospace; text-align: center; border-top: 1px solid #e2e8f0; padding-top: 10px;">
+        Onawa Studio Brand Blueprint • Custom tool for Onawa Studio clients, utilizing Simon Sinek’s Golden Circle mixed with Clyde Strydom’s 17+ years of experience
       </div>
     </div>
 

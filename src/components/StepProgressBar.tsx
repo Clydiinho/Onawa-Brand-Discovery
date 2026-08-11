@@ -1,5 +1,5 @@
 import React from "react";
-import { Check, Sparkles, Flag, Heart, Users, Sliders, Hash, Layers, FileText, Skull, Compass } from "lucide-react";
+import { Check, Sparkles, Flag, Heart, Users, Sliders, Hash, Layers, FileText, Skull, Compass, Palette } from "lucide-react";
 
 export interface StepConfig {
   number: number;
@@ -75,19 +75,27 @@ export const QUESTIONNAIRE_STEPS: StepConfig[] = [
   },
   {
     number: 10,
+    id: "mood_board",
+    title: "Visual Mood Board",
+    subtitle: "Fabric.js Canvas",
+    icon: Palette,
+  },
+  {
+    number: 11,
     id: "uvp",
     title: "UVP Builder",
     subtitle: "Value Proposition",
     icon: Sparkles,
   },
   {
-    number: 11,
+    number: 12,
     id: "summary",
     title: "Strategy Report",
     subtitle: "Executive Summary",
     icon: FileText,
   },
 ];
+
 
 interface StepProgressBarProps {
   currentStep: number;
@@ -148,7 +156,7 @@ export const StepProgressBar: React.FC<StepProgressBarProps> = ({
         </div>
 
         {/* Desktop / Tablet Step Timeline */}
-        <div className="hidden lg:grid grid-cols-11 gap-1 items-center">
+        <div className="hidden lg:grid grid-cols-12 gap-1 items-center">
           {QUESTIONNAIRE_STEPS.map((step) => {
             const Icon = step.icon;
             const isCurrent = step.number === currentStep;

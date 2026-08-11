@@ -75,7 +75,38 @@ export interface ExperienceRoadmapData {
   phaseAssignments: Record<RoadmapPhase, string[]>; // phase -> list of touchpoint IDs
 }
 
+export interface MoodBoardElement {
+  id: string;
+  type: "image" | "color" | "text";
+  content: string; // Image URL / Hex Code / Text string
+  fontFamily?: string;
+  x: number;
+  y: number;
+  scaleX?: number;
+  scaleY?: number;
+  angle?: number;
+  width?: number;
+  height?: number;
+}
+
+export interface MoodBoardData {
+  elements: MoodBoardElement[];
+  canvasSnapshotDataUrl?: string;
+}
+
+export interface ClientUserProfile {
+  id: string;
+  email: string;
+  fullName: string;
+  companyName?: string;
+  avatarUrl?: string;
+  isAuthenticated: boolean;
+}
+
 export interface BrandQuestionnaireState {
+  // Client Profile
+  clientProfile?: ClientUserProfile;
+
   // Step 1: Foundation & Context
   brandName: string;
   industry: string;
@@ -110,7 +141,10 @@ export interface BrandQuestionnaireState {
   // Step 9: Experience Roadmap (Module 2)
   experienceRoadmap: ExperienceRoadmapData;
 
-  // Step 10: Dynamic UVP Builder
+  // Step 10: Interactive Visual Direction Mood Board (Fabric.js)
+  moodBoard: MoodBoardData;
+
+  // Step 11: Dynamic UVP Builder
   uvp: UVPData;
 
   // AI Generated Output (Optional)
@@ -119,3 +153,4 @@ export interface BrandQuestionnaireState {
   // Meta
   currentStep: number;
 }
+

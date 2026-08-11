@@ -4,6 +4,7 @@ import {
   BrandQuestionnaireState,
   AIAnalysisResult,
   ProjectType,
+  ClientUserProfile,
 } from "./types";
 import { BRAND_ARCHETYPES } from "./data/archetypes";
 import { StepProgressBar, QUESTIONNAIRE_STEPS } from "./components/StepProgressBar";
@@ -14,10 +15,13 @@ import { PersonalitySlider } from "./components/PersonalitySlider";
 import { LoveHateMatrix } from "./components/LoveHateMatrix";
 import { StrategicVillainMatrix } from "./components/StrategicVillainMatrix";
 import { ExperienceRoadmap } from "./components/ExperienceRoadmap";
+import { InteractiveMoodBoard } from "./components/InteractiveMoodBoard";
+import { ClientProfileModal } from "./components/ClientProfileModal";
 import { LogoAnatomyGuide } from "./components/LogoAnatomyGuide";
 import { UVPBuilder } from "./components/UVPBuilder";
 import { BrandSummaryReport } from "./components/BrandSummaryReport";
 import { SuccessStateHub } from "./components/SuccessStateHub";
+import { saveStrategySession } from "./lib/supabase";
 import {
   Sparkles,
   ArrowRight,
@@ -44,12 +48,23 @@ import {
   Rocket,
   Sliders,
   Quote,
-  Layers
+  Layers,
+  User,
+  ShieldCheck,
+  CheckCircle2
 } from "lucide-react";
 
 const LOCAL_STORAGE_KEY = "brand_discovery_questionnaire_v1";
 
 const INITIAL_STATE: BrandQuestionnaireState = {
+  clientProfile: {
+    id: "guest_client",
+    email: "client@onawastudio.com",
+    fullName: "Valued Client",
+    companyName: "Strategy Client",
+    isAuthenticated: false,
+  },
+
   brandName: "",
   industry: "",
   projectType: "new_brand",
@@ -104,6 +119,10 @@ const INITIAL_STATE: BrandQuestionnaireState = {
     },
   },
 
+  moodBoard: {
+    elements: [],
+  },
+
   uvp: {
     offering: "",
     category: "",
@@ -128,15 +147,19 @@ export default function App() {
   });
 
   const [showLandingPage, setShowLandingPage] = useState(true);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set([1]));
   const [newValueInput, setNewValueInput] = useState("");
   const [activeGoldenRing, setActiveGoldenRing] = useState<"why" | "how" | "what" | null>("why");
   const [loadingAI, setLoadingAI] = useState(false);
 
-  // Save to localStorage
+  // Save to localStorage and Supabase
   useEffect(() => {
     try {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+      if (state.clientProfile?.id) {
+        saveStrategySession(state.clientProfile.id, state);
+      }
     } catch (e) {
       console.error("Failed to save state to localStorage:", e);
     }
@@ -254,6 +277,7 @@ export default function App() {
                 setShowLandingPage(false);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
+              onOpenAuthModal={() => setIsAuthModalOpen(true)}
             />
           </motion.div>
         ) : (
@@ -264,6 +288,33 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="w-full flex-1 flex flex-col"
           >
+            {/* Client Welcome Header Banner */}
+            <div className="bg-slate-950/90 border-b border-[#00FFC2]/30 px-4 py-2 flex flex-wrap items-center justify-between text-xs gap-2">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-[#00FFC2] animate-pulse shrink-0" />
+                <span className="text-slate-200 font-medium">
+                  {state.clientProfile?.isAuthenticated ? (
+                    <>
+                      Welcome, <strong className="text-[#C1FF00] font-extrabold">{state.clientProfile.fullName}</strong>. Your strategy session with Clyde Strydom is in progress.
+                    </>
+                  ) : (
+                    <>
+                      Welcome, <strong className="text-white font-bold">{state.clientProfile?.fullName || "Valued Client"}</strong>. Your strategy session with Clyde Strydom is in progress.
+                    </>
+                  )}
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsAuthModalOpen(true)}
+                className="px-3 py-1 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#C1FF00] text-[#C1FF00] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>{state.clientProfile?.isAuthenticated ? `Profile (${state.clientProfile.fullName.split(" ")[0]})` : "Sign In / Auth"}</span>
+              </button>
+            </div>
+
             {/* Top Progress Navigation */}
             <StepProgressBar
               currentStep={state.currentStep}
@@ -890,13 +941,22 @@ export default function App() {
               />
             )}
 
-            {/* STEP 10: DYNAMIC UVP BUILDER */}
+            {/* STEP 10: INTERACTIVE VISUAL DIRECTION MOOD BOARD (FABRIC.JS) */}
             {state.currentStep === 10 && (
+              <InteractiveMoodBoard
+                brandName={state.brandName}
+                moodBoard={state.moodBoard || { elements: [] }}
+                onChange={(updatedMoodBoard) => updateState({ moodBoard: updatedMoodBoard })}
+              />
+            )}
+
+            {/* STEP 11: DYNAMIC UVP BUILDER */}
+            {state.currentStep === 11 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
                     <Sparkles className="w-4 h-4 text-[#C1FF00]" />
-                    <span>Stage 10 • Dynamic UVP Builder</span>
+                    <span>Stage 11 • Dynamic UVP Builder</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Unique Value Proposition Architecture
@@ -915,8 +975,8 @@ export default function App() {
               </div>
             )}
 
-            {/* STEP 11: SUCCESS STATE HUB & BRAND SUMMARY REPORT */}
-            {state.currentStep === 11 && (
+            {/* STEP 12: SUCCESS STATE HUB & BRAND SUMMARY REPORT */}
+            {state.currentStep === 12 && (
               <div className="flex flex-col gap-10">
                 <SuccessStateHub
                   state={state}
@@ -980,6 +1040,15 @@ export default function App() {
     </motion.div>
   )}
 </AnimatePresence>
+
+{/* Supabase Client Profile Modal */}
+<ClientProfileModal
+  isOpen={isAuthModalOpen}
+  onClose={() => setIsAuthModalOpen(false)}
+  currentProfile={state.clientProfile}
+  onProfileUpdated={(updatedProfile) => updateState({ clientProfile: updatedProfile })}
+/>
 </div>
 );
 }
+

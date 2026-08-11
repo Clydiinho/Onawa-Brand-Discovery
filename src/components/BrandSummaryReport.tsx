@@ -75,7 +75,10 @@ export const BrandSummaryReport: React.FC<BrandSummaryReportProps> = ({
   };
 
   const generateMarkdownReport = (): string => {
-    return `# BRAND DISCOVERY STRATEGY REPORT
+    return `# ONAWA STUDIO BRAND BLUEPRINT
+*Custom strategy tool for Onawa Studio clients, utilizing Simon Sinek’s Golden Circle mixed with Clyde Strydom’s 17+ years of experience.*
+
+**Client Profile:** ${state.clientProfile?.fullName || "Onawa Client"} (${state.clientProfile?.email || "N/A"})
 **Brand Name:** ${state.brandName || "Unnamed Brand"}
 **Industry:** ${state.industry || "Not specified"}
 **Project Type:** ${state.projectType === "rebrand" ? "Rebrand" : "New Brand"}
@@ -133,7 +136,23 @@ export const BrandSummaryReport: React.FC<BrandSummaryReportProps> = ({
 
 ---
 
-## 8. LOGO ANATOMY & UVP
+## 8. INTERACTIVE MOOD BOARD CANVAS (Fabric.js State JSON)
+- **Canvas Elements Count:** ${state.moodBoard?.elements?.length || 0}
+- **Mood Board Element Summary:**
+${
+  state.moodBoard?.elements && state.moodBoard.elements.length > 0
+    ? state.moodBoard.elements
+        .map(
+          (el, idx) =>
+            `  ${idx + 1}. [${el.type.toUpperCase()}] Label: "${el.label || "Element"}" (X: ${Math.round(el.left)}, Y: ${Math.round(el.top)})`
+        )
+        .join("\n")
+    : "  No elements placed on interactive canvas yet."
+}
+
+---
+
+## 9. LOGO ANATOMY & UVP
 - **Logo Type:** ${state.logoType.toUpperCase()}
 - **Unique Value Proposition:** Our ${state.uvp.offering || "[offering]"} is the only ${state.uvp.category || "[category]"} that ${state.uvp.benefit || "[benefit]"} for ${state.uvp.targetAudience || "[audience]"}.
 

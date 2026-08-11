@@ -4,11 +4,14 @@ import { Sparkles, ArrowRight, Compass, ShieldAlert, Heart, Layers, Target, Wand
 
 interface WelcomeLandingPageProps {
   onInitialize: () => void;
+  onOpenAuthModal?: () => void;
 }
 
 export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
   onInitialize,
+  onOpenAuthModal,
 }) => {
+
   return (
     <div className="relative min-h-[85vh] flex flex-col items-center justify-center py-10 px-4 text-center">
       {/* Designer Cutting Mat Grid Backdrop Overlay */}
@@ -113,16 +116,28 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
         </div>
 
         {/* Large Neon-Pulsing Action Button */}
-        <div className="pt-4 w-full flex flex-col items-center gap-4">
-          <button
-            type="button"
-            onClick={onInitialize}
-            className="neon-btn-pulse relative group px-10 py-5 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-base sm:text-lg uppercase tracking-widest rounded-2xl flex items-center gap-3 shadow-2xl transition-all cursor-pointer transform active:scale-95"
-          >
-            <Sparkles className="w-6 h-6 text-slate-950 animate-spin" />
-            <span>INITIALIZE DISCOVERY</span>
-            <ArrowRight className="w-6 h-6 text-slate-950 group-hover:translate-x-1 transition-transform" />
-          </button>
+        <div className="pt-4 w-full flex flex-col items-center gap-3">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
+            <button
+              type="button"
+              onClick={onInitialize}
+              className="neon-btn-pulse flex-1 w-full relative group px-8 py-4 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-base uppercase tracking-widest rounded-2xl flex items-center justify-center gap-3 shadow-2xl transition-all cursor-pointer transform active:scale-95"
+            >
+              <Sparkles className="w-5 h-5 text-slate-950" />
+              <span>INITIALIZE DISCOVERY</span>
+              <ArrowRight className="w-5 h-5 text-slate-950 group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            {onOpenAuthModal && (
+              <button
+                type="button"
+                onClick={onOpenAuthModal}
+                className="px-6 py-4 bg-slate-900 hover:bg-slate-800 border-2 border-slate-700 hover:border-[#00FFC2] text-white font-mono font-bold text-xs uppercase rounded-2xl flex items-center justify-center gap-2 transition-all"
+              >
+                <span>Client Auth Portal</span>
+              </button>
+            )}
+          </div>
 
           <p className="text-xs font-mono text-slate-400 mt-2">
             © 2026 Onawa Studio | Strategy by Clyde Strydom
