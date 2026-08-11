@@ -1,0 +1,6 @@
+{
+  "name": "Brand Discovery Questionnaire",
+  "description": "An interactive, high-end Brand Discovery Questionnaire based on proven brand strategy frameworks including the Brand Heart, Golden Circle, 12 Archetypes, and Love/Hate Matrix.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
