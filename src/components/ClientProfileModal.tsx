@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ClientUserProfile } from "../types";
 import { supabase, isSupabaseConfigured } from "../lib/supabase";
+import { sendWelcomeEmail } from "../utils/emailService";
 import {
   ShieldCheck,
   User,
@@ -77,6 +78,10 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
           };
           onProfileUpdated(newProfile);
           setSuccessMessage("Account created & strategy session initialized!");
+
+          // Send welcome email (non-blocking)
+          sendWelcomeEmail(newProfile.email, newProfile.fullName).catch(() => {});
+
           setTimeout(onClose, 1200);
         } else {
           const { data, error } = await supabase.auth.signInWithPassword({

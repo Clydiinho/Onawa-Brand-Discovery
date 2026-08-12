@@ -117,7 +117,7 @@ export async function getDiscoveryStatus(
 /**
  * Calculate which steps are completed based on the state data
  */
-function calculateCompletedSteps(state: BrandQuestionnaireState): number[] {
+export function calculateCompletedSteps(state: BrandQuestionnaireState): number[] {
   const completed: number[] = [];
 
   // Step 1: Brand Context
@@ -242,5 +242,41 @@ export async function loadStrategySession(
   } catch (err) {
     console.warn("Failed to load session:", err);
     return null;
+  }
+}
+
+/**
+ * Delete all user data from discovery_responses and sign out
+ * Note: This does NOT delete the Supabase Auth account itself.
+ * To fully delete the auth account, use the Supabase Dashboard or Admin API.
+ */
+export async function deleteAccount(
+  userId: string
+): Promise<{ success: boolean; message: string }> {
+  try {
+    // Delete user data from discovery_responses
+    if (supabase && isSupabaseConfigured) {
+      const { error } = await supabase
+        .from("discovery_responses")
+        .delete()
+        .eq("user_id", userId);
+
+      if (error) {
+        console.warn("Failed to delete discovery data:", error.message);
+      }
+    }
+
+    // Clear per-user localStorage
+    localStorage.removeItem(`onawa_strategy_session_${userId}`);
+
+    // Sign out from Supabase Auth
+    if (supabase) {
+      await supabase.auth.signOut();
+    }
+
+    return { success: true, message: "Account data deleted and session terminated." };
+  } catch (err: any) {
+    console.error("Delete account error:", err);
+    return { success: false, message: err.message || "Failed to delete account." };
   }
 }

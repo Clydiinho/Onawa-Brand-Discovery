@@ -361,3 +361,123 @@ function buildBlueprintHtmlEmail(
 </html>
   `.trim();
 }
+
+/**
+ * Send a welcome email to a newly registered client
+ */
+export async function sendWelcomeEmail(
+  clientEmail: string,
+  clientName: string
+): Promise<{ success: boolean; message: string }> {
+  const accessKey = EMAIL_CONFIG.WEB3FORMS_ACCESS_KEY;
+
+  if (!clientEmail || !accessKey) {
+    return { success: false, message: "Missing email or access key." };
+  }
+
+  const subject = `Welcome to Onawa Studio, ${clientName}!`;
+
+  const htmlBody = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Welcome to Onawa Studio</title>
+</head>
+<body style="margin:0; padding:0; background-color:#090d16; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; color:#f8fafc;">
+  <div style="max-width:600px; margin:0 auto; padding:32px 20px;">
+    <!-- Header -->
+    <div style="background:linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border:2px solid #C1FF00; border-radius:20px; padding:40px 32px; text-align:center; margin-bottom:24px; box-shadow:0 20px 40px rgba(193,255,0,0.15);">
+      <div style="display:inline-block; padding:4px 12px; background-color:#C1FF00; color:#020617; font-size:11px; font-weight:900; letter-spacing:2px; border-radius:12px; text-transform:uppercase; margin-bottom:16px;">
+        ONAWA STUDIO
+      </div>
+      <h1 style="color:#ffffff; font-size:28px; font-weight:900; margin:0 0 12px 0; line-height:1.2;">
+        Welcome, ${clientName}!
+      </h1>
+      <p style="color:#C1FF00; font-size:16px; font-weight:700; margin:0 0 8px 0;">
+        Your Brand Discovery Journey Begins Now
+      </p>
+      <p style="color:#94a3b8; font-size:13px; margin:0;">
+        Curated by Clyde Strydom &bull; Onawa Studio
+      </p>
+    </div>
+
+    <!-- Body -->
+    <div style="background-color:#1e293b; border-radius:16px; padding:28px; margin-bottom:24px;">
+      <h2 style="color:#00FFC2; font-size:18px; font-weight:800; margin:0 0 16px 0;">
+        Your Private Discovery Portal is Live
+      </h2>
+      <p style="color:#e2e8f0; font-size:14px; line-height:1.7; margin:0 0 16px 0;">
+        You now have exclusive access to the <strong style="color:#C1FF00;">Onawa Studio Discovery Portal</strong> &mdash; a strategic brand workshop built on Simon Sinek's Golden Circle framework and refined over 17+ years of elite brand strategy by Clyde Strydom.
+      </p>
+      <p style="color:#e2e8f0; font-size:14px; line-height:1.7; margin:0 0 20px 0;">
+        Inside, you will define your brand's soul, archetype, positioning, and visual direction through 12 curated stages &mdash; each designed to extract clarity before a single pixel is designed.
+      </p>
+
+      <div style="background-color:#0f172a; border:1px solid #334155; border-radius:12px; padding:20px; margin-bottom:20px;">
+        <div style="font-size:11px; font-weight:900; color:#C1FF00; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px;">
+          What Awaits You
+        </div>
+        <div style="color:#cbd5e1; font-size:13px; line-height:1.8;">
+          &#10003;&nbsp; Golden Circle Purpose Workshop<br/>
+          &#10003;&nbsp; Brand Heart &amp; Core Values Definition<br/>
+          &#10003;&nbsp; 12 Brand Archetype Selection<br/>
+          &#10003;&nbsp; Strategic Positioning Matrix<br/>
+          &#10003;&nbsp; Interactive Visual Mood Board<br/>
+          &#10003;&nbsp; Dynamic UVP Builder<br/>
+          &#10003;&nbsp; AI-Enhanced Brand Strategy Report
+        </div>
+      </div>
+
+      <p style="color:#94a3b8; font-size:13px; font-style:italic; margin:0;">
+        "To build a great brand, we must start with your 'Why' before we touch a single pixel."
+      </p>
+      <p style="color:#C1FF00; font-size:12px; font-weight:bold; margin:8px 0 0 0;">
+        &mdash; Clyde Strydom, Onawa Studio
+      </p>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center; margin-bottom:24px;">
+      <a href="${window.location?.origin || 'https://onawastudio.co.za'}" style="display:inline-block; padding:14px 32px; background-color:#C1FF00; color:#020617; font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:1px; border-radius:12px; text-decoration:none; box-shadow:0 8px 24px rgba(193,255,0,0.3);">
+        Launch Your Discovery Portal &rarr;
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <div style="text-align:center; font-size:12px; color:#64748b; border-top:1px solid #1e293b; padding-top:20px;">
+      <p style="margin:0 0 4px 0;">&copy; 2026 Onawa Studio | Strategy by Clyde Strydom</p>
+      <p style="margin:0; font-size:11px; color:#475569;">This account was created via the Onawa Studio Discovery Portal</p>
+    </div>
+  </div>
+</body>
+</html>
+  `.trim();
+
+  try {
+    const response = await fetch(WEB3FORMS_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_key: accessKey,
+        subject,
+        from_name: "Onawa Studio",
+        to: clientEmail,
+        reply_to: EMAIL_CONFIG.STRATEGIST_EMAIL,
+        html: htmlBody,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      return { success: true, message: "Welcome email sent." };
+    } else {
+      console.warn("Welcome email failed:", result);
+      return { success: false, message: "Failed to send welcome email." };
+    }
+  } catch (err: any) {
+    console.warn("Welcome email error:", err);
+    return { success: false, message: err.message || "Network error." };
+  }
+}

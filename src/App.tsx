@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BrandQuestionnaireState,
@@ -23,7 +23,7 @@ import { LogoAnatomyGuide } from "./components/LogoAnatomyGuide";
 import { UVPBuilder } from "./components/UVPBuilder";
 import { BrandSummaryReport } from "./components/BrandSummaryReport";
 import { SuccessStateHub } from "./components/SuccessStateHub";
-import { saveStrategySession, loadStrategySession, getDiscoveryStatus, DiscoveryStatus, supabase } from "./lib/supabase";
+import { saveStrategySession, loadStrategySession, getDiscoveryStatus, calculateCompletedSteps, deleteAccount, DiscoveryStatus, supabase } from "./lib/supabase";
 import {
   Sparkles,
   ArrowRight,
@@ -57,6 +57,7 @@ import {
   Loader2,
   LogOut,
   LayoutDashboard,
+  Trash2,
   Palette as PaletteIcon,
   Menu,
   ChevronRight
@@ -156,7 +157,6 @@ export default function App() {
 
   const [showLandingPage, setShowLandingPage] = useState(true);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [completedSteps, setCompletedSteps] = useState<Set<number>>(new Set([1]));
   const [newValueInput, setNewValueInput] = useState("");
   const [activeGoldenRing, setActiveGoldenRing] = useState<"why" | "how" | "what" | null>("why");
   const [loadingAI, setLoadingAI] = useState(false);
@@ -169,6 +169,11 @@ export default function App() {
     activeView: "discovery",
     sidebarOpen: true,
   });
+
+  // Data-driven completed steps - recomputed from actual form data
+  const completedSteps = useMemo(() => {
+    return new Set(calculateCompletedSteps(state));
+  }, [state]);
 
   // Track previous user ID to detect user switches
   const previousUserIdRef = useRef<string | null>(null);
@@ -241,7 +246,6 @@ export default function App() {
         if (previousUserId && previousUserId !== currentUserId) {
           console.log(`User switch detected: ${previousUserId} -> ${currentUserId}. Resetting state.`);
           setState(INITIAL_STATE);
-          setCompletedSteps(new Set([1]));
           setNewValueInput("");
           setActiveGoldenRing("why");
           localStorage.removeItem(LOCAL_STORAGE_KEY);
@@ -259,7 +263,6 @@ export default function App() {
             const savedSession = await loadStrategySession(currentUserId);
             if (savedSession) {
               setState((prev) => ({ ...prev, ...savedSession }));
-              setCompletedSteps(new Set(Array.from({ length: status.lastCompletedStep - 1 }, (_, i) => i + 1)));
             }
           } else {
             // New user — ensure clean state
@@ -267,7 +270,6 @@ export default function App() {
               ...INITIAL_STATE,
               clientProfile: prev.clientProfile,
             }));
-            setCompletedSteps(new Set([1]));
           }
         } catch (err) {
           console.warn("Failed to check discovery status:", err);
@@ -311,7 +313,6 @@ export default function App() {
         const savedSession = await loadStrategySession(state.clientProfile.id);
         if (savedSession) {
           setState((prev) => ({ ...prev, ...savedSession }));
-          setCompletedSteps(new Set(Array.from({ length: status.lastCompletedStep - 1 }, (_, i) => i + 1)));
           updateState({ currentStep: status.lastCompletedStep });
         }
         setNavigation({ activeView: "discovery", sidebarOpen: true });
@@ -373,7 +374,6 @@ export default function App() {
 
     // Full state reset to clean defaults
     setState(INITIAL_STATE);
-    setCompletedSteps(new Set([1]));
     setNewValueInput("");
     setActiveGoldenRing("why");
     setDiscoveryStatus("new");
@@ -387,13 +387,41 @@ export default function App() {
     previousUserIdRef.current = null;
   };
 
+  const handleDeleteAccount = async () => {
+    if (!confirm("This will permanently delete all your data and sign you out. Continue?")) {
+      return;
+    }
+    if (!state.clientProfile?.id || state.clientProfile.id === "guest_client") {
+      return;
+    }
+
+    setLoadingSession(true);
+    setSessionLoadingMessage("Deleting account data...");
+
+    const result = await deleteAccount(state.clientProfile.id);
+
+    setLoadingSession(false);
+    setSessionLoadingMessage("");
+
+    // Full reset regardless of result
+    setState(INITIAL_STATE);
+    setNewValueInput("");
+    setActiveGoldenRing("why");
+    setDiscoveryStatus("new");
+    setNavigation({ activeView: "discovery", sidebarOpen: true });
+    setShowLandingPage(true);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+    previousUserIdRef.current = null;
+
+    alert(result.message);
+  };
+
   const handleNavigationChange = (view: PortalView) => {
     setNavigation((prev) => ({ ...prev, activeView: view }));
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleNextStep = () => {
-    setCompletedSteps((prev) => new Set([...prev, state.currentStep]));
     const nextStep = Math.min(QUESTIONNAIRE_STEPS.length, state.currentStep + 1);
     updateState({ currentStep: nextStep });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -416,7 +444,6 @@ export default function App() {
         ...INITIAL_STATE,
         clientProfile: prev.clientProfile,
       }));
-      setCompletedSteps(new Set([1]));
       setNewValueInput("");
       setActiveGoldenRing("why");
       localStorage.removeItem(LOCAL_STORAGE_KEY);
@@ -514,14 +541,25 @@ export default function App() {
                 )}
               </div>
 
-              <button
-                type="button"
-                onClick={handleLogout}
-                className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#FF002B] text-[#FF002B] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
-              >
-                <LogOut className="w-3.5 h-3.5" />
-                <span>Log Out</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleDeleteAccount}
+                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#FF002B] text-[#FF002B] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
+                  title="Delete account and all data"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Delete</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#FF002B] text-[#FF002B] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
+                >
+                  <LogOut className="w-3.5 h-3.5" />
+                  <span>Log Out</span>
+                </button>
+              </div>
             </div>
 
             {/* Top Progress Navigation */}
@@ -1262,7 +1300,6 @@ export default function App() {
         ...INITIAL_STATE,
         clientProfile: updatedProfile,
       });
-      setCompletedSteps(new Set([1]));
       setNewValueInput("");
       setActiveGoldenRing("why");
       localStorage.removeItem(LOCAL_STORAGE_KEY);
