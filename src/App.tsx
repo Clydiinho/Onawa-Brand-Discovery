@@ -23,7 +23,7 @@ import { LogoAnatomyGuide } from "./components/LogoAnatomyGuide";
 import { UVPBuilder } from "./components/UVPBuilder";
 import { BrandSummaryReport } from "./components/BrandSummaryReport";
 import { SuccessStateHub } from "./components/SuccessStateHub";
-import { saveStrategySession, loadStrategySession, getDiscoveryStatus, calculateCompletedSteps, deleteAccount, DiscoveryStatus, supabase } from "./lib/supabase";
+import { saveStrategySession, loadStrategySession, getDiscoveryStatus, calculateCompletedSteps, getStepIncompleteFields, DiscoveryStatus, supabase } from "./lib/supabase";
 import {
   Sparkles,
   ArrowRight,
@@ -55,10 +55,8 @@ import {
   ShieldCheck,
   CheckCircle2,
   Loader2,
-  LogOut,
+LogOut,
   LayoutDashboard,
-  Trash2,
-  Palette as PaletteIcon,
   Menu,
   ChevronRight
 } from "lucide-react";
@@ -91,40 +89,40 @@ const INITIAL_STATE: BrandQuestionnaireState = {
     purpose: "",
     vision: "",
     mission: "",
-    values: ["Innovation", "Authenticity", "Precision"],
+    values: [],
   },
 
-  strategicEnemy: "The Boring Status Quo & Over-Complicated Inefficiency",
+  strategicEnemy: "",
   positioningMatrix: {
-    x: 65,
-    y: 70,
-    quadrant: "Blue Ocean Gap (Disruptive + Progressive)",
+    x: 0,
+    y: 0,
+    quadrant: "",
   },
 
-  primaryArchetype: "creator",
-  secondaryArchetype: "magician",
+  primaryArchetype: "",
+  secondaryArchetype: "",
 
   personality: {
-    traditionalVsProgressive: 75,
-    corporateVsDisruptive: 70,
-    reservedVsBold: 65,
+    traditionalVsProgressive: 50,
+    corporateVsDisruptive: 50,
+    reservedVsBold: 50,
     exclusiveVsAccessible: 50,
-    playfulVsSerious: 40,
+    playfulVsSerious: 50,
   },
 
   keywords: {
-    love: ["Disruptive", "Elegant", "Minimalist", "Unapologetic"],
-    hate: ["Corporate / Formal", "Whimsical", "Generic"],
+    love: [],
+    hate: [],
   },
 
-  logoType: "combination",
+  logoType: "",
 
   experienceRoadmap: {
     phaseAssignments: {
-      discovery: ["website", "social_media"],
-      engagement: ["email_marketing", "sales_deck"],
-      purchase: ["unboxing", "product_ux"],
-      advocacy: ["customer_service", "community"],
+      discovery: [],
+      engagement: [],
+      purchase: [],
+      advocacy: [],
     },
   },
 
@@ -387,41 +385,19 @@ export default function App() {
     previousUserIdRef.current = null;
   };
 
-  const handleDeleteAccount = async () => {
-    if (!confirm("This will permanently delete all your data and sign you out. Continue?")) {
-      return;
-    }
-    if (!state.clientProfile?.id || state.clientProfile.id === "guest_client") {
-      return;
-    }
-
-    setLoadingSession(true);
-    setSessionLoadingMessage("Deleting account data...");
-
-    const result = await deleteAccount(state.clientProfile.id);
-
-    setLoadingSession(false);
-    setSessionLoadingMessage("");
-
-    // Full reset regardless of result
-    setState(INITIAL_STATE);
-    setNewValueInput("");
-    setActiveGoldenRing("why");
-    setDiscoveryStatus("new");
-    setNavigation({ activeView: "discovery", sidebarOpen: true });
-    setShowLandingPage(true);
-    localStorage.removeItem(LOCAL_STORAGE_KEY);
-    previousUserIdRef.current = null;
-
-    alert(result.message);
-  };
-
   const handleNavigationChange = (view: PortalView) => {
     setNavigation((prev) => ({ ...prev, activeView: view }));
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleNextStep = () => {
+    // Block advancing until the current section is complete
+    const missing = getStepIncompleteFields(state.currentStep, state);
+    if (missing.length > 0) {
+      const nav = document.getElementById("stage-nav");
+      if (nav) nav.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
     const nextStep = Math.min(QUESTIONNAIRE_STEPS.length, state.currentStep + 1);
     updateState({ currentStep: nextStep });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -434,6 +410,21 @@ export default function App() {
   };
 
   const handleJumpStep = (stepNumber: number) => {
+    // Allow: current step, any step behind the current one (edit history),
+    // or stepping forward only as far as the last sequentially-complete stage + 1.
+    let furthestSequential = 0;
+    for (let s = 1; s <= QUESTIONNAIRE_STEPS.length; s++) {
+      if (completedSteps.has(s)) furthestSequential = s;
+      else break;
+    }
+
+    const maxReachable = Math.max(state.currentStep, furthestSequential + 1);
+
+    if (stepNumber > maxReachable) {
+      const nav = document.getElementById("stage-nav");
+      if (nav) nav.scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
     updateState({ currentStep: stepNumber });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -542,15 +533,6 @@ export default function App() {
               </div>
 
               <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handleDeleteAccount}
-                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#FF002B] text-[#FF002B] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
-                  title="Delete account and all data"
-                >
-                  <Trash2 className="w-3.5 h-3.5" />
-                  <span className="hidden sm:inline">Delete</span>
-                </button>
                 <button
                   type="button"
                   onClick={handleLogout}
@@ -1247,42 +1229,80 @@ export default function App() {
         </AnimatePresence>
 
         {/* Bottom Stage Navigation Bar */}
-        <div className="mt-10 pt-6 border-t border-[#C1FF00]/30 flex items-center justify-between gap-4 print:hidden">
-          <button
-            type="button"
-            onClick={handlePrevStep}
-            disabled={state.currentStep === 1}
-            className={`px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all ${
-              state.currentStep === 1
-                ? "opacity-0 cursor-default"
-                : "bg-slate-950 hover:bg-slate-900 text-slate-200 border border-slate-700"
-            }`}
-          >
-            <ArrowLeft className="w-4 h-4 text-[#C1FF00]" />
-            <span>Previous Step</span>
-          </button>
+        {(() => {
+          const missingFields = getStepIncompleteFields(state.currentStep, state);
+          const isCurrentStepComplete = missingFields.length === 0;
+          const showWarning = !isCurrentStepComplete && state.currentStep < QUESTIONNAIRE_STEPS.length;
 
-          <div className="flex items-center gap-2">
-            {state.currentStep < QUESTIONNAIRE_STEPS.length ? (
-              <button
-                type="button"
-                onClick={handleNextStep}
-                className="px-6 py-2.5 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-lg shadow-[#C1FF00]/20 transition-all"
-              >
-                <span>Continue to {QUESTIONNAIRE_STEPS[state.currentStep]?.title}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="px-6 py-2.5 bg-[#00FFC2] hover:bg-[#00e6af] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-lg shadow-[#00FFC2]/20 transition-all"
-              >
-                <span>Print Strategy Report</span>
-              </button>
-            )}
-          </div>
-        </div>
+          return (
+            <div
+              id="stage-nav"
+              className="mt-10 pt-6 border-t border-[#C1FF00]/30 flex flex-col gap-4 print:hidden"
+            >
+              {/* Incomplete-section warning bar */}
+              {showWarning && (
+                <div className="p-4 bg-[#FF002B]/10 border border-[#FF002B]/50 rounded-2xl flex flex-col gap-2 animate-fadeIn">
+                  <div className="flex items-center gap-2 text-[#FF002B] font-black font-mono text-xs uppercase tracking-widest">
+                    <ShieldAlert className="w-4 h-4" />
+                    <span>Complete this stage to continue</span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {missingFields.map((field) => (
+                      <span
+                        key={field}
+                        className="px-2.5 py-1 bg-[#FF002B]/15 border border-[#FF002B]/40 text-[#FF002B] text-[11px] font-bold rounded-lg"
+                      >
+                        {field}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex items-center justify-between gap-4">
+                <button
+                  type="button"
+                  onClick={handlePrevStep}
+                  disabled={state.currentStep === 1}
+                  className={`px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all ${
+                    state.currentStep === 1
+                      ? "opacity-0 cursor-default"
+                      : "bg-slate-950 hover:bg-slate-900 text-slate-200 border border-slate-700"
+                  }`}
+                >
+                  <ArrowLeft className="w-4 h-4 text-[#C1FF00]" />
+                  <span>Previous Step</span>
+                </button>
+
+                <div className="flex items-center gap-2">
+                  {state.currentStep < QUESTIONNAIRE_STEPS.length ? (
+                    <button
+                      type="button"
+                      onClick={handleNextStep}
+                      disabled={!isCurrentStepComplete}
+                      className={`px-6 py-2.5 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-lg transition-all ${
+                        isCurrentStepComplete
+                          ? "bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 shadow-[#C1FF00]/20"
+                          : "bg-slate-800 text-slate-500 cursor-not-allowed"
+                      }`}
+                    >
+                      <span>Continue to {QUESTIONNAIRE_STEPS[state.currentStep]?.title}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => window.print()}
+                      className="px-6 py-2.5 bg-[#00FFC2] hover:bg-[#00e6af] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-lg shadow-[#00FFC2]/20 transition-all"
+                    >
+                      <span>Print Strategy Report</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </main>
     </motion.div>
   )}

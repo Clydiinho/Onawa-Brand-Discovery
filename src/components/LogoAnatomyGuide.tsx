@@ -3,7 +3,7 @@ import { LogoTypeOption } from "../types";
 import { Check, Layers, Image, Type, Shield, Sparkles } from "lucide-react";
 
 interface LogoAnatomyGuideProps {
-  selectedType: "logomark" | "logotype" | "combination" | "emblem";
+  selectedType: "" | "logomark" | "logotype" | "combination" | "emblem";
   onSelect: (type: "logomark" | "logotype" | "combination" | "emblem") => void;
 }
 

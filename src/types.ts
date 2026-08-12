@@ -136,7 +136,7 @@ export interface BrandQuestionnaireState {
   keywords: LoveHateKeywords;
 
   // Step 8: Logo Anatomy
-  logoType: "logomark" | "logotype" | "combination" | "emblem";
+  logoType: "" | "logomark" | "logotype" | "combination" | "emblem";
 
   // Step 9: Experience Roadmap (Module 2)
   experienceRoadmap: ExperienceRoadmapData;

@@ -57,7 +57,7 @@ export async function getDiscoveryStatus(
         return defaultResult;
       }
 
-      if (totalCompleted >= 12) {
+      if (totalCompleted >= 11) {
         return {
           status: "completed",
           lastCompletedStep: 12,
@@ -89,7 +89,7 @@ export async function getDiscoveryStatus(
         return defaultResult;
       }
 
-      if (totalCompleted >= 12) {
+      if (totalCompleted >= 11) {
         return {
           status: "completed",
           lastCompletedStep: 12,
@@ -115,69 +115,94 @@ export async function getDiscoveryStatus(
 }
 
 /**
+ * Return a list of human-readable field names that are still incomplete
+ * for a given step. Empty result = step is complete.
+ */
+export function getStepIncompleteFields(
+  step: number,
+  state: BrandQuestionnaireState
+): string[] {
+  const missing: string[] = [];
+
+  switch (step) {
+    case 1:
+      if (!state.brandName.trim()) missing.push("Brand Name");
+      if (!state.industry.trim()) missing.push("Industry / Primary Domain");
+      if (!state.targetAudienceOverview.trim()) missing.push("Target Audience Overview");
+      break;
+    case 2:
+      if (!state.goldenCircle.why.trim()) missing.push("WHY (Core Purpose)");
+      if (!state.goldenCircle.how.trim()) missing.push("HOW (Process)");
+      if (!state.goldenCircle.what.trim()) missing.push("WHAT (Offerings)");
+      break;
+    case 3:
+      if (!state.brandHeart.purpose.trim()) missing.push("Purpose");
+      if (!state.brandHeart.vision.trim()) missing.push("Vision");
+      if (!state.brandHeart.mission.trim()) missing.push("Mission");
+      if (!state.brandHeart.values.length) missing.push("Core Values");
+      break;
+    case 4:
+      if (!state.strategicEnemy.trim()) missing.push("Strategic Enemy");
+      if (!state.positioningMatrix.quadrant.trim()) missing.push("Positioning Matrix placement");
+      break;
+    case 5:
+      if (!state.primaryArchetype) missing.push("Primary Archetype");
+      break;
+    case 6:
+      {
+        const p = state.personality;
+        const engaged = [p.traditionalVsProgressive, p.corporateVsDisruptive, p.reservedVsBold, p.exclusiveVsAccessible, p.playfulVsSerious].some(v => v !== 50);
+        if (!engaged) missing.push("Personality Spectrum sliders");
+      }
+      break;
+    case 7:
+      if (state.keywords.love.length === 0 && state.keywords.hate.length === 0) {
+        missing.push("Embrace or Avoid keywords");
+      }
+      break;
+    case 8:
+      if (!state.logoType) missing.push("Logo Mark Style");
+      break;
+    case 9:
+      {
+        const assignments = Object.values(state.experienceRoadmap.phaseAssignments);
+        const hasAny = assignments.some((arr) => arr.length > 0);
+        if (!hasAny) missing.push("Experience touchpoint selections");
+      }
+      break;
+    case 10:
+      if (!state.moodBoard.elements.length) missing.push("Mood Board elements");
+      break;
+    case 11:
+      if (!state.uvp.offering.trim()) missing.push("Offering");
+      if (!state.uvp.category.trim()) missing.push("Category");
+      if (!state.uvp.benefit.trim()) missing.push("Key Benefit");
+      if (!state.uvp.targetAudience.trim()) missing.push("Target Audience");
+      break;
+    default:
+      break;
+  }
+
+  return missing;
+}
+
+/**
  * Calculate which steps are completed based on the state data
  */
 export function calculateCompletedSteps(state: BrandQuestionnaireState): number[] {
   const completed: number[] = [];
+  const totalSteps = 12;
 
-  // Step 1: Brand Context
-  if (state.brandName && state.industry && state.targetAudienceOverview) {
-    completed.push(1);
-  }
-
-  // Step 2: Golden Circle
-  if (state.goldenCircle.why && state.goldenCircle.how && state.goldenCircle.what) {
-    completed.push(2);
-  }
-
-  // Step 3: Brand Heart
-  if (state.brandHeart.purpose && state.brandHeart.vision && state.brandHeart.mission && state.brandHeart.values.length > 0) {
-    completed.push(3);
-  }
-
-  // Step 4: Strategic Villain & Matrix
-  if (state.strategicEnemy && state.positioningMatrix) {
-    completed.push(4);
-  }
-
-  // Step 5: Archetypes
-  if (state.primaryArchetype) {
-    completed.push(5);
-  }
-
-  // Step 6: Personality Spectrum
-  if (state.personality) {
-    completed.push(6);
-  }
-
-  // Step 7: Love/Hate Matrix
-  if (state.keywords.love.length > 0 || state.keywords.hate.length > 0) {
-    completed.push(7);
-  }
-
-  // Step 8: Logo Anatomy
-  if (state.logoType) {
-    completed.push(8);
-  }
-
-  // Step 9: Experience Roadmap
-  if (state.experienceRoadmap) {
-    completed.push(9);
-  }
-
-  // Step 10: Mood Board
-  if (state.moodBoard && state.moodBoard.elements.length > 0) {
-    completed.push(10);
-  }
-
-  // Step 11: UVP
-  if (state.uvp.offering && state.uvp.category && state.uvp.benefit && state.uvp.targetAudience) {
-    completed.push(11);
-  }
-
-  // Step 12: Strategy Report (consider completed if we reach this point)
-  if (state.aiAnalysis) {
-    completed.push(12);
+  for (let step = 1; step <= totalSteps; step++) {
+    // Step 12 (Strategy Report) counts once all previous stages are complete
+    if (step === 12) {
+      // The report itself is considered complete when the user has reached it
+      // (it simply aggregates the previous 11 stages).
+      continue;
+    }
+    if (getStepIncompleteFields(step, state).length === 0) {
+      completed.push(step);
+    }
   }
 
   return completed;
