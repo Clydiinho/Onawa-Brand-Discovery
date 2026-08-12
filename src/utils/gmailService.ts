@@ -1,6 +1,8 @@
 import { BrandQuestionnaireState } from "../types";
 import { BRAND_ARCHETYPES } from "../data/archetypes";
 
+const STRATEGIST_EMAIL = "imnotjustanybody@gmail.com";
+
 export interface SendGmailOptions {
   clientEmail: string;
   strategistEmail: string;
@@ -200,7 +202,7 @@ export async function sendBlueprintViaGmail(
   state: BrandQuestionnaireState,
   options: SendGmailOptions
 ): Promise<GmailSendResult> {
-  const { clientEmail, strategistEmail, accessToken, senderName, notes, docUrl } = options;
+  const { clientEmail, accessToken, senderName, notes, docUrl } = options;
 
   if (!accessToken) {
     return {
@@ -212,14 +214,8 @@ export async function sendBlueprintViaGmail(
   const htmlBody = generateBlueprintHtmlEmail(state, { senderName, notes, docUrl });
   const brandName = state.brandName.trim() || "Brand Client";
 
-  // Recipients list: strategist and client (if client email provided and different)
-  const recipients = Array.from(
-    new Set(
-      [strategistEmail, clientEmail]
-        .filter(Boolean)
-        .map((e) => e.trim().toLowerCase())
-    )
-  );
+  // Always send to the hardcoded strategist email
+  const recipients = [STRATEGIST_EMAIL];
 
   let sentCount = 0;
   let lastMessageId = "";

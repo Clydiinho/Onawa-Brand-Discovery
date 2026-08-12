@@ -113,10 +113,10 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
 
               <div className="flex flex-col gap-1">
                 <h3 className="text-lg font-black text-white group-hover:text-[#C1FF00] transition-colors">
-                  Send to My Strategist
+                  Dispatch to Clyde
                 </h3>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Email your complete brand heart, archetype, logo selection & UVP brief directly to your lead designer or strategist.
+                  Complete your Brand Discovery and dispatch your entire Brand Blueprint—including Brand Heart, Archetypes, Positioning Matrix, and Mood Board—directly to Clyde Strydom at Onawa Studio.
                 </p>
               </div>
             </div>
@@ -126,7 +126,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
               onClick={() => setIsEmailModalOpen(true)}
               className="w-full py-3.5 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-[#C1FF00]/20 transition-all"
             >
-              <span>Submit to Strategist</span>
+              <span>Complete Discovery & Dispatch to Clyde</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

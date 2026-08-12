@@ -235,14 +235,14 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
-          {/* Primary Action 1: Submit to Strategist */}
+          {/* Primary Action 1: Dispatch to Clyde */}
           <button
             type="button"
             onClick={() => setIsEmailModalOpen(true)}
             className="px-3.5 py-2 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all"
           >
             <Send className="w-4 h-4 stroke-[2.5]" />
-            <span>Email Brief &amp; Google Doc (Gmail)</span>
+            <span>Dispatch to Clyde</span>
           </button>
 
           {/* Primary Action 2: Download Style Guide PDF */}
@@ -724,7 +724,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             className="px-5 py-3 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-xl shrink-0 print:hidden"
           >
             <Send className="w-4 h-4 stroke-[2.5]" />
-            <span>Email Brief to Clyde &amp; Client</span>
+            <span>Complete Discovery & Dispatch to Clyde</span>
           </button>
         </div>
 
