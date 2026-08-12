@@ -142,14 +142,6 @@ const INITIAL_STATE: BrandQuestionnaireState = {
 
 export default function App() {
   const [state, setState] = useState<BrandQuestionnaireState>(() => {
-    try {
-      const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
-      if (saved) {
-        return { ...INITIAL_STATE, ...JSON.parse(saved) };
-      }
-    } catch (e) {
-      console.error("Failed to load state from localStorage:", e);
-    }
     return INITIAL_STATE;
   });
 
@@ -1316,6 +1308,9 @@ export default function App() {
   onProfileUpdated={(updatedProfile) => {
     // If this is a new authenticated user (different ID from current), force clean state
     if (updatedProfile.isAuthenticated && updatedProfile.id !== state.clientProfile?.id) {
+      // Clear any stale per-user localStorage for the new user (in case UUID was reused)
+      localStorage.removeItem(`onawa_strategy_session_${updatedProfile.id}`);
+      
       setState({
         ...INITIAL_STATE,
         clientProfile: updatedProfile,
