@@ -1,10 +1,12 @@
-// EmailJS Service Configuration
-// Replace these placeholder variables with your EmailJS credentials:
-// 1. Sign up at https://www.emailjs.com/
-// 2. Create an Email Service (get SERVICE_ID)
-// 3. Create an Email Template (get TEMPLATE_ID)
-// 4. Get your Public Key under Account Settings (get PUBLIC_KEY)
+// Email Configuration - Web3Forms Integration
+// Documentation: https://web3forms.com
 
+export const EMAIL_CONFIG = {
+  WEB3FORMS_ACCESS_KEY: "83422139-030e-4dec-8082-92bbec276f0f",
+  STRATEGIST_EMAIL: "imnotjustanybody@gmail.com",
+};
+
+// Legacy EmailJS config (deprecated - using Web3Forms now)
 export const EMAILJS_CONFIG = {
   SERVICE_ID: "YOUR_SERVICE_ID",
   TEMPLATE_ID: "YOUR_TEMPLATE_ID",
@@ -16,8 +18,5 @@ export interface EmailSubmissionData {
   strategistEmail: string;
   senderName: string;
   senderEmail: string;
-  serviceId?: string;
-  templateId?: string;
-  publicKey?: string;
   notes?: string;
 }
