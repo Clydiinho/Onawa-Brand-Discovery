@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
   BrandQuestionnaireState,
@@ -23,7 +23,7 @@ import { LogoAnatomyGuide } from "./components/LogoAnatomyGuide";
 import { UVPBuilder } from "./components/UVPBuilder";
 import { BrandSummaryReport } from "./components/BrandSummaryReport";
 import { SuccessStateHub } from "./components/SuccessStateHub";
-import { saveStrategySession, loadStrategySession, getDiscoveryStatus, DiscoveryStatus } from "./lib/supabase";
+import { saveStrategySession, loadStrategySession, getDiscoveryStatus, DiscoveryStatus, supabase } from "./lib/supabase";
 import {
   Sparkles,
   ArrowRight,
@@ -54,6 +54,7 @@ import {
   User,
   ShieldCheck,
   CheckCircle2,
+  Loader2,
   LogOut,
   LayoutDashboard,
   Palette as PaletteIcon,
@@ -163,16 +164,65 @@ export default function App() {
   // New state-based navigation
   const [discoveryStatus, setDiscoveryStatus] = useState<DiscoveryStatus>("new");
   const [loadingSession, setLoadingSession] = useState(false);
+  const [sessionLoadingMessage, setSessionLoadingMessage] = useState("");
   const [navigation, setNavigation] = useState<NavigationState>({
     activeView: "discovery",
     sidebarOpen: true,
   });
 
-  // Save to localStorage and Supabase
+  // Track previous user ID to detect user switches
+  const previousUserIdRef = useRef<string | null>(null);
+  // Track whether initial session restore has completed
+  const initialSessionRestored = useRef(false);
+  // Flag to prevent auto-save during initialization
+  const isInitializing = useRef(true);
+
+  // Restore Supabase session on mount
   useEffect(() => {
+    const restoreSession = async () => {
+      if (!supabase) {
+        initialSessionRestored.current = true;
+        isInitializing.current = false;
+        return;
+      }
+
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        
+        if (session?.user) {
+          const user = session.user;
+          const userMeta = user.user_metadata || {};
+          
+          const restoredProfile: ClientUserProfile = {
+            id: user.id,
+            email: user.email || "",
+            fullName: userMeta.full_name || user.email?.split("@")[0] || "Client",
+            companyName: userMeta.company_name || "",
+            isAuthenticated: true,
+          };
+
+          setState((prev) => ({ ...prev, clientProfile: restoredProfile }));
+          previousUserIdRef.current = user.id;
+        }
+      } catch (err) {
+        console.warn("Failed to restore Supabase session:", err);
+      } finally {
+        initialSessionRestored.current = true;
+        // Small delay to ensure state has settled before enabling auto-save
+        setTimeout(() => { isInitializing.current = false; }, 100);
+      }
+    };
+
+    restoreSession();
+  }, []);
+
+  // Save to localStorage and Supabase (guarded during initialization)
+  useEffect(() => {
+    if (isInitializing.current) return;
+
     try {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
-      if (state.clientProfile?.id) {
+      if (state.clientProfile?.id && state.clientProfile.isAuthenticated) {
         saveStrategySession(state.clientProfile.id, state);
       }
     } catch (e) {
@@ -184,28 +234,54 @@ export default function App() {
   useEffect(() => {
     const checkDiscoveryStatus = async () => {
       if (state.clientProfile?.id && state.clientProfile.isAuthenticated) {
+        const currentUserId = state.clientProfile.id;
+        const previousUserId = previousUserIdRef.current;
+
+        // Detect user switch: if a different user just logged in, force reset
+        if (previousUserId && previousUserId !== currentUserId) {
+          console.log(`User switch detected: ${previousUserId} -> ${currentUserId}. Resetting state.`);
+          setState(INITIAL_STATE);
+          setCompletedSteps(new Set([1]));
+          setNewValueInput("");
+          setActiveGoldenRing("why");
+          localStorage.removeItem(LOCAL_STORAGE_KEY);
+        }
+
+        previousUserIdRef.current = currentUserId;
+
+        setSessionLoadingMessage(`Securing session for ${state.clientProfile.fullName || state.clientProfile.email}... Loading proprietary strategy data.`);
         setLoadingSession(true);
         try {
-          const status = await getDiscoveryStatus(state.clientProfile.id);
+          const status = await getDiscoveryStatus(currentUserId);
           setDiscoveryStatus(status.status);
           
-          // If in progress or completed, load the saved session
           if (status.status !== "new") {
-            const savedSession = await loadStrategySession(state.clientProfile.id);
+            const savedSession = await loadStrategySession(currentUserId);
             if (savedSession) {
               setState((prev) => ({ ...prev, ...savedSession }));
               setCompletedSteps(new Set(Array.from({ length: status.lastCompletedStep - 1 }, (_, i) => i + 1)));
             }
+          } else {
+            // New user — ensure clean state
+            setState((prev) => ({
+              ...INITIAL_STATE,
+              clientProfile: prev.clientProfile,
+            }));
+            setCompletedSteps(new Set([1]));
           }
         } catch (err) {
           console.warn("Failed to check discovery status:", err);
         } finally {
           setLoadingSession(false);
+          setSessionLoadingMessage("");
         }
       }
     };
 
-    checkDiscoveryStatus();
+    // Only run after initial session restore is complete
+    if (initialSessionRestored.current) {
+      checkDiscoveryStatus();
+    }
   }, [state.clientProfile?.id, state.clientProfile?.isAuthenticated]);
 
   const updateState = (updater: Partial<BrandQuestionnaireState>) => {
@@ -279,22 +355,36 @@ export default function App() {
     }
   };
 
-  const handleLogout = () => {
-    // Clear auth state and return to landing
-    setState((prev) => ({
-      ...prev,
-      clientProfile: {
-        id: "guest_client",
-        email: "client@onawastudio.com",
-        fullName: "Valued Client",
-        companyName: "Strategy Client",
-        isAuthenticated: false,
-      },
-    }));
+  const handleLogout = async () => {
+    // Sign out from Supabase Auth
+    if (supabase) {
+      try {
+        await supabase.auth.signOut();
+      } catch (err) {
+        console.warn("Supabase signOut error:", err);
+      }
+    }
+
+    // Clear per-user localStorage for the outgoing user
+    const outgoingUserId = state.clientProfile?.id;
+    if (outgoingUserId && outgoingUserId !== "guest_client") {
+      localStorage.removeItem(`onawa_strategy_session_${outgoingUserId}`);
+    }
+
+    // Full state reset to clean defaults
+    setState(INITIAL_STATE);
+    setCompletedSteps(new Set([1]));
+    setNewValueInput("");
+    setActiveGoldenRing("why");
     setDiscoveryStatus("new");
     setNavigation({ activeView: "discovery", sidebarOpen: true });
     setShowLandingPage(true);
+
+    // Clear global localStorage
     localStorage.removeItem(LOCAL_STORAGE_KEY);
+
+    // Reset tracking refs
+    previousUserIdRef.current = null;
   };
 
   const handleNavigationChange = (view: PortalView) => {
@@ -322,8 +412,13 @@ export default function App() {
 
   const handleReset = () => {
     if (confirm("Are you sure you want to reset all questionnaire answers?")) {
-      setState(INITIAL_STATE);
+      setState((prev) => ({
+        ...INITIAL_STATE,
+        clientProfile: prev.clientProfile,
+      }));
       setCompletedSteps(new Set([1]));
+      setNewValueInput("");
+      setActiveGoldenRing("why");
       localStorage.removeItem(LOCAL_STORAGE_KEY);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
@@ -412,9 +507,9 @@ export default function App() {
                   )}
                 </span>
                 {loadingSession && (
-                  <div className="flex items-center gap-2 text-xs text-slate-400">
-                    <div className="w-3 h-3 border-2 border-[#C1FF00] border-t-transparent rounded-full animate-spin" />
-                    <span>Loading session...</span>
+                  <div className="flex items-center gap-2 text-xs text-[#00FFC2]">
+                    <div className="w-3 h-3 border-2 border-[#00FFC2] border-t-transparent rounded-full animate-spin" />
+                    <span className="font-mono font-bold animate-pulse">{sessionLoadingMessage || "Loading session..."}</span>
                   </div>
                 )}
               </div>
@@ -1161,13 +1256,81 @@ export default function App() {
   onClose={() => setIsAuthModalOpen(false)}
   currentProfile={state.clientProfile}
   onProfileUpdated={(updatedProfile) => {
-    updateState({ clientProfile: updatedProfile });
-    // If user just authenticated, trigger discovery status check
+    // If this is a new authenticated user (different ID from current), force clean state
+    if (updatedProfile.isAuthenticated && updatedProfile.id !== state.clientProfile?.id) {
+      setState({
+        ...INITIAL_STATE,
+        clientProfile: updatedProfile,
+      });
+      setCompletedSteps(new Set([1]));
+      setNewValueInput("");
+      setActiveGoldenRing("why");
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
+    } else {
+      updateState({ clientProfile: updatedProfile });
+    }
+
     if (updatedProfile.isAuthenticated) {
       setShowLandingPage(false);
     }
   }}
 />
+
+{/* Full-screen neon loading overlay during session restore */}
+<AnimatePresence>
+  {loadingSession && !showLandingPage && (
+    <motion.div
+      key="session-loader"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 backdrop-blur-md"
+    >
+      <div className="flex flex-col items-center gap-6 p-8 max-w-md text-center">
+        {/* Animated shield icon */}
+        <div className="relative w-20 h-20">
+          <div className="absolute inset-0 rounded-full border-2 border-[#00FFC2] animate-ping opacity-30" />
+          <div className="absolute inset-2 rounded-full border border-[#C1FF00] animate-spin opacity-50" style={{ animationDuration: "3s" }} />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <ShieldCheck className="w-10 h-10 text-[#00FFC2]" />
+          </div>
+        </div>
+
+        {/* Loading text */}
+        <div className="flex flex-col gap-2">
+          <h3 className="text-lg font-black text-white tracking-tight">
+            {sessionLoadingMessage || "Initializing secure session..."}
+          </h3>
+          <p className="text-xs text-slate-400 font-mono">
+            Onawa Studio Discovery Portal
+          </p>
+        </div>
+
+        {/* Neon progress bar */}
+        <div className="w-full max-w-xs">
+          <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-[#00FFC2] via-[#C1FF00] to-[#00FFC2] rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              style={{
+                boxShadow: "0 0 12px rgba(0,255,194,0.6), 0 0 24px rgba(193,255,0,0.3)",
+              }}
+            />
+          </div>
+          <div className="flex items-center justify-center gap-2 mt-3">
+            <Loader2 className="w-3 h-3 text-[#C1FF00] animate-spin" />
+            <span className="text-[10px] font-mono text-[#00FFC2] uppercase tracking-widest animate-pulse">
+              Encrypting channel...
+            </span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  )}
+</AnimatePresence>
 </div>
 );
 }
