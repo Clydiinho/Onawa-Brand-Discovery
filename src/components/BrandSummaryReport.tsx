@@ -226,10 +226,10 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
   return (
     <div className="flex flex-col gap-8 print:p-0 print:bg-white print:text-black">
       {/* Top Action Toolbar (Hidden in Print) */}
-      <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-slate-950/90 rounded-2xl border-2 border-[#C1FF00]/50 shadow-lg backdrop-blur-xl print:hidden">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-4 bg-graphite rounded-2xl border-2 border-cream/30 shadow-lg backdrop-blur-xl print:hidden">
         <div className="flex items-center gap-2">
-          <FileText className="w-5 h-5 text-[#C1FF00]" />
-          <span className="font-bold text-white text-sm">
+          <FileText className="w-5 h-5 text-cream" />
+          <span className="font-bold text-cream text-sm">
             Brand Discovery Summary Report
           </span>
         </div>
@@ -239,7 +239,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           <button
             type="button"
             onClick={() => setIsEmailModalOpen(true)}
-            className="px-3.5 py-2 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all"
+            className="px-3.5 py-2 bg-cream hover:bg-cream/90 text-carbon-black font-black text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all"
           >
             <Send className="w-4 h-4 stroke-[2.5]" />
             <span>Dispatch to Clyde</span>
@@ -250,10 +250,10 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             type="button"
             onClick={handleDownloadPDF}
             disabled={pdfGenerating}
-            className="px-3.5 py-2 bg-[#00FFC2] hover:bg-[#00e6af] text-slate-950 font-black text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all disabled:opacity-50"
+            className="px-3.5 py-2 bg-brass hover:bg-brass-hover text-carbon-black font-black text-xs rounded-xl flex items-center gap-1.5 shadow-md transition-all disabled:opacity-50"
           >
             {pdfGenerating ? (
-              <Loader2 className="w-4 h-4 animate-spin text-slate-950" />
+              <Loader2 className="w-4 h-4 animate-spin text-carbon-black" />
             ) : (
               <Download className="w-4 h-4" />
             )}
@@ -264,12 +264,12 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             type="button"
             onClick={handleSynthesizeAI}
             disabled={loadingAI}
-            className="px-3.5 py-2 bg-[#2B00FF] hover:bg-[#2B00FF]/80 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 border border-[#00FFC2]/40 transition-all disabled:opacity-50"
+            className="px-3.5 py-2 bg-[#2B00FF] hover:bg-[#2B00FF]/80 text-cream font-bold text-xs rounded-xl flex items-center gap-1.5 border border-brass/30 transition-all disabled:opacity-50"
           >
             {loadingAI ? (
-              <Loader2 className="w-4 h-4 animate-spin text-white" />
+              <Loader2 className="w-4 h-4 animate-spin text-cream" />
             ) : (
-              <Bot className="w-4 h-4 text-[#00FFC2]" />
+              <Bot className="w-4 h-4 text-brass" />
             )}
             <span>
               {state.aiAnalysis ? "Re-Synthesize AI" : "Gemini AI Strategy"}
@@ -279,10 +279,10 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           <button
             type="button"
             onClick={handleCopy}
-            className="px-3 py-2 bg-slate-900 text-slate-200 hover:bg-slate-800 font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-slate-700 transition-all"
+            className="px-3 py-2 bg-surface text-cream/80 hover:bg-graphite font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-white/10 transition-all"
           >
             {copied ? (
-              <Check className="w-3.5 h-3.5 text-[#00FFC2]" />
+              <Check className="w-3.5 h-3.5 text-brass" />
             ) : (
               <Copy className="w-3.5 h-3.5" />
             )}
@@ -292,7 +292,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           <button
             type="button"
             onClick={handleDownloadJSON}
-            className="px-3 py-2 bg-slate-900 text-slate-200 hover:bg-slate-800 font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-slate-700 transition-all"
+            className="px-3 py-2 bg-surface text-cream/80 hover:bg-graphite font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-white/10 transition-all"
           >
             <Download className="w-3.5 h-3.5" />
             <span>JSON</span>
@@ -301,7 +301,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           <button
             type="button"
             onClick={handlePrint}
-            className="px-3 py-2 bg-slate-800 text-slate-200 hover:bg-slate-700 font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-slate-700 transition-all"
+            className="px-3 py-2 bg-slate-800 text-cream/80 hover:bg-slate-700 font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-white/10 transition-all"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Print</span>
@@ -327,32 +327,32 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
       )}
 
       {/* PRINTABLE REPORT DOCUMENT CANVAS */}
-      <div className="p-8 md:p-12 bg-slate-900/95 rounded-3xl border border-slate-800 shadow-2xl flex flex-col gap-10 print:p-0 print:border-none print:shadow-none print:bg-white print:text-black">
+      <div className="p-8 md:p-12 bg-surface/95 rounded-3xl border border-slate-800 shadow-2xl flex flex-col gap-10 print:p-0 print:border-none print:shadow-none print:bg-white print:text-black">
         {/* Document Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-slate-800 print:border-black">
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-0.5 bg-[#C1FF00] text-slate-950 font-black font-mono text-[10px] uppercase rounded-full">
+              <span className="px-2.5 py-0.5 bg-[#D4A574] text-carbon-black font-black font-mono text-[10px] uppercase rounded-full">
                 Onawa Studio Original
               </span>
-              <span className="text-xs font-mono font-bold tracking-widest text-[#00FFC2] uppercase">
+              <span className="text-xs font-mono font-bold tracking-widest text-brass uppercase">
                 Strategy by Clyde Strydom
               </span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight print:text-black">
+            <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight print:text-black">
               The Onawa Studio Brand Blueprint: Curated for{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C1FF00] via-[#00FFC2] to-amber-300 print:text-black">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A574] via-[#F5F0E8] to-amber-300 print:text-black">
                 {state.brandName || "Client"}
               </span>{" "}
               by Clyde Strydom
             </h1>
-            <p className="text-xs md:text-sm text-slate-300 font-medium print:text-gray-600">
+            <p className="text-xs md:text-sm text-cream/70 font-medium print:text-gray-600">
               {state.industry || "Market Sector Unspecified"} •{" "}
               {state.projectType === "rebrand" ? "Strategic Rebrand" : "New Brand Launch"}
             </p>
           </div>
 
-          <div className="flex flex-col text-right text-xs text-slate-400 font-mono print:text-gray-500 shrink-0">
+          <div className="flex flex-col text-right text-xs text-cream/60 font-mono print:text-gray-500 shrink-0">
             <span>Ref: ONAWA-BLUEPRINT</span>
             <span>Generated: {new Date().toLocaleDateString()}</span>
             <span>Frameworks: Sinek, Heart, Archetypes</span>
@@ -368,10 +368,10 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             </div>
 
             <div className="flex flex-col gap-3">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 print:text-gray-600">
+              <h3 className="text-xs font-bold uppercase tracking-widest text-cream/60 print:text-gray-600">
                 Brand Manifesto:
               </h3>
-              <div className="text-sm text-slate-200 leading-relaxed font-serif italic whitespace-pre-line border-l-2 border-amber-400 pl-4 py-1 print:text-black">
+              <div className="text-sm text-cream/80 leading-relaxed font-serif italic whitespace-pre-line border-l-2 border-amber-400 pl-4 py-1 print:text-black">
                 {state.aiAnalysis.brandManifesto}
               </div>
             </div>
@@ -382,7 +382,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                 <h3 className="text-xs font-bold uppercase tracking-widest text-amber-300 print:text-amber-800">
                   Refined UVP:
                 </h3>
-                <p className="text-xs font-semibold text-slate-200 leading-relaxed bg-slate-950/60 p-3 rounded-xl border border-slate-800 print:bg-white print:border-gray-300 print:text-black">
+                <p className="text-xs font-semibold text-cream/80 leading-relaxed bg-graphite/60 p-3 rounded-xl border border-slate-800 print:bg-white print:border-gray-300 print:text-black">
                   "{state.aiAnalysis.refinedUVP}"
                 </p>
               </div>
@@ -392,16 +392,16 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                 <h3 className="text-xs font-bold uppercase tracking-widest text-amber-300 print:text-amber-800">
                   Strategic Taglines:
                 </h3>
-                <ul className="flex flex-col gap-2 text-xs text-slate-200">
+                <ul className="flex flex-col gap-2 text-xs text-cream/80">
                   {state.aiAnalysis.taglineOptions.map((tag, idx) => (
                     <li
                       key={idx}
-                      className="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800 flex flex-col print:bg-white print:border-gray-300 print:text-black"
+                      className="bg-graphite/60 p-2.5 rounded-xl border border-slate-800 flex flex-col print:bg-white print:border-gray-300 print:text-black"
                     >
                       <span className="font-bold text-amber-300 print:text-black">
                         "{tag.tagline}"
                       </span>
-                      <span className="text-[10px] text-slate-400 italic">
+                      <span className="text-[10px] text-cream/60 italic">
                         {tag.angle}
                       </span>
                     </li>
@@ -429,35 +429,35 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
-              <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] print:text-gray-600">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+              <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Purpose (Why):
               </span>
-              <span className="text-slate-200 font-medium leading-relaxed print:text-black">
+              <span className="text-cream/80 font-medium leading-relaxed print:text-black">
                 {state.brandHeart.purpose || "Not defined"}
               </span>
             </div>
 
-            <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
-              <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] print:text-gray-600">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+              <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Vision (Future):
               </span>
-              <span className="text-slate-200 font-medium leading-relaxed print:text-black">
+              <span className="text-cream/80 font-medium leading-relaxed print:text-black">
                 {state.brandHeart.vision || "Not defined"}
               </span>
             </div>
 
-            <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
-              <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] print:text-gray-600">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+              <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Mission (How):
               </span>
-              <span className="text-slate-200 font-medium leading-relaxed print:text-black">
+              <span className="text-cream/80 font-medium leading-relaxed print:text-black">
                 {state.brandHeart.mission || "Not defined"}
               </span>
             </div>
 
-            <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
-              <span className="font-bold text-slate-400 uppercase tracking-wider text-[10px] print:text-gray-600">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+              <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Core Values:
               </span>
               <div className="flex flex-wrap gap-1.5 mt-1">
@@ -499,7 +499,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               <span className="font-black text-amber-400 uppercase tracking-wider text-[11px] print:text-amber-800">
                 1. WHY (Core Belief)
               </span>
-              <p className="text-slate-200 leading-relaxed print:text-black">
+              <p className="text-cream/80 leading-relaxed print:text-black">
                 {state.goldenCircle.why || "Not answered"}
               </p>
             </div>
@@ -508,7 +508,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               <span className="font-black text-cyan-400 uppercase tracking-wider text-[11px] print:text-blue-800">
                 2. HOW (Unique Process)
               </span>
-              <p className="text-slate-200 leading-relaxed print:text-black">
+              <p className="text-cream/80 leading-relaxed print:text-black">
                 {state.goldenCircle.how || "Not answered"}
               </p>
             </div>
@@ -517,7 +517,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               <span className="font-black text-purple-400 uppercase tracking-wider text-[11px] print:text-purple-800">
                 3. WHAT (Products & Services)
               </span>
-              <p className="text-slate-200 leading-relaxed print:text-black">
+              <p className="text-cream/80 leading-relaxed print:text-black">
                 {state.goldenCircle.what || "Not answered"}
               </p>
             </div>
@@ -543,7 +543,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             </div>
 
             <div className="flex flex-col gap-3 text-xs">
-              <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
+              <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider print:text-amber-800">
                   Primary Archetype:
                 </span>
@@ -551,21 +551,21 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                   {primaryArchInfo?.name || "Not selected"}
                 </span>
                 {primaryArchInfo && (
-                  <span className="text-xs italic text-slate-400 print:text-gray-600">
+                  <span className="text-xs italic text-cream/60 print:text-gray-600">
                     "{primaryArchInfo.motto}" — {primaryArchInfo.traitSummary}
                   </span>
                 )}
               </div>
 
-              <div className="p-4 bg-slate-950/60 rounded-xl border border-slate-800 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider print:text-gray-600">
+              <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
+                <span className="text-[10px] font-bold text-cream/60 uppercase tracking-wider print:text-gray-600">
                   Secondary Archetype:
                 </span>
                 <span className="text-base font-bold text-slate-100 print:text-black">
                   {secondaryArchInfo?.name || "None"}
                 </span>
                 {secondaryArchInfo && (
-                  <span className="text-xs italic text-slate-400 print:text-gray-600">
+                  <span className="text-xs italic text-cream/60 print:text-gray-600">
                     "{secondaryArchInfo.motto}" — {secondaryArchInfo.traitSummary}
                   </span>
                 )}
@@ -590,31 +590,31 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             </div>
 
             <div className="flex flex-col gap-2.5 text-xs">
-              <div className="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
                 <span>Traditional vs. Progressive</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.traditionalVsProgressive}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
                 <span>Corporate vs. Disruptive</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.corporateVsDisruptive}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
                 <span>Quiet vs. Bold</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.reservedVsBold}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
                 <span>Luxury vs. Accessible</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.exclusiveVsAccessible}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-slate-950/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
                 <span>Playful vs. Serious</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.playfulVsSerious}%
@@ -647,7 +647,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                 <span className="font-bold text-emerald-400 text-[10px] uppercase tracking-wider print:text-emerald-800">
                   Embrace ("That's Us"):
                 </span>
-                <span className="text-slate-200 leading-relaxed print:text-black font-medium">
+                <span className="text-cream/80 leading-relaxed print:text-black font-medium">
                   {state.keywords.love.join(", ") || "None"}
                 </span>
               </div>
@@ -656,7 +656,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                 <span className="font-bold text-rose-400 text-[10px] uppercase tracking-wider print:text-rose-800">
                   Avoid ("Definitely Not Us"):
                 </span>
-                <span className="text-slate-200 leading-relaxed print:text-black font-medium">
+                <span className="text-cream/80 leading-relaxed print:text-black font-medium">
                   {state.keywords.hate.join(", ") || "None"}
                 </span>
               </div>
@@ -680,8 +680,8 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             </div>
 
             <div className="flex flex-col gap-3 text-xs">
-              <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800 flex flex-col gap-0.5 print:bg-gray-50 print:border-gray-300">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider print:text-gray-600">
+              <div className="p-3 bg-graphite/60 rounded-xl border border-slate-800 flex flex-col gap-0.5 print:bg-gray-50 print:border-gray-300">
+                <span className="text-[10px] font-bold text-cream/60 uppercase tracking-wider print:text-gray-600">
                   Chosen Logo Structure:
                 </span>
                 <span className="font-bold text-amber-300 text-sm uppercase tracking-wider print:text-black">
@@ -705,15 +705,15 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         </div>
 
         {/* STRATEGIST SIGN-OFF BANNER */}
-        <div className="p-6 bg-slate-950/90 rounded-2xl border-2 border-[#00FFC2] shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 print:border-black">
+        <div className="p-6 bg-graphite rounded-2xl border-2 border-[#F5F0E8] shadow-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 print:border-black">
           <div className="flex flex-col gap-1">
-            <span className="text-xs font-mono font-bold text-[#00FFC2] uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-brass uppercase tracking-wider">
               Onawa Studio Final Sign-Off
             </span>
-            <p className="text-base md:text-lg font-black text-white italic">
+            <p className="text-base md:text-lg font-black text-cream italic">
               "Alignment Complete. I look forward to bringing your vision to life."
             </p>
-            <span className="text-sm font-bold text-[#C1FF00]">
+            <span className="text-sm font-bold text-cream">
               — Clyde Strydom
             </span>
           </div>
@@ -721,7 +721,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           <button
             type="button"
             onClick={() => setIsEmailModalOpen(true)}
-            className="px-5 py-3 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-xl shrink-0 print:hidden"
+            className="px-5 py-3 bg-cream hover:bg-cream/90 text-carbon-black font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-xl shrink-0 print:hidden"
           >
             <Send className="w-4 h-4 stroke-[2.5]" />
             <span>Complete Discovery & Dispatch to Clyde</span>
@@ -729,7 +729,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         </div>
 
         {/* MANDATORY FOOTER */}
-        <div className="pt-6 border-t border-slate-800 flex justify-center text-xs font-mono text-slate-400 print:text-gray-600">
+        <div className="pt-6 border-t border-slate-800 flex justify-center text-xs font-mono text-cream/60 print:text-gray-600">
           © 2026 Onawa Studio | Strategy by Clyde Strydom
         </div>
       </div>

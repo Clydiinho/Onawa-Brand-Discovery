@@ -476,7 +476,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen cutting-mat-bg text-white flex flex-col font-sans selection:bg-[#C1FF00] selection:text-slate-950">
+    <div className="min-h-screen carbon-bg text-cream flex flex-col font-sans selection:bg-cream selection:text-carbon-black">
       <AnimatePresence mode="wait">
         {showLandingPage ? (
           <motion.div
@@ -501,25 +501,20 @@ export default function App() {
             transition={{ duration: 0.4 }}
             className="w-full flex-1 flex flex-col"
           >
-            {/* Fixed Header with Welcome & Logout */}
-            <div className="bg-slate-950/95 border-b border-[#00FFC2]/30 px-4 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur-md">
+            {/* Fixed Header with Onawa Studio Brand */}
+            <div className="bg-carbon-black border-b border-white/10 px-4 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur-sm">
               <div className="flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-[#00FFC2] animate-pulse shrink-0" />
-                <span className="text-slate-200 font-medium text-sm">
-                  {state.clientProfile?.isAuthenticated ? (
-                    <>
-                      Welcome, <strong className="text-[#C1FF00] font-extrabold">{state.clientProfile.fullName}</strong>
-                    </>
-                  ) : (
-                    <>
-                      Welcome, <strong className="text-white font-bold">{state.clientProfile?.fullName || "Valued Client"}</strong>
-                    </>
-                  )}
-                </span>
+                <div className="w-8 h-8 rounded-lg bg-cream/10 flex items-center justify-center text-cream">
+                  <Target className="w-4 h-4" />
+                </div>
+                <div>
+                  <h2 className="text-sm font-bold text-cream">Onawa Studio</h2>
+                  <p className="text-[10px] text-cream/80 tracking-widest uppercase">Discovery Portal</p>
+                </div>
                 {loadingSession && (
-                  <div className="flex items-center gap-2 text-xs text-[#00FFC2]">
-                    <div className="w-3 h-3 border-2 border-[#00FFC2] border-t-transparent rounded-full animate-spin" />
-                    <span className="font-mono font-bold animate-pulse">{sessionLoadingMessage || "Loading session..."}</span>
+                  <div className="flex items-center gap-2 text-xs text-cream ml-4">
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                    <span className="font-mono font-bold text-[10px]">{sessionLoadingMessage || "Loading session..."}</span>
                   </div>
                 )}
               </div>
@@ -528,7 +523,7 @@ export default function App() {
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#FF002B] text-[#FF002B] font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
+                  className="px-3 py-1.5 bg-charcoal border border-white/10 hover:border-cream/20 text-cream font-mono text-[11px] font-bold uppercase rounded-lg transition-all flex items-center gap-1.5"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   <span>Log Out</span>
@@ -559,36 +554,36 @@ export default function App() {
             {state.currentStep === 1 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-black text-[#C1FF00] uppercase tracking-widest">
-                    <Flag className="w-4 h-4 text-[#C1FF00]" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-black text-cream uppercase tracking-widest">
+                    <Flag className="w-4 h-4 text-cream" />
                     <span>Stage 01 • Brand Context</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight">
                     Foundational Context & Trajectory
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-200">
+                  <p className="text-xs md:text-sm text-cream/80">
                     Establish whether we are crafting a brand from scratch or executing a strategic rebrand.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Brand Name */}
-                  <div className="flex flex-col gap-1.5 p-5 bg-slate-950/90 rounded-2xl border border-white/20 shadow-xl">
-                    <label className="text-xs font-bold text-slate-200">
-                      Brand or Product Name <span className="text-[#C1FF00]">*</span>
+                  <div className="flex flex-col gap-1.5 p-5 bg-graphite rounded-2xl border border-white/10 shadow-xl">
+                    <label className="text-xs font-bold text-cream/80">
+                      Brand or Product Name <span className="text-cream">*</span>
                     </label>
                     <input
                       type="text"
                       value={state.brandName}
                       onChange={(e) => updateState({ brandName: e.target.value })}
                       placeholder="e.g. Luminary AI, Astraea Studio..."
-                      className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-[#C1FF00]"
+                      className="w-full px-3.5 py-2.5 bg-surface border border-white/10 rounded-xl text-sm text-cream focus:outline-none focus:border-cream"
                     />
                   </div>
 
                   {/* Industry */}
-                  <div className="flex flex-col gap-1.5 p-5 bg-slate-950/90 rounded-2xl border border-white/20 shadow-xl">
-                    <label className="text-xs font-bold text-slate-200">
+                  <div className="flex flex-col gap-1.5 p-5 bg-graphite rounded-2xl border border-white/10 shadow-xl">
+                    <label className="text-xs font-bold text-cream/80">
                       Industry / Primary Domain
                     </label>
                     <input
@@ -596,15 +591,15 @@ export default function App() {
                       value={state.industry}
                       onChange={(e) => updateState({ industry: e.target.value })}
                       placeholder="e.g. Fintech, Sustainable Apparel, SaaS..."
-                      className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-sm text-white focus:outline-none focus:border-[#C1FF00]"
+                      className="w-full px-3.5 py-2.5 bg-surface border border-white/10 rounded-xl text-sm text-cream focus:outline-none focus:border-cream"
                     />
                   </div>
                 </div>
 
                 {/* Conditional Logic Trigger: New Brand vs Rebrand */}
-                <div className="p-5 bg-slate-950/90 rounded-2xl border border-white/20 shadow-xl flex flex-col gap-4">
-                  <label className="text-xs font-bold text-slate-200">
-                    Project Classification <span className="text-[#C1FF00]">*</span>
+                <div className="p-5 bg-graphite rounded-2xl border border-white/10 shadow-xl flex flex-col gap-4">
+                  <label className="text-xs font-bold text-cream/80">
+                    Project Classification <span className="text-cream">*</span>
                   </label>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -613,13 +608,13 @@ export default function App() {
                       onClick={() => updateState({ projectType: "new_brand" })}
                       className={`p-4 rounded-xl border flex items-center gap-3 transition-all ${
                         state.projectType === "new_brand"
-                          ? "bg-[#C1FF00]/20 border-[#C1FF00] text-[#C1FF00] shadow-lg shadow-[#C1FF00]/10"
-                          : "bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700"
+                          ? "bg-cream/20 border-cream text-cream shadow-lg shadow-cream/10"
+                          : "bg-surface/60 border-slate-800 text-slate-300 hover:border-white/10"
                       }`}
                     >
-                      <Rocket className="w-5 h-5 text-[#C1FF00] shrink-0" />
+                      <Rocket className="w-5 h-5 text-cream shrink-0" />
                       <div className="text-left">
-                        <div className="font-bold text-sm text-white">
+                        <div className="font-bold text-sm text-cream">
                           New Brand Launch
                         </div>
                         <div className="text-[11px] text-slate-300">
@@ -633,13 +628,13 @@ export default function App() {
                       onClick={() => updateState({ projectType: "rebrand" })}
                       className={`p-4 rounded-xl border flex items-center gap-3 transition-all ${
                         state.projectType === "rebrand"
-                          ? "bg-[#00FFC2]/20 border-[#00FFC2] text-[#00FFC2] shadow-lg shadow-[#00FFC2]/10"
-                          : "bg-slate-900/60 border-slate-800 text-slate-300 hover:border-slate-700"
+                          ? "bg-brass/20 border-brass text-brass shadow-lg shadow-brass/10"
+                          : "bg-surface/60 border-slate-800 text-slate-300 hover:border-white/10"
                       }`}
                     >
-                      <Building2 className="w-5 h-5 text-[#00FFC2] shrink-0" />
+                      <Building2 className="w-5 h-5 text-brass shrink-0" />
                       <div className="text-left">
-                        <div className="font-bold text-sm text-white">
+                        <div className="font-bold text-sm text-cream">
                           Strategic Rebrand
                         </div>
                         <div className="text-[11px] text-slate-300">
@@ -651,7 +646,7 @@ export default function App() {
 
                   {/* Conditional Logic Question Fields */}
                   {state.projectType === "rebrand" ? (
-                    <div className="mt-2 p-4 bg-slate-900/90 rounded-xl border border-[#00FFC2]/40 flex flex-col gap-3 animate-fadeIn">
+                    <div className="mt-2 p-4 bg-surface/90 rounded-xl border border-brass/40 flex flex-col gap-3 animate-fadeIn">
                       <VoiceTextArea
                         label="Rebrand Catalyst & Pain Points:"
                         rows={2}
@@ -661,7 +656,7 @@ export default function App() {
                       />
                     </div>
                   ) : (
-                    <div className="mt-2 p-4 bg-slate-900/90 rounded-xl border border-[#C1FF00]/40 flex flex-col gap-3 animate-fadeIn">
+                    <div className="mt-2 p-4 bg-surface/90 rounded-xl border border-cream/40 flex flex-col gap-3 animate-fadeIn">
                       <VoiceTextArea
                         label="Launch Objective & Origin Context:"
                         rows={2}
@@ -674,7 +669,7 @@ export default function App() {
                 </div>
 
                 {/* Target Audience Overview */}
-                <div className="p-5 bg-slate-950/90 rounded-2xl border border-white/20 shadow-xl flex flex-col gap-2">
+                <div className="p-5 bg-graphite rounded-2xl border border-white/10 shadow-xl flex flex-col gap-2">
                   <VoiceTextArea
                     label="Target Audience Overview"
                     rows={2}
@@ -690,16 +685,16 @@ export default function App() {
             {state.currentStep === 2 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-black text-[#C1FF00] uppercase tracking-widest">
-                    <Sparkles className="w-4 h-4 text-[#C1FF00]" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-black text-cream uppercase tracking-widest">
+                    <Sparkles className="w-4 h-4 text-cream" />
                     <span>Stage 02 • Simon Sinek's Golden Circle (Onawa Architecture)</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight">
                     Inside-Out Purpose Workshop
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-200 leading-relaxed font-medium">
+                  <p className="text-xs md:text-sm text-cream/80 leading-relaxed font-medium">
                     We utilize Simon Sinek's Golden Circle framework,{" "}
-                    <span className="text-[#C1FF00] font-bold underline decoration-[#C1FF00]/50 decoration-2 underline-offset-4 drop-shadow-[0_0_8px_rgba(193,255,0,0.6)]">
+                    <span className="text-cream font-bold underline decoration-cream/50 decoration-2 underline-offset-4 drop-shadow-[0_0_8px_rgba(193,255,0,0.6)]">
                       mixed with Clyde Strydom’s 17+ years of elite experience in visual strategy
                     </span>
                     , to find the core of your business.
@@ -707,15 +702,15 @@ export default function App() {
                 </div>
 
                 {/* Strategist Note Banner */}
-                <div className="p-4 bg-slate-950/90 rounded-2xl border border-[#00FFC2]/50 shadow-xl flex items-start gap-3">
-                  <div className="p-2 bg-[#00FFC2]/10 border border-[#00FFC2]/30 rounded-xl text-[#00FFC2] shrink-0">
+                <div className="p-4 bg-graphite rounded-2xl border border-brass/50 shadow-xl flex items-start gap-3">
+                  <div className="p-2 bg-brass/10 border border-brass/30 rounded-xl text-brass shrink-0">
                     <Compass className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col gap-1">
-                    <span className="text-xs font-mono font-bold text-[#00FFC2] uppercase tracking-wider">
+                    <span className="text-xs font-mono font-bold text-brass uppercase tracking-wider">
                       Clyde’s Perspective:
                     </span>
-                    <p className="text-xs text-slate-200 italic leading-relaxed">
+                    <p className="text-xs text-cream/80 italic leading-relaxed">
                       "To build a great brand, we must start with your 'Why' before we touch a single pixel."
                     </p>
                   </div>
@@ -740,7 +735,7 @@ export default function App() {
                       className={`p-4 rounded-xl border transition-all ${
                         activeGoldenRing === "why"
                           ? "bg-amber-950/20 border-amber-500/80 ring-1 ring-amber-500/50"
-                          : "bg-slate-900/80 border-slate-800"
+                          : "bg-surface/80 border-slate-800"
                       }`}
                       onClick={() => setActiveGoldenRing("why")}
                     >
@@ -748,7 +743,7 @@ export default function App() {
                         <span>1. WHY (Core Purpose / Belief) *</span>
                         <span className="text-[10px] text-slate-500">The Soul</span>
                       </label>
-                      <p className="text-[11px] text-slate-400 mb-2">
+                      <p className="text-[11px] text-cream/60 mb-2">
                         Why does your brand exist beyond making money? What fundamental cause or belief drives you?
                       </p>
                       <VoiceTextArea
@@ -768,7 +763,7 @@ export default function App() {
                       className={`p-4 rounded-xl border transition-all ${
                         activeGoldenRing === "how"
                           ? "bg-cyan-950/20 border-cyan-500/80 ring-1 ring-cyan-500/50"
-                          : "bg-slate-900/80 border-slate-800"
+                          : "bg-surface/80 border-slate-800"
                       }`}
                       onClick={() => setActiveGoldenRing("how")}
                     >
@@ -776,7 +771,7 @@ export default function App() {
                         <span>2. HOW (Process & Uniqueness)</span>
                         <span className="text-[10px] text-slate-500">The Method</span>
                       </label>
-                      <p className="text-[11px] text-slate-400 mb-2">
+                      <p className="text-[11px] text-cream/60 mb-2">
                         How do you fulfill your why differently? What proprietary process, culture, or values set you apart?
                       </p>
                       <VoiceTextArea
@@ -796,7 +791,7 @@ export default function App() {
                       className={`p-4 rounded-xl border transition-all ${
                         activeGoldenRing === "what"
                           ? "bg-purple-950/20 border-purple-500/80 ring-1 ring-purple-500/50"
-                          : "bg-slate-900/80 border-slate-800"
+                          : "bg-surface/80 border-slate-800"
                       }`}
                       onClick={() => setActiveGoldenRing("what")}
                     >
@@ -804,7 +799,7 @@ export default function App() {
                         <span>3. WHAT (Products & Services)</span>
                         <span className="text-[10px] text-slate-500">The Tangible Proof</span>
                       </label>
-                      <p className="text-[11px] text-slate-400 mb-2">
+                      <p className="text-[11px] text-cream/60 mb-2">
                         What actual products or services do you sell to the market every day?
                       </p>
                       <VoiceTextArea
@@ -834,14 +829,14 @@ export default function App() {
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Purpose, Vision, Mission & Values
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-400">
+                  <p className="text-xs md:text-sm text-cream/60">
                     Codify the internal engine that keeps team culture aligned and brand messaging consistent.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Purpose */}
-                  <div className="p-5 bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col gap-2">
+                  <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-2">
                     <VoiceTextArea
                       label="Purpose (Why We Exist)"
                       rows={2}
@@ -856,7 +851,7 @@ export default function App() {
                   </div>
 
                   {/* Vision */}
-                  <div className="p-5 bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col gap-2">
+                  <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-2">
                     <VoiceTextArea
                       label="Vision (The Future We Build)"
                       rows={2}
@@ -871,7 +866,7 @@ export default function App() {
                   </div>
 
                   {/* Mission */}
-                  <div className="p-5 bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col gap-2 md:col-span-2">
+                  <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-2 md:col-span-2">
                     <VoiceTextArea
                       label="Mission (What We Do Daily To Deliver Vision)"
                       rows={2}
@@ -887,7 +882,7 @@ export default function App() {
                 </div>
 
                 {/* Values Tags Builder */}
-                <div className="p-5 bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col gap-3">
+                <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-3">
                   <label className="text-xs font-bold text-slate-300">
                     Core Operating Values & Principles
                   </label>
@@ -898,7 +893,7 @@ export default function App() {
                       value={newValueInput}
                       onChange={(e) => setNewValueInput(e.target.value)}
                       placeholder="Add a core value (e.g., Radical Transparency, Craftsmanship)..."
-                      className="flex-1 bg-slate-950 border border-slate-800 px-3 py-2 text-xs text-slate-200 rounded-xl focus:outline-none focus:border-amber-500"
+                      className="flex-1 bg-slate-950 border border-slate-800 px-3 py-2 text-xs text-cream/80 rounded-xl focus:outline-none focus:border-amber-500"
                     />
                     <button
                       type="submit"
@@ -944,29 +939,29 @@ export default function App() {
             {state.currentStep === 5 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
-                    <Users className="w-4 h-4 text-[#C1FF00]" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-cream uppercase tracking-widest">
+                    <Users className="w-4 h-4 text-cream" />
                     <span>Stage 05 • Willow Marketing's 12 Brand Archetypes</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Archetype Personality Selection
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-400">
+                  <p className="text-xs md:text-sm text-cream/60">
                     Select your Primary Brand Archetype (and an optional Secondary Archetype) to anchor tone, imagery, and emotional stance.
                   </p>
                 </div>
 
                 {/* Selection Indicators */}
-                <div className="flex flex-wrap items-center gap-4 p-3 bg-slate-900/80 rounded-xl border border-slate-800 text-xs">
+                <div className="flex flex-wrap items-center gap-4 p-3 bg-surface/80 rounded-xl border border-slate-800 text-xs">
                   <div>
-                    <span className="text-slate-400 font-medium">Primary Archetype: </span>
+                    <span className="text-cream/60 font-medium">Primary Archetype: </span>
                     <span className="font-bold text-amber-400">
                       {BRAND_ARCHETYPES.find((a) => a.id === state.primaryArchetype)?.name || "None"}
                     </span>
                   </div>
                   <div className="text-slate-600">|</div>
                   <div>
-                    <span className="text-slate-400 font-medium">Secondary Archetype: </span>
+                    <span className="text-cream/60 font-medium">Secondary Archetype: </span>
                     <span className="font-bold text-cyan-400">
                       {BRAND_ARCHETYPES.find((a) => a.id === state.secondaryArchetype)?.name || "None"}
                     </span>
@@ -984,10 +979,10 @@ export default function App() {
                         key={arch.id}
                         className={`p-5 rounded-2xl border transition-all duration-300 flex flex-col justify-between gap-3 relative ${
                           isPrimary
-                            ? "bg-slate-900 border-amber-500 ring-2 ring-amber-500/50 shadow-xl shadow-amber-500/10"
+                            ? "bg-surface border-amber-500 ring-2 ring-amber-500/50 shadow-xl shadow-amber-500/10"
                             : isSecondary
-                            ? "bg-slate-900 border-cyan-500 ring-2 ring-cyan-500/50 shadow-xl shadow-cyan-500/10"
-                            : "bg-slate-900/60 border-slate-800 hover:border-slate-700 hover:bg-slate-900/90"
+                            ? "bg-surface border-cyan-500 ring-2 ring-cyan-500/50 shadow-xl shadow-cyan-500/10"
+                            : "bg-surface/60 border-slate-800 hover:border-white/10 hover:bg-surface/90"
                         }`}
                       >
                         {/* Header Badge */}
@@ -1026,7 +1021,7 @@ export default function App() {
                           {arch.traits.map((t) => (
                             <span
                               key={t}
-                              className="px-2 py-0.5 bg-slate-950 text-slate-400 border border-slate-800 text-[10px] rounded-md"
+                              className="px-2 py-0.5 bg-slate-950 text-cream/60 border border-slate-800 text-[10px] rounded-md"
                             >
                               {t}
                             </span>
@@ -1035,7 +1030,7 @@ export default function App() {
 
                         {/* Real-world Brand Examples */}
                         <div className="text-[10px] text-slate-500 pt-2 border-t border-slate-800/80">
-                          Examples: <span className="text-slate-400 italic">{arch.examples.join(", ")}</span>
+                          Examples: <span className="text-cream/60 italic">{arch.examples.join(", ")}</span>
                         </div>
 
                         {/* Action Selection Buttons */}
@@ -1089,14 +1084,14 @@ export default function App() {
             {state.currentStep === 6 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
-                    <Sliders className="w-4 h-4 text-[#C1FF00]" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-cream uppercase tracking-widest">
+                    <Sliders className="w-4 h-4 text-cream" />
                     <span>Stage 06 • Personality Spectrum Sliders</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Brand Trait Dial & Spectrum Calibration
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-400">
+                  <p className="text-xs md:text-sm text-cream/60">
                     Slide each continuum to establish where your brand sits between opposing visual and tonal polarities.
                   </p>
                 </div>
@@ -1112,14 +1107,14 @@ export default function App() {
             {state.currentStep === 7 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
-                    <Quote className="w-4 h-4 text-[#C1FF00]" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-cream uppercase tracking-widest">
+                    <Quote className="w-4 h-4 text-cream" />
                     <span>Stage 07 • Fernando Ifrán's Love/Hate Matrix</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Embrace vs. Avoid Keyword Matrix
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-400">
+                  <p className="text-xs md:text-sm text-cream/60">
                     Select or type keywords to define what your brand passionately embraces versus what it adamantly avoids.
                   </p>
                 </div>
@@ -1135,14 +1130,14 @@ export default function App() {
             {state.currentStep === 8 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
-                    <Layers className="w-4 h-4 text-[#C1FF00]" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-cream uppercase tracking-widest">
+                    <Layers className="w-4 h-4 text-cream" />
                     <span>Stage 08 • Visual Discovery & Logo Anatomy</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Logo Mark Architecture & Anatomy
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-400">
+                  <p className="text-xs md:text-sm text-cream/60">
                     Choose the structural category for your primary logo (Logomark, Logotype, Combination Mark, or Emblem).
                   </p>
                 </div>
@@ -1175,14 +1170,14 @@ export default function App() {
             {state.currentStep === 11 && (
               <div className="flex flex-col gap-6">
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest">
-                    <Sparkles className="w-4 h-4 text-[#C1FF00]" />
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-cream uppercase tracking-widest">
+                    <Sparkles className="w-4 h-4 text-cream" />
                     <span>Stage 11 • Dynamic UVP Builder</span>
                   </div>
                   <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
                     Unique Value Proposition Architecture
                   </h1>
-                  <p className="text-xs md:text-sm text-slate-400">
+                  <p className="text-xs md:text-sm text-cream/60">
                     Fill in the structural blanks to distill your entire brand positioning into an airtight statement.
                   </p>
                 </div>
@@ -1229,12 +1224,12 @@ export default function App() {
           return (
             <div
               id="stage-nav"
-              className="mt-10 pt-6 border-t border-[#C1FF00]/30 flex flex-col gap-4 print:hidden"
+              className="mt-10 pt-6 border-t border-white/10 flex flex-col gap-4 print:hidden"
             >
               {/* Incomplete-section warning bar */}
               {showWarning && (
-                <div className="p-4 bg-[#FF002B]/10 border border-[#FF002B]/50 rounded-2xl flex flex-col gap-2 animate-fadeIn">
-                  <div className="flex items-center gap-2 text-[#FF002B] font-black font-mono text-xs uppercase tracking-widest">
+                <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl flex flex-col gap-2 animate-fadeIn">
+                  <div className="flex items-center gap-2 text-red-400 font-black font-mono text-xs uppercase tracking-widest">
                     <ShieldAlert className="w-4 h-4" />
                     <span>Complete this stage to continue</span>
                   </div>
@@ -1242,7 +1237,7 @@ export default function App() {
                     {missingFields.map((field) => (
                       <span
                         key={field}
-                        className="px-2.5 py-1 bg-[#FF002B]/15 border border-[#FF002B]/40 text-[#FF002B] text-[11px] font-bold rounded-lg"
+                        className="px-2.5 py-1 bg-red-500/10 border border-red-500/30 text-red-400 text-[11px] font-bold rounded-lg"
                       >
                         {field}
                       </span>
@@ -1259,10 +1254,10 @@ export default function App() {
                   className={`px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition-all ${
                     state.currentStep === 1
                       ? "opacity-0 cursor-default"
-                      : "bg-slate-950 hover:bg-slate-900 text-slate-200 border border-slate-700"
+                      : "bg-charcoal hover:bg-graphite text-cream border border-white/10"
                   }`}
                 >
-                  <ArrowLeft className="w-4 h-4 text-[#C1FF00]" />
+                  <ArrowLeft className="w-4 h-4 text-cream" />
                   <span>Previous Step</span>
                 </button>
 
@@ -1272,10 +1267,10 @@ export default function App() {
                       type="button"
                       onClick={handleNextStep}
                       disabled={!isCurrentStepComplete}
-                      className={`px-6 py-2.5 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-lg transition-all ${
+                      className={`px-6 py-2.5 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 transition-all ${
                         isCurrentStepComplete
-                          ? "bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 shadow-[#C1FF00]/20"
-                          : "bg-slate-800 text-slate-500 cursor-not-allowed"
+                          ? "bg-cream hover:bg-cream/90 text-carbon-black"
+                          : "bg-charcoal text-slate-500 cursor-not-allowed border border-white/10"
                       }`}
                     >
                       <span>Continue to {QUESTIONNAIRE_STEPS[state.currentStep]?.title}</span>
@@ -1285,7 +1280,7 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => window.print()}
-                      className="px-6 py-2.5 bg-[#00FFC2] hover:bg-[#00e6af] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 shadow-lg shadow-[#00FFC2]/20 transition-all"
+                      className="px-6 py-2.5 bg-brass hover:bg-brass-hover text-carbon-black font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 transition-all"
                     >
                       <span>Print Strategy Report</span>
                     </button>
@@ -1328,7 +1323,7 @@ export default function App() {
   }}
 />
 
-{/* Full-screen neon loading overlay during session restore */}
+{/* Full-screen loading overlay during session restore */}
 <AnimatePresence>
   {loadingSession && !showLandingPage && (
     <motion.div
@@ -1337,47 +1332,45 @@ export default function App() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 backdrop-blur-md"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-carbon-black/95 backdrop-blur-sm"
     >
       <div className="flex flex-col items-center gap-6 p-8 max-w-md text-center">
         {/* Animated shield icon */}
         <div className="relative w-20 h-20">
-          <div className="absolute inset-0 rounded-full border-2 border-[#00FFC2] animate-ping opacity-30" />
-          <div className="absolute inset-2 rounded-full border border-[#C1FF00] animate-spin opacity-50" style={{ animationDuration: "3s" }} />
+          <div className="absolute inset-0 rounded-full border-2 border-brass animate-ping opacity-30" />
+          <div className="absolute inset-2 rounded-full border border-cream animate-spin opacity-50" style={{ animationDuration: "3s" }} />
           <div className="absolute inset-0 flex items-center justify-center">
-            <ShieldCheck className="w-10 h-10 text-[#00FFC2]" />
+            <ShieldCheck className="w-10 h-10 text-cream" />
           </div>
         </div>
 
         {/* Loading text */}
         <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-black text-white tracking-tight">
+          <h3 className="text-lg font-black text-cream tracking-tight">
             {sessionLoadingMessage || "Initializing secure session..."}
           </h3>
-          <p className="text-xs text-slate-400 font-mono">
+          <p className="text-xs text-cream/60 font-mono">
             Onawa Studio Discovery Portal
           </p>
         </div>
 
-        {/* Neon progress bar */}
+        {/* Progress bar */}
         <div className="w-full max-w-xs">
-          <div className="h-1 bg-slate-800 rounded-full overflow-hidden">
+          <div className="h-1 bg-graphite rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-[#00FFC2] via-[#C1FF00] to-[#00FFC2] rounded-full"
+              className="h-full bg-gradient-to-r from-brass via-cream to-brass rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-              style={{
-                boxShadow: "0 0 12px rgba(0,255,194,0.6), 0 0 24px rgba(193,255,0,0.3)",
-              }}
             />
           </div>
-          <div className="flex items-center justify-center gap-2 mt-3">
-            <Loader2 className="w-3 h-3 text-[#C1FF00] animate-spin" />
-            <span className="text-[10px] font-mono text-[#00FFC2] uppercase tracking-widest animate-pulse">
-              Encrypting channel...
-            </span>
-          </div>
+        </div>
+
+        {/* Loading dots */}
+        <div className="loading-dots">
+          <span />
+          <span />
+          <span />
         </div>
       </div>
     </motion.div>

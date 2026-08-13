@@ -186,153 +186,153 @@ function buildBlueprintHtmlEmail(
   <meta charset="utf-8">
   <title>The Onawa Studio Brand Blueprint</title>
 </head>
-<body style="margin:0; padding:0; background-color:#090d16; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; color:#f8fafc;">
+<body style="margin:0; padding:0; background-color:#0A0A0A; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; color:#F5F0E8;">
   <div style="max-width:680px; margin:0 auto; padding:32px 20px;">
     <!-- Header -->
-    <div style="background:linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border:2px solid #00FFC2; border-radius:20px; padding:32px; text-align:center; margin-bottom:24px; box-shadow:0 20px 40px rgba(0,255,194,0.15);">
-      <div style="display:inline-block; padding:4px 12px; background-color:#C1FF00; color:#020617; font-size:11px; font-weight:900; letter-spacing:2px; border-radius:12px; text-transform:uppercase; margin-bottom:12px;">
+    <div style="background:linear-gradient(135deg, #141414 0%, #1e1b4b 100%); border:2px solid #F5F0E8; border-radius:20px; padding:32px; text-align:center; margin-bottom:24px; box-shadow:0 20px 40px rgba(0,255,194,0.15);">
+      <div style="display:inline-block; padding:4px 12px; background-color:#D4A574; color:#0A0A0A; font-size:11px; font-weight:900; letter-spacing:2px; border-radius:12px; text-transform:uppercase; margin-bottom:12px;">
         ONAWA STUDIO DISCOVERY PORTAL
       </div>
-      <h1 style="color:#ffffff; font-size:28px; font-weight:900; margin:0 0 8px 0; line-height:1.2;">
+      <h1 style="color:#F5F0E8; font-size:28px; font-weight:900; margin:0 0 8px 0; line-height:1.2;">
         The Onawa Studio Brand Blueprint
       </h1>
-      <p style="color:#C1FF00; font-size:16px; font-weight:700; margin:0 0 16px 0;">
+      <p style="color:#D4A574; font-size:16px; font-weight:700; margin:0 0 16px 0;">
         Curated for ${brandName} by Clyde Strydom
       </p>
-      <p style="color:#94a3b8; font-size:13px; margin:0;">
+      <p style="color:#8A8478; font-size:13px; margin:0;">
         Industry: ${state.industry || "General"} &bull; Type: ${state.projectType === "rebrand" ? "Strategic Rebrand" : "New Brand Launch"}
       </p>
     </div>
 
     <!-- Client Info -->
-    <div style="background-color:#1e293b; border-left:4px solid #C1FF00; border-radius:8px; padding:16px 20px; margin-bottom:24px;">
-      <div style="font-size:11px; font-weight:700; color:#C1FF00; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
+    <div style="background-color:#1E1E1E; border-left:4px solid #D4A574; border-radius:8px; padding:16px 20px; margin-bottom:24px;">
+      <div style="font-size:11px; font-weight:700; color:#D4A574; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
         Submitted By
       </div>
-      <div style="color:#e2e8f0; font-size:14px;">
+      <div style="color:#C0B8A8; font-size:14px;">
         <strong>${senderName}</strong> &bull; ${state.clientProfile?.email || "N/A"}
       </div>
     </div>
 
     <!-- Notes if provided -->
     ${notes ? `
-    <div style="background-color:#1e293b; border-left:4px solid #00FFC2; border-radius:8px; padding:16px 20px; margin-bottom:24px;">
-      <div style="font-size:11px; font-weight:700; color:#00FFC2; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
+    <div style="background-color:#1E1E1E; border-left:4px solid #F5F0E8; border-radius:8px; padding:16px 20px; margin-bottom:24px;">
+      <div style="font-size:11px; font-weight:700; color:#F5F0E8; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
         Client Notes / Instructions for Clyde
       </div>
-      <div style="color:#e2e8f0; font-size:14px; font-style:italic;">
+      <div style="color:#C0B8A8; font-size:14px; font-style:italic;">
         "${notes}"
       </div>
     </div>
     ` : ""}
 
     <!-- Brand Heart -->
-    <div style="background-color:#0f172a; border:1px solid #334155; border-radius:16px; padding:24px; margin-bottom:20px;">
-      <h2 style="color:#C1FF00; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1e293b; padding-bottom:10px;">
+    <div style="background-color:#141414; border:1px solid #2a2a2a; border-radius:16px; padding:24px; margin-bottom:20px;">
+      <h2 style="color:#D4A574; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1E1E1E; padding-bottom:10px;">
         1. Brand Heart & Purpose
       </h2>
-      <table style="width:100%; border-collapse:collapse; font-size:14px; color:#cbd5e1;">
+      <table style="width:100%; border-collapse:collapse; font-size:14px; color:#C0B8A8;">
         <tr>
-          <td style="padding:8px 0; font-weight:bold; color:#00FFC2; width:120px;">Purpose:</td>
+          <td style="padding:8px 0; font-weight:bold; color:#F5F0E8; width:120px;">Purpose:</td>
           <td style="padding:8px 0;">${state.brandHeart.purpose || "N/A"}</td>
         </tr>
         <tr>
-          <td style="padding:8px 0; font-weight:bold; color:#00FFC2;">Vision:</td>
+          <td style="padding:8px 0; font-weight:bold; color:#F5F0E8;">Vision:</td>
           <td style="padding:8px 0;">${state.brandHeart.vision || "N/A"}</td>
         </tr>
         <tr>
-          <td style="padding:8px 0; font-weight:bold; color:#00FFC2;">Mission:</td>
+          <td style="padding:8px 0; font-weight:bold; color:#F5F0E8;">Mission:</td>
           <td style="padding:8px 0;">${state.brandHeart.mission || "N/A"}</td>
         </tr>
         <tr>
-          <td style="padding:8px 0; font-weight:bold; color:#00FFC2;">Core Values:</td>
+          <td style="padding:8px 0; font-weight:bold; color:#F5F0E8;">Core Values:</td>
           <td style="padding:8px 0;">${state.brandHeart.values.join(", ") || "None specified"}</td>
         </tr>
       </table>
     </div>
 
     <!-- Golden Circle -->
-    <div style="background-color:#0f172a; border:1px solid #334155; border-radius:16px; padding:24px; margin-bottom:20px;">
-      <h2 style="color:#C1FF00; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1e293b; padding-bottom:10px;">
+    <div style="background-color:#141414; border:1px solid #2a2a2a; border-radius:16px; padding:24px; margin-bottom:20px;">
+      <h2 style="color:#D4A574; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1E1E1E; padding-bottom:10px;">
         2. Simon Sinek's Golden Circle
       </h2>
       <div style="margin-bottom:12px;">
         <span style="color:#f59e0b; font-weight:bold;">WHY (Core Belief):</span>
-        <p style="margin:4px 0 0 0; color:#e2e8f0; font-size:14px;">${state.goldenCircle.why || "N/A"}</p>
+        <p style="margin:4px 0 0 0; color:#C0B8A8; font-size:14px;">${state.goldenCircle.why || "N/A"}</p>
       </div>
       <div style="margin-bottom:12px;">
         <span style="color:#06b6d4; font-weight:bold;">HOW (Differentiating Process):</span>
-        <p style="margin:4px 0 0 0; color:#e2e8f0; font-size:14px;">${state.goldenCircle.how || "N/A"}</p>
+        <p style="margin:4px 0 0 0; color:#C0B8A8; font-size:14px;">${state.goldenCircle.how || "N/A"}</p>
       </div>
       <div>
         <span style="color:#a855f7; font-weight:bold;">WHAT (Products & Offerings):</span>
-        <p style="margin:4px 0 0 0; color:#e2e8f0; font-size:14px;">${state.goldenCircle.what || "N/A"}</p>
+        <p style="margin:4px 0 0 0; color:#C0B8A8; font-size:14px;">${state.goldenCircle.what || "N/A"}</p>
       </div>
     </div>
 
     <!-- Archetype & Positioning -->
-    <div style="background-color:#0f172a; border:1px solid #334155; border-radius:16px; padding:24px; margin-bottom:20px;">
-      <h2 style="color:#C1FF00; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1e293b; padding-bottom:10px;">
+    <div style="background-color:#141414; border:1px solid #2a2a2a; border-radius:16px; padding:24px; margin-bottom:20px;">
+      <h2 style="color:#D4A574; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1E1E1E; padding-bottom:10px;">
         3. Archetype & Positioning Strategy
       </h2>
-      <p style="margin:0 0 8px 0; font-size:14px; color:#e2e8f0;">
-        <strong style="color:#00FFC2;">Primary Archetype:</strong> ${
+      <p style="margin:0 0 8px 0; font-size:14px; color:#C0B8A8;">
+        <strong style="color:#F5F0E8;">Primary Archetype:</strong> ${
           primaryArchInfo ? `${primaryArchInfo.name} ("${primaryArchInfo.motto}")` : "Not selected"
         }
       </p>
-      <p style="margin:0 0 8px 0; font-size:14px; color:#e2e8f0;">
-        <strong style="color:#00FFC2;">Secondary Archetype:</strong> ${
+      <p style="margin:0 0 8px 0; font-size:14px; color:#C0B8A8;">
+        <strong style="color:#F5F0E8;">Secondary Archetype:</strong> ${
           secondaryArchInfo ? `${secondaryArchInfo.name} ("${secondaryArchInfo.motto}")` : "None"
         }
       </p>
-      <p style="margin:0 0 16px 0; font-size:14px; color:#e2e8f0;">
+      <p style="margin:0 0 16px 0; font-size:14px; color:#C0B8A8;">
         <strong style="color:#FF002B;">Strategic Enemy:</strong> ${state.strategicEnemy || "Not defined"}
       </p>
-      <div style="background-color:#1e293b; border-radius:12px; padding:16px;">
-        <div style="font-size:12px; font-weight:bold; color:#C1FF00; text-transform:uppercase; margin-bottom:8px;">
+      <div style="background-color:#1E1E1E; border-radius:12px; padding:16px;">
+        <div style="font-size:12px; font-weight:bold; color:#D4A574; text-transform:uppercase; margin-bottom:8px;">
           Unique Value Proposition (UVP)
         </div>
-        <p style="margin:0; font-size:14px; color:#ffffff; font-style:italic; line-height:1.5;">
+        <p style="margin:0; font-size:14px; color:#F5F0E8; font-style:italic; line-height:1.5;">
           "${uvpSentence}"
         </p>
       </div>
     </div>
 
     <!-- Positioning Matrix -->
-    <div style="background-color:#0f172a; border:1px solid #334155; border-radius:16px; padding:24px; margin-bottom:20px;">
-      <h2 style="color:#C1FF00; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1e293b; padding-bottom:10px;">
+    <div style="background-color:#141414; border:1px solid #2a2a2a; border-radius:16px; padding:24px; margin-bottom:20px;">
+      <h2 style="color:#D4A574; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1E1E1E; padding-bottom:10px;">
         4. Positioning Matrix & Visual Identity
       </h2>
-      <p style="margin:0 0 8px 0; font-size:14px; color:#e2e8f0;">
-        <strong style="color:#00FFC2;">Positioning Coordinates:</strong> X: ${state.positioningMatrix.x}, Y: ${state.positioningMatrix.y}
+      <p style="margin:0 0 8px 0; font-size:14px; color:#C0B8A8;">
+        <strong style="color:#F5F0E8;">Positioning Coordinates:</strong> X: ${state.positioningMatrix.x}, Y: ${state.positioningMatrix.y}
       </p>
-      <p style="margin:0 0 16px 0; font-size:14px; color:#e2e8f0;">
-        <strong style="color:#00FFC2;">Quadrant:</strong> ${state.positioningMatrix.quadrant}
+      <p style="margin:0 0 16px 0; font-size:14px; color:#C0B8A8;">
+        <strong style="color:#F5F0E8;">Quadrant:</strong> ${state.positioningMatrix.quadrant}
       </p>
-      <p style="margin:0 0 8px 0; font-size:14px; color:#e2e8f0;">
-        <strong style="color:#00FFC2;">Logo Type:</strong> ${state.logoType.toUpperCase()}
+      <p style="margin:0 0 8px 0; font-size:14px; color:#C0B8A8;">
+        <strong style="color:#F5F0E8;">Logo Type:</strong> ${state.logoType.toUpperCase()}
       </p>
     </div>
 
     <!-- Keywords -->
-    <div style="background-color:#0f172a; border:1px solid #334155; border-radius:16px; padding:24px; margin-bottom:20px;">
-      <h2 style="color:#C1FF00; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1e293b; padding-bottom:10px;">
+    <div style="background-color:#141414; border:1px solid #2a2a2a; border-radius:16px; padding:24px; margin-bottom:20px;">
+      <h2 style="color:#D4A574; font-size:18px; font-weight:800; margin-top:0; border-bottom:1px solid #1E1E1E; padding-bottom:10px;">
         5. Brand Keywords
       </h2>
-      <p style="margin:0 0 8px 0; font-size:14px; color:#e2e8f0;">
+      <p style="margin:0 0 8px 0; font-size:14px; color:#C0B8A8;">
         <strong style="color:#10b981;">Embrace:</strong> ${state.keywords.love.join(", ") || "None"}
       </p>
-      <p style="margin:0; font-size:14px; color:#e2e8f0;">
+      <p style="margin:0; font-size:14px; color:#C0B8A8;">
         <strong style="color:#FF002B;">Avoid:</strong> ${state.keywords.hate.join(", ") || "None"}
       </p>
     </div>
 
     <!-- Mood Board Note -->
-    <div style="background-color:#022c22; border:2px solid #00FFC2; border-radius:16px; padding:24px; text-align:center; margin-bottom:24px;">
-      <div style="font-size:11px; font-weight:900; color:#00FFC2; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;">
+    <div style="background-color:#022c22; border:2px solid #F5F0E8; border-radius:16px; padding:24px; text-align:center; margin-bottom:24px;">
+      <div style="font-size:11px; font-weight:900; color:#F5F0E8; text-transform:uppercase; letter-spacing:2px; margin-bottom:6px;">
         Visual Mood Board
       </div>
-      <p style="color:#e2e8f0; font-size:14px; margin:0;">
+      <p style="color:#C0B8A8; font-size:14px; margin:0;">
         ${state.moodBoard?.elements?.length || 0} visual elements saved in the Discovery Portal.
         <br/>Access the full interactive mood board via the Onawa Studio Discovery Portal.
       </p>
@@ -343,16 +343,16 @@ function buildBlueprintHtmlEmail(
       <div style="font-size:12px; font-weight:800; color:#10b981; text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">
         Alignment Complete
       </div>
-      <p style="font-size:16px; font-style:italic; color:#ffffff; margin:0 0 8px 0;">
+      <p style="font-size:16px; font-style:italic; color:#F5F0E8; margin:0 0 8px 0;">
         "Alignment Complete. I look forward to bringing your vision to life."
       </p>
-      <div style="font-size:14px; font-weight:bold; color:#C1FF00;">
+      <div style="font-size:14px; font-weight:bold; color:#D4A574;">
         &mdash; Clyde Strydom, Onawa Studio
       </div>
     </div>
 
     <!-- Footer -->
-    <div style="text-align:center; font-size:12px; color:#64748b; border-top:1px solid #1e293b; padding-top:20px;">
+    <div style="text-align:center; font-size:12px; color:#64748b; border-top:1px solid #1E1E1E; padding-top:20px;">
       <p style="margin:0 0 4px 0;">&copy; 2026 Onawa Studio | Strategy by Clyde Strydom</p>
       <p style="margin:0; font-size:11px; color:#475569;">Sent via Onawa Studio Discovery Experience</p>
     </div>
@@ -384,41 +384,41 @@ export async function sendWelcomeEmail(
   <meta charset="utf-8">
   <title>Welcome to Onawa Studio</title>
 </head>
-<body style="margin:0; padding:0; background-color:#090d16; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; color:#f8fafc;">
+<body style="margin:0; padding:0; background-color:#0A0A0A; font-family:'Helvetica Neue', Helvetica, Arial, sans-serif; color:#F5F0E8;">
   <div style="max-width:600px; margin:0 auto; padding:32px 20px;">
     <!-- Header -->
-    <div style="background:linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%); border:2px solid #C1FF00; border-radius:20px; padding:40px 32px; text-align:center; margin-bottom:24px; box-shadow:0 20px 40px rgba(193,255,0,0.15);">
-      <div style="display:inline-block; padding:4px 12px; background-color:#C1FF00; color:#020617; font-size:11px; font-weight:900; letter-spacing:2px; border-radius:12px; text-transform:uppercase; margin-bottom:16px;">
+    <div style="background:linear-gradient(135deg, #141414 0%, #1e1b4b 100%); border:2px solid #D4A574; border-radius:20px; padding:40px 32px; text-align:center; margin-bottom:24px; box-shadow:0 20px 40px rgba(193,255,0,0.15);">
+      <div style="display:inline-block; padding:4px 12px; background-color:#D4A574; color:#0A0A0A; font-size:11px; font-weight:900; letter-spacing:2px; border-radius:12px; text-transform:uppercase; margin-bottom:16px;">
         ONAWA STUDIO
       </div>
-      <h1 style="color:#ffffff; font-size:28px; font-weight:900; margin:0 0 12px 0; line-height:1.2;">
+      <h1 style="color:#F5F0E8; font-size:28px; font-weight:900; margin:0 0 12px 0; line-height:1.2;">
         Welcome, ${clientName}!
       </h1>
-      <p style="color:#C1FF00; font-size:16px; font-weight:700; margin:0 0 8px 0;">
+      <p style="color:#D4A574; font-size:16px; font-weight:700; margin:0 0 8px 0;">
         Your Brand Discovery Journey Begins Now
       </p>
-      <p style="color:#94a3b8; font-size:13px; margin:0;">
+      <p style="color:#8A8478; font-size:13px; margin:0;">
         Curated by Clyde Strydom &bull; Onawa Studio
       </p>
     </div>
 
     <!-- Body -->
-    <div style="background-color:#1e293b; border-radius:16px; padding:28px; margin-bottom:24px;">
-      <h2 style="color:#00FFC2; font-size:18px; font-weight:800; margin:0 0 16px 0;">
+    <div style="background-color:#1E1E1E; border-radius:16px; padding:28px; margin-bottom:24px;">
+      <h2 style="color:#F5F0E8; font-size:18px; font-weight:800; margin:0 0 16px 0;">
         Your Private Discovery Portal is Live
       </h2>
-      <p style="color:#e2e8f0; font-size:14px; line-height:1.7; margin:0 0 16px 0;">
-        You now have exclusive access to the <strong style="color:#C1FF00;">Onawa Studio Discovery Portal</strong> &mdash; a strategic brand workshop built on Simon Sinek's Golden Circle framework and refined over 17+ years of elite brand strategy by Clyde Strydom.
+      <p style="color:#C0B8A8; font-size:14px; line-height:1.7; margin:0 0 16px 0;">
+        You now have exclusive access to the <strong style="color:#D4A574;">Onawa Studio Discovery Portal</strong> &mdash; a strategic brand workshop built on Simon Sinek's Golden Circle framework and refined over 17+ years of elite brand strategy by Clyde Strydom.
       </p>
-      <p style="color:#e2e8f0; font-size:14px; line-height:1.7; margin:0 0 20px 0;">
+      <p style="color:#C0B8A8; font-size:14px; line-height:1.7; margin:0 0 20px 0;">
         Inside, you will define your brand's soul, archetype, positioning, and visual direction through 12 curated stages &mdash; each designed to extract clarity before a single pixel is designed.
       </p>
 
-      <div style="background-color:#0f172a; border:1px solid #334155; border-radius:12px; padding:20px; margin-bottom:20px;">
-        <div style="font-size:11px; font-weight:900; color:#C1FF00; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px;">
+      <div style="background-color:#141414; border:1px solid #2a2a2a; border-radius:12px; padding:20px; margin-bottom:20px;">
+        <div style="font-size:11px; font-weight:900; color:#D4A574; text-transform:uppercase; letter-spacing:1.5px; margin-bottom:12px;">
           What Awaits You
         </div>
-        <div style="color:#cbd5e1; font-size:13px; line-height:1.8;">
+        <div style="color:#C0B8A8; font-size:13px; line-height:1.8;">
           &#10003;&nbsp; Golden Circle Purpose Workshop<br/>
           &#10003;&nbsp; Brand Heart &amp; Core Values Definition<br/>
           &#10003;&nbsp; 12 Brand Archetype Selection<br/>
@@ -429,23 +429,23 @@ export async function sendWelcomeEmail(
         </div>
       </div>
 
-      <p style="color:#94a3b8; font-size:13px; font-style:italic; margin:0;">
+      <p style="color:#8A8478; font-size:13px; font-style:italic; margin:0;">
         "To build a great brand, we must start with your 'Why' before we touch a single pixel."
       </p>
-      <p style="color:#C1FF00; font-size:12px; font-weight:bold; margin:8px 0 0 0;">
+      <p style="color:#D4A574; font-size:12px; font-weight:bold; margin:8px 0 0 0;">
         &mdash; Clyde Strydom, Onawa Studio
       </p>
     </div>
 
     <!-- CTA -->
     <div style="text-align:center; margin-bottom:24px;">
-      <a href="${window.location?.origin || 'https://onawastudio.co.za'}" style="display:inline-block; padding:14px 32px; background-color:#C1FF00; color:#020617; font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:1px; border-radius:12px; text-decoration:none; box-shadow:0 8px 24px rgba(193,255,0,0.3);">
+      <a href="${window.location?.origin || 'https://onawastudio.co.za'}" style="display:inline-block; padding:14px 32px; background-color:#D4A574; color:#0A0A0A; font-size:13px; font-weight:900; text-transform:uppercase; letter-spacing:1px; border-radius:12px; text-decoration:none; box-shadow:0 8px 24px rgba(193,255,0,0.3);">
         Launch Your Discovery Portal &rarr;
       </a>
     </div>
 
     <!-- Footer -->
-    <div style="text-align:center; font-size:12px; color:#64748b; border-top:1px solid #1e293b; padding-top:20px;">
+    <div style="text-align:center; font-size:12px; color:#64748b; border-top:1px solid #1E1E1E; padding-top:20px;">
       <p style="margin:0 0 4px 0;">&copy; 2026 Onawa Studio | Strategy by Clyde Strydom</p>
       <p style="margin:0; font-size:11px; color:#475569;">This account was created via the Onawa Studio Discovery Portal</p>
     </div>

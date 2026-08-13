@@ -171,31 +171,31 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fadeIn">
-      <div className="relative w-full max-w-md bg-slate-950 border-2 border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-graphite/80 backdrop-blur-md animate-fadeIn">
+      <div className="relative w-full max-w-md bg-graphite border-2 border-white/20 rounded-3xl p-6 sm:p-8 shadow-2xl overflow-hidden">
         {/* Glow Accent */}
-        <div className="absolute -top-20 -right-20 w-48 h-48 bg-[#C1FF00]/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-[#00FFC2]/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-48 h-48 bg-cream/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-brass/10 rounded-full blur-3xl pointer-events-none" />
 
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-slate-400 hover:text-white bg-slate-900 border border-slate-800 hover:border-slate-700 rounded-full transition-all"
+          className="absolute top-4 right-4 p-2 text-cream/60 hover:text-cream bg-surface border border-slate-800 hover:border-white/10 rounded-full transition-all"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* Modal Header */}
         <div className="flex flex-col gap-2 text-left mb-6">
-          <div className="flex items-center gap-2 text-xs font-mono font-black text-[#C1FF00] uppercase tracking-widest">
-            <ShieldCheck className="w-4 h-4 text-[#C1FF00]" />
+          <div className="flex items-center gap-2 text-xs font-mono font-black text-cream uppercase tracking-widest">
+            <ShieldCheck className="w-4 h-4 text-cream" />
             <span>Onawa Studio • Client Profile Gateway</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-black text-cream tracking-tight">
             {mode === "signin" ? "Sign In to Client Portal" : "Create Client Profile"}
           </h2>
-          <p className="text-xs text-slate-300 leading-relaxed font-medium">
+          <p className="text-xs text-cream/70 leading-relaxed font-medium">
             Custom strategic discovery portal for Onawa Studio clients. Powered by Simon Sinek's Golden Circle &amp; Clyde Strydom's 17+ years of brand experience.
           </p>
         </div>
@@ -205,7 +205,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
           type="button"
           onClick={handleGoogleSignIn}
           disabled={loading}
-          className="w-full py-3 px-4 bg-slate-900 hover:bg-slate-800 border border-slate-700 hover:border-[#00FFC2] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-3 transition-all mb-4 shadow-md group"
+          className="w-full py-3 px-4 bg-surface hover:bg-graphite border border-white/10 hover:border-cream/30 text-cream font-bold text-xs rounded-xl flex items-center justify-center gap-3 transition-all mb-4 shadow-md group"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24">
             <path
@@ -232,7 +232,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-slate-800" />
           </div>
-          <span className="relative px-3 bg-slate-950 text-[10px] font-mono text-slate-400 uppercase tracking-wider">
+          <span className="relative px-3 bg-graphite text-[10px] font-mono text-cream/60 uppercase tracking-wider">
             Or Private Credentials
           </span>
         </div>
@@ -242,33 +242,33 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
           {mode === "signup" && (
             <>
               <div>
-                <label className="block text-[11px] font-bold text-slate-300 mb-1">
+                <label className="block text-[11px] font-bold text-cream/70 mb-1">
                   Full Name
                 </label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cream/60" />
                   <input
                     type="text"
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Clyde Strydom"
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 focus:border-[#C1FF00] text-white text-xs rounded-xl focus:outline-none transition-all"
+                    className="w-full pl-9 pr-3 py-2.5 bg-surface border border-white/10 focus:border-cream text-cream text-xs rounded-xl focus:outline-none transition-all"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-bold text-slate-300 mb-1">
+                <label className="block text-[11px] font-bold text-cream/70 mb-1">
                   Company / Organization Name
                 </label>
                 <div className="relative">
-                  <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <Building className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cream/60" />
                   <input
                     type="text"
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
                     placeholder="e.g. Onawa Studio"
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 focus:border-[#C1FF00] text-white text-xs rounded-xl focus:outline-none transition-all"
+                    className="w-full pl-9 pr-3 py-2.5 bg-surface border border-white/10 focus:border-cream text-cream text-xs rounded-xl focus:outline-none transition-all"
                   />
                 </div>
               </div>
@@ -276,34 +276,34 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
           )}
 
           <div>
-            <label className="block text-[11px] font-bold text-slate-300 mb-1">
+            <label className="block text-[11px] font-bold text-cream/70 mb-1">
               Email Address <span className="text-[#FF002B]">*</span>
             </label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cream/60" />
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="client@company.com"
-                className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 focus:border-[#C1FF00] text-white text-xs rounded-xl focus:outline-none transition-all"
+                className="w-full pl-9 pr-3 py-2.5 bg-surface border border-white/10 focus:border-cream text-cream text-xs rounded-xl focus:outline-none transition-all"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-[11px] font-bold text-slate-300 mb-1">
+            <label className="block text-[11px] font-bold text-cream/70 mb-1">
               Password
             </label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+              <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cream/60" />
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 focus:border-[#C1FF00] text-white text-xs rounded-xl focus:outline-none transition-all"
+                className="w-full pl-9 pr-3 py-2.5 bg-surface border border-white/10 focus:border-cream text-cream text-xs rounded-xl focus:outline-none transition-all"
               />
             </div>
           </div>
@@ -324,7 +324,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 py-3 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all"
+            className="w-full mt-2 py-3 bg-cream hover:bg-cream/90 text-carbon-black font-black text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all"
           >
             {loading ? (
               <>
@@ -354,7 +354,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
               setErrorMessage("");
               setSuccessMessage("");
             }}
-            className="text-xs font-mono text-slate-400 hover:text-[#C1FF00] transition-colors"
+            className="text-xs font-mono text-cream/60 hover:text-cream transition-colors"
           >
             {mode === "signin"
               ? "New Onawa client? Create a profile here →"
@@ -364,7 +364,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
 
         {/* Footer info */}
         <div className="mt-4 pt-3 border-t border-slate-900 text-center">
-          <p className="text-[10px] text-slate-400 font-mono">
+          <p className="text-[10px] text-cream/60 font-mono">
             {isSupabaseConfigured
               ? "Connected to Supabase PostgreSQL Database & Auth"
               : "Local Client Profile Storage Active (Supabase ready)"}

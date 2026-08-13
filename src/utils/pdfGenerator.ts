@@ -245,17 +245,17 @@ export async function generateBrandStyleGuidePDF(
         <div style="display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: center; background: #090d16; padding: 20px; border-radius: 16px; color: #ffffff;">
           <!-- Mini SVG Representation -->
           <div style="width: 180px; height: 180px; border: 1px solid #334155; position: relative; background: #020617; border-radius: 12px; margin: 0 auto;">
-            <div style="position: absolute; left: 50%; top: 10px; bottom: 10px; width: 1px; background: #00FFC2; opacity: 0.5;"></div>
-            <div style="position: absolute; top: 50%; left: 10px; right: 10px; height: 1px; background: #00FFC2; opacity: 0.5;"></div>
-            <div style="position: absolute; left: ${90 + ((state.positioningMatrix?.x || 50) / 100) * 70 - 8}px; top: ${90 - ((state.positioningMatrix?.y || 50) / 100) * 70 - 8}px; width: 16px; height: 16px; background: #C1FF00; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px #C1FF00;"></div>
-            <div style="position: absolute; top: 4px; width: 100%; text-align: center; font-size: 8px; font-family: monospace; color: #00FFC2; font-weight: bold;">PROGRESSIVE</div>
+            <div style="position: absolute; left: 50%; top: 10px; bottom: 10px; width: 1px; background: #F5F0E8; opacity: 0.5;"></div>
+            <div style="position: absolute; top: 50%; left: 10px; right: 10px; height: 1px; background: #F5F0E8; opacity: 0.5;"></div>
+            <div style="position: absolute; left: ${90 + ((state.positioningMatrix?.x || 50) / 100) * 70 - 8}px; top: ${90 - ((state.positioningMatrix?.y || 50) / 100) * 70 - 8}px; width: 16px; height: 16px; background: #D4A574; border-radius: 50%; border: 2px solid #ffffff; box-shadow: 0 0 12px #D4A574;"></div>
+            <div style="position: absolute; top: 4px; width: 100%; text-align: center; font-size: 8px; font-family: monospace; color: #F5F0E8; font-weight: bold;">PROGRESSIVE</div>
             <div style="position: absolute; bottom: 4px; width: 100%; text-align: center; font-size: 8px; font-family: monospace; color: #64748b;">TRADITIONAL</div>
             <div style="position: absolute; left: 4px; top: 80px; font-size: 8px; font-family: monospace; color: #64748b;">CORP</div>
-            <div style="position: absolute; right: 4px; top: 80px; font-size: 8px; font-family: monospace; color: #C1FF00; font-weight: bold;">DISRUPT</div>
+            <div style="position: absolute; right: 4px; top: 80px; font-size: 8px; font-family: monospace; color: #D4A574; font-weight: bold;">DISRUPT</div>
           </div>
 
           <div>
-            <div style="font-size: 11px; font-weight: 800; color: #C1FF00; text-transform: uppercase; font-family: monospace; margin-bottom: 6px;">
+            <div style="font-size: 11px; font-weight: 800; color: #D4A574; text-transform: uppercase; font-family: monospace; margin-bottom: 6px;">
               Identified Quadrant Focus
             </div>
             <div style="font-size: 18px; font-weight: 900; color: #ffffff; margin-bottom: 8px;">

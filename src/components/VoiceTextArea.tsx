@@ -123,7 +123,7 @@ export const VoiceTextArea: React.FC<VoiceTextAreaProps> = ({
     <div className={`flex flex-col gap-1.5 relative ${containerClassName}`}>
       {label && (
         <div className="flex items-center justify-between">
-          <label className="text-xs font-bold text-slate-200">{label}</label>
+          <label className="text-xs font-bold text-cream/80">{label}</label>
           {isListening && (
             <span className="inline-flex items-center gap-1.5 px-2 py-0.5 bg-[#FF002B]/20 border border-[#FF002B] rounded-full text-[10px] font-mono font-bold text-[#FF002B] animate-pulse">
               <span className="w-2 h-2 rounded-full bg-[#FF002B] animate-ping" />
@@ -139,7 +139,7 @@ export const VoiceTextArea: React.FC<VoiceTextAreaProps> = ({
           onChange={(e) => onValueChange(e.target.value)}
           rows={rows}
           placeholder={placeholder}
-          className={`w-full p-3.5 pr-12 bg-slate-950 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-[#C1FF00] transition-all resize-y ${className}`}
+          className={`w-full p-3.5 pr-12 bg-graphite border border-white/10 rounded-xl text-xs text-cream focus:outline-none focus:border-cream transition-all resize-y ${className}`}
           {...props}
         />
 
@@ -156,8 +156,8 @@ export const VoiceTextArea: React.FC<VoiceTextAreaProps> = ({
           }
           className={`absolute top-3 right-3 p-2 rounded-lg transition-all flex items-center justify-center ${
             isListening
-              ? "bg-[#FF002B] text-white shadow-lg shadow-[#FF002B]/50 animate-bounce"
-              : "bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-[#C1FF00] border border-slate-700 hover:border-[#C1FF00]/50"
+              ? "bg-[#FF002B] text-cream shadow-lg shadow-[#FF002B]/50 animate-bounce"
+              : "bg-surface hover:bg-graphite text-cream/70 text-cream border border-white/10 border-cream"
           }`}
         >
           {isListening ? (
@@ -168,7 +168,7 @@ export const VoiceTextArea: React.FC<VoiceTextAreaProps> = ({
         </button>
       </div>
 
-      {helperText && <p className="text-[11px] text-slate-400">{helperText}</p>}
+      {helperText && <p className="text-[11px] text-cream/60">{helperText}</p>}
       {errorMessage && (
         <p className="text-[11px] text-[#FF002B] font-medium">{errorMessage}</p>
       )}

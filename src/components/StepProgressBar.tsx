@@ -117,7 +117,7 @@ export const StepProgressBar: React.FC<StepProgressBarProps> = ({
   );
 
   return (
-    <div className="w-full bg-[#2B00FF] border-b border-[#00FFC2]/30 sticky top-0 z-40 backdrop-blur-xl shadow-2xl px-4 py-3 text-white">
+    <div className="w-full bg-[#2B00FF] border-b border-[#F5F0E8]/30 sticky top-0 z-40 backdrop-blur-xl shadow-2xl px-4 py-3 text-cream">
       <div className="max-w-7xl mx-auto flex flex-col gap-3">
         {/* Top Header Row */}
         <div className="flex items-center justify-between text-xs">
@@ -126,29 +126,29 @@ export const StepProgressBar: React.FC<StepProgressBarProps> = ({
               <button
                 type="button"
                 onClick={onShowLandingPage}
-                className="px-2.5 py-1 bg-black/40 hover:bg-black/60 border border-[#00FFC2]/40 text-[#00FFC2] font-mono font-bold text-[10px] uppercase rounded-lg transition-all"
+                className="px-2.5 py-1 bg-black/40 hover:bg-black/60 border border-[#F5F0E8]/40 text-[#F5F0E8] font-mono font-bold text-[10px] uppercase rounded-lg transition-all"
               >
                 ← Portal
               </button>
             )}
-            <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 bg-slate-950/80 border border-[#C1FF00]/50 rounded-lg text-[10px] font-mono font-black text-[#C1FF00]">
+            <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 bg-graphite border border-cream/30 rounded-lg text-[10px] font-mono font-black text-cream">
               <span>ONAWA STUDIO</span>
             </div>
-            <span className="px-3 py-1 bg-[#C1FF00] text-slate-950 font-black uppercase tracking-wider text-[10px] rounded-full shadow-md">
+            <span className="px-3 py-1 bg-cream text-carbon-black font-black uppercase tracking-wider text-[10px] rounded-full">
               Stage {currentStep} of {totalSteps}
             </span>
-            <span className="text-white font-bold text-sm hidden sm:inline">
+            <span className="text-cream font-bold text-sm hidden sm:inline">
               {QUESTIONNAIRE_STEPS[currentStep - 1]?.title}
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-white">
-            <span className="text-[#00FFC2] font-mono font-bold text-[11px]">
+          <div className="flex items-center gap-4 text-cream">
+            <span className="text-brass font-mono font-bold text-[11px]">
               {progressPercent}% Complete
             </span>
-            <div className="w-24 sm:w-36 h-2.5 bg-black/40 rounded-full overflow-hidden border border-[#00FFC2]/40">
+            <div className="w-24 sm:w-36 h-2.5 bg-graphite rounded-full overflow-hidden border border-white/10">
               <div
-                className="h-full bg-gradient-to-r from-[#C1FF00] via-[#00FFC2] to-[#FF002B] transition-all duration-500 ease-out rounded-full"
+                className="h-full bg-gradient-to-r from-brass via-cream to-brass transition-all duration-500 ease-out rounded-full"
                 style={{ width: `${progressPercent}%` }}
               />
             </div>
@@ -171,19 +171,19 @@ export const StepProgressBar: React.FC<StepProgressBarProps> = ({
                 onClick={() => isClickable && onStepClick(step.number)}
                 className={`relative flex flex-col items-center gap-1.5 p-2 rounded-xl transition-all duration-200 text-left ${
                   isCurrent
-                    ? "bg-[#C1FF00] text-slate-950 font-extrabold shadow-lg shadow-black/30 scale-105"
+                    ? "bg-cream text-carbon-black font-extrabold shadow-lg shadow-black/30 scale-105"
                     : isCompleted
-                    ? "bg-black/30 border border-[#00FFC2]/50 text-white hover:bg-black/50"
-                    : "bg-black/20 text-white/50 opacity-60 cursor-not-allowed"
+                    ? "bg-graphite border border-brass/30 text-cream hover:bg-graphite/80"
+                    : "bg-graphite/50 text-cream/50 opacity-60 cursor-not-allowed"
                 }`}
               >
                 <div
                   className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold transition-all ${
                     isCurrent
-                      ? "bg-slate-950 text-[#C1FF00]"
+                      ? "bg-graphite text-cream"
                       : isCompleted
-                      ? "bg-[#00FFC2] text-slate-950"
-                      : "bg-black/40 text-white/50"
+                      ? "bg-brass text-carbon-black"
+                      : "bg-black/40 text-cream/50"
                   }`}
                 >
                   {isCompleted && !isCurrent ? (

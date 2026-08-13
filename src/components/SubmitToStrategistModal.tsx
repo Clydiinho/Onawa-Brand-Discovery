@@ -96,19 +96,19 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/85 backdrop-blur-md animate-fadeIn">
-      <div className="bg-slate-950 border-2 border-[#C1FF00] w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-graphite/85 backdrop-blur-md animate-fadeIn">
+      <div className="bg-graphite border-2 border-cream w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] relative">
         {/* Header */}
-        <div className="p-6 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+        <div className="p-6 bg-surface border-b border-slate-800 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#C1FF00] flex items-center justify-center text-slate-950 shadow-md shadow-[#C1FF00]/20">
+            <div className="w-10 h-10 rounded-2xl bg-cream flex items-center justify-center text-carbon-black shadow-md shadow-cream/20">
               <Mail className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div>
-              <h2 className="text-lg font-black text-white">
+              <h2 className="text-lg font-black text-cream">
                 Dispatch Brand Blueprint
               </h2>
-              <p className="text-xs text-slate-300">
+              <p className="text-xs text-cream/70">
                 Send your complete strategy to Clyde Strydom & yourself
               </p>
             </div>
@@ -117,7 +117,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
           <button
             type="button"
             onClick={onClose}
-            className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-xl transition-all"
+            className="p-2 text-cream/60 hover:text-cream hover:bg-graphite rounded-xl transition-all"
           >
             <X className="w-5 h-5" />
           </button>
@@ -127,29 +127,29 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
         <div className="p-6 overflow-y-auto flex-1 flex flex-col gap-5">
           {success ? (
             /* SUCCESS STATE */
-            <div className="p-6 bg-[#00FFC2]/10 border border-[#00FFC2] rounded-2xl flex flex-col items-center text-center gap-4 animate-fadeIn">
-              <div className="w-16 h-16 rounded-full bg-[#00FFC2]/20 border border-[#00FFC2] flex items-center justify-center text-[#00FFC2]">
+            <div className="p-6 bg-brass/10 border border-brass rounded-2xl flex flex-col items-center text-center gap-4 animate-fadeIn">
+              <div className="w-16 h-16 rounded-full bg-brass/20 border border-brass flex items-center justify-center text-brass">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-xl font-black text-white">
+                <h3 className="text-xl font-black text-cream">
                   Brand DNA Transmitted!
                 </h3>
-                <p className="text-sm text-[#00FFC2] leading-relaxed font-medium">
+                <p className="text-sm text-brass leading-relaxed font-medium">
                   Your Brand DNA has been transmitted to Clyde Strydom. He will review your strategy and visual direction before your next session.
                 </p>
               </div>
 
               {/* Sent to list */}
-              <div className="w-full p-4 bg-slate-900/80 rounded-xl border border-slate-800 mt-2">
+              <div className="w-full p-4 bg-surface/80 rounded-xl border border-slate-800 mt-2">
                 <div className="flex flex-col gap-2 text-xs">
-                  <div className="flex items-center justify-center gap-2 text-[#C1FF00] font-bold">
+                  <div className="flex items-center justify-center gap-2 text-cream font-bold">
                     <Zap className="w-3.5 h-3.5" />
                     <span>Dispatch completed to:</span>
                   </div>
                   {sentTo.map((email) => (
-                    <div key={email} className="flex items-center justify-center gap-2 text-slate-300">
-                      <CheckCircle2 className="w-3 h-3 text-[#00FFC2]" />
+                    <div key={email} className="flex items-center justify-center gap-2 text-cream/70">
+                      <CheckCircle2 className="w-3 h-3 text-brass" />
                       <span className="font-mono">{email}</span>
                     </div>
                   ))}
@@ -160,7 +160,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-6 py-2.5 bg-[#C1FF00] hover:bg-[#a8df00] text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl transition-all"
+                  className="px-6 py-2.5 bg-cream hover:bg-[#a8df00] text-carbon-black font-black text-xs uppercase tracking-wider rounded-xl transition-all"
                 >
                   Done
                 </button>
@@ -170,49 +170,49 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
             /* DISPATCH FORM */
             <div className="flex flex-col gap-5">
               {/* Brand Summary Preview */}
-              <div className="p-4 bg-slate-900/90 rounded-2xl border border-slate-800">
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#C1FF00] uppercase tracking-widest mb-3">
+              <div className="p-4 bg-surface/90 rounded-2xl border border-slate-800">
+                <div className="flex items-center gap-2 text-xs font-mono font-bold text-cream uppercase tracking-widest mb-3">
                   <Sparkles className="w-4 h-4" />
                   <span>Blueprint Payload Preview</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
-                    <div className="flex items-center gap-1.5 text-[#00FFC2] mb-1">
+                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
+                    <div className="flex items-center gap-1.5 text-brass mb-1">
                       <Heart className="w-3 h-3" />
                       <span className="font-bold">Brand Heart</span>
                     </div>
-                    <p className="text-slate-400 line-clamp-2">
+                    <p className="text-cream/60 line-clamp-2">
                       {state.brandHeart.purpose || "Not set"}
                     </p>
                   </div>
 
-                  <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
                     <div className="flex items-center gap-1.5 text-amber-400 mb-1">
                       <Target className="w-3 h-3" />
                       <span className="font-bold">Golden Circle</span>
                     </div>
-                    <p className="text-slate-400 line-clamp-2">
+                    <p className="text-cream/60 line-clamp-2">
                       {state.goldenCircle.why || "Not set"}
                     </p>
                   </div>
 
-                  <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
                     <div className="flex items-center gap-1.5 text-purple-400 mb-1">
                       <Users className="w-3 h-3" />
                       <span className="font-bold">Archetype</span>
                     </div>
-                    <p className="text-slate-400">
+                    <p className="text-cream/60">
                       {primaryArch?.name || "Not selected"}
                     </p>
                   </div>
 
-                  <div className="p-3 bg-slate-950 rounded-xl border border-slate-800">
+                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
                     <div className="flex items-center gap-1.5 text-[#2B00FF] mb-1">
                       <Sparkles className="w-3 h-3" />
                       <span className="font-bold">UVP</span>
                     </div>
-                    <p className="text-slate-400 line-clamp-2">
+                    <p className="text-cream/60 line-clamp-2">
                       {state.uvp.offering || "Not set"}
                     </p>
                   </div>
@@ -221,37 +221,37 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
 
               {/* Client Email Input */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-bold text-[#00FFC2]">
+                <label className="text-xs font-bold text-brass">
                   Your Email Address <span className="text-[#FF002B]">*</span>
                 </label>
-                <p className="text-[10px] text-slate-400">
+                <p className="text-[10px] text-cream/60">
                   A copy of the Brand Blueprint will be sent to this address
                 </p>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-cream/60" />
                   <input
                     type="email"
                     required
                     value={clientEmail}
                     onChange={(e) => setClientEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="w-full pl-9 pr-3 py-2.5 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white focus:outline-none focus:border-[#00FFC2]"
+                    className="w-full pl-9 pr-3 py-2.5 bg-surface border border-white/10 rounded-xl text-xs text-cream focus:outline-none focus:border-brass"
                   />
                 </div>
               </div>
 
               {/* Recipient Info */}
-              <div className="p-4 bg-[#C1FF00]/10 rounded-2xl border border-[#C1FF00]/30">
+              <div className="p-4 bg-cream/10 rounded-2xl border border-cream/30">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-[#C1FF00] flex items-center justify-center text-slate-950">
+                  <div className="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-carbon-black">
                     <Send className="w-5 h-5" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-[#C1FF00]">Dispatching to:</p>
-                    <p className="text-sm font-black text-white">Clyde Strydom — Onawa Studio</p>
-                    <p className="text-[11px] font-mono text-slate-400">{STRATEGIST_EMAIL}</p>
+                    <p className="text-xs font-bold text-cream">Dispatching to:</p>
+                    <p className="text-sm font-black text-cream">Clyde Strydom — Onawa Studio</p>
+                    <p className="text-[11px] font-mono text-cream/60">{STRATEGIST_EMAIL}</p>
                     {clientEmail && (
-                      <p className="text-[11px] font-mono text-[#00FFC2] mt-1">
+                      <p className="text-[11px] font-mono text-brass mt-1">
                         + Copy to: {clientEmail}
                       </p>
                     )}
@@ -269,13 +269,13 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
 
               {/* Status Indicator */}
               {loading && (
-                <div className="p-4 bg-slate-900 rounded-2xl border border-[#00FFC2]/50 flex items-center gap-3 animate-pulse">
-                  <Loader2 className="w-5 h-5 text-[#00FFC2] animate-spin" />
+                <div className="p-4 bg-surface rounded-2xl border border-brass/50 flex items-center gap-3 animate-pulse">
+                  <Loader2 className="w-5 h-5 text-brass animate-spin" />
                   <div className="flex flex-col">
-                    <span className="text-xs font-bold text-[#00FFC2]">
+                    <span className="text-xs font-bold text-brass">
                       {statusMessage || "Establishing secure link to Onawa Studio..."}
                     </span>
-                    <span className="text-[10px] text-slate-400">
+                    <span className="text-[10px] text-cream/60">
                       Report dispatched.
                     </span>
                   </div>
@@ -287,7 +287,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                 type="button"
                 onClick={handleDispatch}
                 disabled={loading || !clientEmail.trim()}
-                className="w-full py-4 bg-[#C1FF00] hover:bg-[#a8df00] disabled:bg-slate-800 disabled:text-slate-500 text-slate-950 font-black text-sm uppercase tracking-wider rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-[#C1FF00]/20"
+                className="w-full py-4 bg-cream hover:bg-[#a8df00] disabled:bg-slate-800 disabled:text-slate-500 text-carbon-black font-black text-sm uppercase tracking-wider rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-cream/20"
               >
                 {loading ? (
                   <>
