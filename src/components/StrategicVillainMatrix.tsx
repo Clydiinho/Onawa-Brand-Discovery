@@ -97,7 +97,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
           <Skull className="w-4 h-4 text-cream" />
           <span>Stage 04 • Strategic "Villain" & Positioning Matrix</span>
         </div>
-        <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
           Define The Enemy & Map Your Blue Ocean
         </h1>
         <p className="text-xs md:text-sm text-cream/80 leading-relaxed font-medium">
@@ -192,7 +192,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
       <div className="p-6 bg-graphite rounded-2xl border border-white/20 shadow-xl flex flex-col gap-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
           <div>
-            <h2 className="text-base font-black text-cream flex items-center gap-2">
+            <h2 className="text-base font-headline font-bold text-cream flex items-center gap-2">
               <Compass className="w-5 h-5 text-brass" />
               <span>Blue Ocean Positioning Matrix</span>
             </h2>

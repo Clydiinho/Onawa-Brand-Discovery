@@ -355,7 +355,7 @@ export const InteractiveMoodBoard: React.FC<InteractiveMoodBoardProps> = ({
           <Palette className="w-4 h-4 text-cream" />
           <span>Stage 10 • Interactive Fabric.js Mood Board</span>
         </div>
-        <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
           Visual Direction &amp; Aesthetic Canvas
         </h1>
         <p className="text-xs md:text-sm text-cream/80 leading-relaxed font-medium">

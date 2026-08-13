@@ -264,7 +264,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             type="button"
             onClick={handleSynthesizeAI}
             disabled={loadingAI}
-            className="px-3.5 py-2 bg-[#2B00FF] hover:bg-[#2B00FF]/80 text-cream font-bold text-xs rounded-xl flex items-center gap-1.5 border border-brass/30 transition-all disabled:opacity-50"
+            className="px-3.5 py-2 bg-surface border border-brass/40 text-cream hover:border-brass hover:bg-graphite font-bold text-xs rounded-xl flex items-center gap-1.5 transition-all disabled:opacity-50"
           >
             {loadingAI ? (
               <Loader2 className="w-4 h-4 animate-spin text-cream" />
@@ -339,7 +339,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                 Strategy by Clyde Strydom
               </span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight print:text-black">
+            <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight print:text-black">
               The Onawa Studio Brand Blueprint: Curated for{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A574] via-[#F5F0E8] to-amber-300 print:text-black">
                 {state.brandName || "Client"}
@@ -415,7 +415,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         {/* SECTION 1: THE BRAND HEART */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
-            <h2 className="text-lg font-bold text-amber-400 flex items-center gap-2 print:text-amber-800">
+            <h2 className="text-lg font-headline font-bold text-amber-400 flex items-center gap-2 print:text-amber-800">
               <Heart className="w-5 h-5" />
               <span>1. The Brand Heart (Column Five)</span>
             </h2>
@@ -481,7 +481,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         {/* SECTION 2: SIMON SINEK'S GOLDEN CIRCLE */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
-            <h2 className="text-lg font-bold text-cyan-400 flex items-center gap-2 print:text-blue-800">
+            <h2 className="text-lg font-headline font-bold text-cyan-400 flex items-center gap-2 print:text-blue-800">
               <Target className="w-5 h-5" />
               <span>2. The Golden Circle (Simon Sinek)</span>
             </h2>
@@ -529,7 +529,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           {/* Archetypes */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
-              <h2 className="text-lg font-bold text-purple-400 flex items-center gap-2 print:text-purple-800">
+              <h2 className="text-lg font-headline font-bold text-purple-400 flex items-center gap-2 print:text-purple-800">
                 <Users className="w-5 h-5" />
                 <span>3. 12 Archetypes</span>
               </h2>
@@ -576,7 +576,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           {/* Personality Spectrum */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
-              <h2 className="text-lg font-bold text-emerald-400 flex items-center gap-2 print:text-emerald-800">
+              <h2 className="text-lg font-headline font-bold text-emerald-400 flex items-center gap-2 print:text-emerald-800">
                 <Sliders className="w-5 h-5" />
                 <span>4. Personality Spectrum</span>
               </h2>
@@ -629,7 +629,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           {/* Love / Hate Matrix */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
-              <h2 className="text-lg font-bold text-pink-400 flex items-center gap-2 print:text-pink-800">
+              <h2 className="text-lg font-headline font-bold text-pink-400 flex items-center gap-2 print:text-pink-800">
                 <Quote className="w-5 h-5" />
                 <span>5. Love/Hate Matrix</span>
               </h2>
@@ -666,7 +666,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           {/* Logo Anatomy & UVP */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
-              <h2 className="text-lg font-bold text-amber-400 flex items-center gap-2 print:text-amber-800">
+              <h2 className="text-lg font-headline font-bold text-amber-400 flex items-center gap-2 print:text-amber-800">
                 <Layers className="w-5 h-5" />
                 <span>6. Mark & UVP Architecture</span>
               </h2>

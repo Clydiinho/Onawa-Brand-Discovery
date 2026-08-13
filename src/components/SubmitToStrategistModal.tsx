@@ -105,7 +105,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
               <Mail className="w-5 h-5 stroke-[2.5]" />
             </div>
             <div>
-              <h2 className="text-lg font-black text-cream">
+              <h2 className="text-lg font-headline font-bold text-cream">
                 Dispatch Brand Blueprint
               </h2>
               <p className="text-xs text-cream/70">
@@ -132,7 +132,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                 <CheckCircle2 className="w-10 h-10" />
               </div>
               <div className="flex flex-col gap-2">
-                <h3 className="text-xl font-black text-cream">
+                <h3 className="text-xl font-headline font-bold text-cream">
                   Brand DNA Transmitted!
                 </h3>
                 <p className="text-sm text-brass leading-relaxed font-medium">
@@ -160,7 +160,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-6 py-2.5 bg-cream hover:bg-[#a8df00] text-carbon-black font-black text-xs uppercase tracking-wider rounded-xl transition-all"
+                  className="px-6 py-2.5 bg-cream hover:bg-cream/90 text-carbon-black font-black text-xs uppercase tracking-wider rounded-xl transition-all"
                 >
                   Done
                 </button>
@@ -208,7 +208,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                   </div>
 
                   <div className="p-3 bg-graphite rounded-xl border border-slate-800">
-                    <div className="flex items-center gap-1.5 text-[#2B00FF] mb-1">
+                    <div className="flex items-center gap-1.5 text-brass mb-1">
                       <Sparkles className="w-3 h-3" />
                       <span className="font-bold">UVP</span>
                     </div>
@@ -287,7 +287,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                 type="button"
                 onClick={handleDispatch}
                 disabled={loading || !clientEmail.trim()}
-                className="w-full py-4 bg-cream hover:bg-[#a8df00] disabled:bg-slate-800 disabled:text-slate-500 text-carbon-black font-black text-sm uppercase tracking-wider rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-cream/20"
+                className="w-full py-4 bg-cream hover:bg-cream/90 disabled:bg-slate-800 disabled:text-slate-500 text-carbon-black font-black text-sm uppercase tracking-wider rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-cream/20"
               >
                 {loading ? (
                   <>

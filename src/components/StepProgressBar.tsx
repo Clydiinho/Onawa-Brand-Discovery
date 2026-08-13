@@ -117,7 +117,7 @@ export const StepProgressBar: React.FC<StepProgressBarProps> = ({
   );
 
   return (
-    <div className="w-full bg-[#2B00FF] border-b border-[#F5F0E8]/30 sticky top-0 z-40 backdrop-blur-xl shadow-2xl px-4 py-3 text-cream">
+    <div className="w-full bg-carbon-black border-b border-white/10 sticky top-0 z-40 backdrop-blur-xl shadow-2xl px-4 py-3 text-cream">
       <div className="max-w-7xl mx-auto flex flex-col gap-3">
         {/* Top Header Row */}
         <div className="flex items-center justify-between text-xs">
@@ -137,7 +137,7 @@ export const StepProgressBar: React.FC<StepProgressBarProps> = ({
             <span className="px-3 py-1 bg-cream text-carbon-black font-black uppercase tracking-wider text-[10px] rounded-full">
               Stage {currentStep} of {totalSteps}
             </span>
-            <span className="text-cream font-bold text-sm hidden sm:inline">
+            <span className="text-cream font-headline font-semibold text-sm hidden sm:inline">
               {QUESTIONNAIRE_STEPS[currentStep - 1]?.title}
             </span>
           </div>

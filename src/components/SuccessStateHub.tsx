@@ -80,7 +80,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
               <span>Discovery Complete • Success State</span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl font-black text-cream tracking-tight">
+            <h1 className="text-3xl md:text-4xl font-headline font-bold text-cream tracking-tight">
               {state.brandName ? `${state.brandName} Discovery Complete` : "Brand Discovery Complete!"}
             </h1>
 
@@ -94,9 +94,9 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
               type="button"
               onClick={onSynthesizeAI}
               disabled={loadingAI}
-              className="px-4 py-2.5 bg-[#2B00FF] hover:bg-[#2B00FF]/80 text-cream font-bold text-xs rounded-xl flex items-center gap-2 border border-brass/30 shadow-lg transition-all disabled:opacity-50"
+              className="px-4 py-2.5 bg-brass hover:bg-brass-hover text-carbon-black font-bold text-xs rounded-xl flex items-center gap-2 border border-brass/30 shadow-lg transition-all disabled:opacity-50"
             >
-              {loadingAI ? <Loader2 className="w-4 h-4 animate-spin" /> : <Bot className="w-4 h-4 text-brass" />}
+              {loadingAI ? <Loader2 className="w-4 h-4 animate-spin" /> : <Bot className="w-4 h-4 text-carbon-black" />}
               <span>{state.aiAnalysis ? "Re-Synthesize AI Strategy" : "Synthesize AI Strategy"}</span>
             </button>
           </div>
@@ -112,7 +112,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
               </div>
 
               <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-black text-cream group-hover:text-cream transition-colors">
+                <h3 className="text-lg font-headline font-bold text-cream group-hover:text-cream transition-colors">
                   Dispatch to Clyde
                 </h3>
                 <p className="text-xs text-cream/70 leading-relaxed">
@@ -139,7 +139,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
               </div>
 
               <div className="flex flex-col gap-1">
-                <h3 className="text-lg font-black text-cream group-hover:text-brass transition-colors">
+                <h3 className="text-lg font-headline font-bold text-cream group-hover:text-brass transition-colors">
                   Download My Style Guide
                 </h3>
                 <p className="text-xs text-cream/70 leading-relaxed">
@@ -209,7 +209,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
         </div>
 
         {/* Archetype Snapshot */}
-        <div className="p-6 bg-graphite rounded-2xl border border-[#2B00FF]/60 flex flex-col justify-between gap-4">
+        <div className="p-6 bg-graphite rounded-2xl border border-brass/40 flex flex-col justify-between gap-4">
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <div className="flex items-center gap-2 text-brass font-bold text-sm">
               <Users className="w-4 h-4" />

@@ -145,7 +145,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
           <Compass className="w-4 h-4 text-brass" />
           <span>Stage 09 • The Experience Roadmap (Journey & Touchpoints)</span>
         </div>
-        <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
           Customer Lifecycle & Touchpoint Cyber-Vault
         </h1>
         <p className="text-xs md:text-sm text-cream/80 leading-relaxed font-medium">
@@ -157,7 +157,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
       <div className="p-6 bg-graphite/90 rounded-2xl border border-white/20 shadow-xl flex flex-col gap-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
           <div>
-            <h2 className="text-base font-black text-cream flex items-center gap-2">
+            <h2 className="text-base font-headline font-bold text-cream flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-cream" />
               <span>Visual Customer Experience Timeline</span>
             </h2>
@@ -270,7 +270,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
       <div className="p-6 bg-graphite/90 rounded-2xl border border-white/20 shadow-xl flex flex-col gap-5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
           <div>
-            <h2 className="text-base font-black text-cream flex items-center gap-2">
+            <h2 className="text-base font-headline font-bold text-cream flex items-center gap-2">
               <Package className="w-5 h-5 text-brass" />
               <span>The Cyber-Vault (Interactive Touchpoints)</span>
             </h2>

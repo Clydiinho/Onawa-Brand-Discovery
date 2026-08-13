@@ -11,6 +11,7 @@ import {
 import { BRAND_ARCHETYPES } from "./data/archetypes";
 import { StepProgressBar, QUESTIONNAIRE_STEPS } from "./components/StepProgressBar";
 import { WelcomeLandingPage } from "./components/WelcomeLandingPage";
+import onawaLogo from "./assets/onawa-logo.png";
 import { VoiceTextArea } from "./components/VoiceTextArea";
 import { GoldenCircleSVG } from "./components/GoldenCircleSVG";
 import { PersonalitySlider } from "./components/PersonalitySlider";
@@ -42,7 +43,6 @@ import {
   Crown,
   Plus,
   X,
-  Target,
   Flag,
   RotateCcw,
   Lightbulb,
@@ -504,9 +504,11 @@ export default function App() {
             {/* Fixed Header with Onawa Studio Brand */}
             <div className="bg-carbon-black border-b border-white/10 px-4 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur-sm">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-cream/10 flex items-center justify-center text-cream">
-                  <Target className="w-4 h-4" />
-                </div>
+                <img
+                  src={onawaLogo}
+                  alt="Onawa Studio logo"
+                  className="h-9 w-auto object-contain rounded-md bg-white/5 px-2 py-1 border border-white/10"
+                />
                 <div>
                   <h2 className="text-sm font-bold text-cream">Onawa Studio</h2>
                   <p className="text-[10px] text-cream/80 tracking-widest uppercase">Discovery Portal</p>
@@ -558,7 +560,7 @@ export default function App() {
                     <Flag className="w-4 h-4 text-cream" />
                     <span>Stage 01 • Brand Context</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Foundational Context & Trajectory
                   </h1>
                   <p className="text-xs md:text-sm text-cream/80">
@@ -689,7 +691,7 @@ export default function App() {
                     <Sparkles className="w-4 h-4 text-cream" />
                     <span>Stage 02 • Simon Sinek's Golden Circle (Onawa Architecture)</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-cream tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Inside-Out Purpose Workshop
                   </h1>
                   <p className="text-xs md:text-sm text-cream/80 leading-relaxed font-medium">
@@ -826,7 +828,7 @@ export default function App() {
                     <Heart className="w-4 h-4" />
                     <span>Stage 03 • Column Five's Brand Heart</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
                     Purpose, Vision, Mission & Values
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -943,7 +945,7 @@ export default function App() {
                     <Users className="w-4 h-4 text-cream" />
                     <span>Stage 05 • Willow Marketing's 12 Brand Archetypes</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
                     Archetype Personality Selection
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1088,7 +1090,7 @@ export default function App() {
                     <Sliders className="w-4 h-4 text-cream" />
                     <span>Stage 06 • Personality Spectrum Sliders</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
                     Brand Trait Dial & Spectrum Calibration
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1111,7 +1113,7 @@ export default function App() {
                     <Quote className="w-4 h-4 text-cream" />
                     <span>Stage 07 • Fernando Ifrán's Love/Hate Matrix</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
                     Embrace vs. Avoid Keyword Matrix
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1134,7 +1136,7 @@ export default function App() {
                     <Layers className="w-4 h-4 text-cream" />
                     <span>Stage 08 • Visual Discovery & Logo Anatomy</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
                     Logo Mark Architecture & Anatomy
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1174,7 +1176,7 @@ export default function App() {
                     <Sparkles className="w-4 h-4 text-cream" />
                     <span>Stage 11 • Dynamic UVP Builder</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-black text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
                     Unique Value Proposition Architecture
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1346,7 +1348,7 @@ export default function App() {
 
         {/* Loading text */}
         <div className="flex flex-col gap-2">
-          <h3 className="text-lg font-black text-cream tracking-tight">
+          <h3 className="text-lg font-headline font-bold text-cream tracking-tight">
             {sessionLoadingMessage || "Initializing secure session..."}
           </h3>
           <p className="text-xs text-cream/60 font-mono">

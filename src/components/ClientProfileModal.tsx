@@ -192,7 +192,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
             <ShieldCheck className="w-4 h-4 text-cream" />
             <span>Onawa Studio • Client Profile Gateway</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-cream tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-headline font-bold text-cream tracking-tight">
             {mode === "signin" ? "Sign In to Client Portal" : "Create Client Profile"}
           </h2>
           <p className="text-xs text-cream/70 leading-relaxed font-medium">

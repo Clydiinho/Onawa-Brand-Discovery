@@ -68,19 +68,19 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
         </div>
 
         {/* Hero Headlines */}
-        <div className="flex flex-col gap-4 max-w-3xl text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-cream tracking-tight leading-none">
+        <div className="flex flex-col gap-3 max-w-3xl text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-headline font-bold text-cream tracking-tight leading-[1.05] text-balance">
             Welcome to{" "}
-            <span className="text-cream/60 font-medium">Onawa Studio's Discovery Experience.</span>
+            <span className="text-cream/70 font-medium">Onawa Studio's Discovery Experience.</span>
           </h1>
 
-          <p className="text-base sm:text-lg font-bold text-cream/80 leading-snug">
+          <p className="text-xl sm:text-2xl font-light text-cream leading-snug text-balance">
             A bespoke brand architecture portal engineered exclusively for Onawa Studio clients.
           </p>
 
-          <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-2xl mx-auto font-medium">
+          <p className="text-sm sm:text-base text-cream/60 leading-[1.9] tracking-wide max-w-2xl mx-auto font-normal">
             We utilize Simon Sinek's Golden Circle framework,{" "}
-            <span className="text-cream underline decoration-cream/40 underline-offset-4 drop-shadow-md">
+            <span className="text-cream font-medium underline decoration-brass/60 decoration-2 underline-offset-4">
               mixed with Clyde Strydom's 17+ years of elite experience in visual strategy
             </span>
             , to find the core of your business.

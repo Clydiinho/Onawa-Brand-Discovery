@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
+/* Onawa Studio display face — used for all headline text */
+@font-face {
+  font-family: "Griffith";
+  src: url("../assets/Griffiths.otf") format("opentype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
+  --font-headline: "Griffith", "Playfair Display", Georgia, "Times New Roman", serif;
   --color-carbon-black: #0A0A0A;
   --color-charcoal: #141414;
   --color-graphite: #1E1E1E;
@@ -80,19 +90,39 @@ body {
   pointer-events: none;
 }
 
+/* White-glow card treatment */
+.glow-card,
+.card,
+.card-elevated {
+  box-shadow:
+    0 0 0 1px rgba(245, 240, 232, 0.06),
+    0 0 20px rgba(245, 240, 232, 0.05),
+    0 0 60px rgba(245, 240, 232, 0.03);
+}
+
+.glow-card {
+  border: 1px solid rgba(245, 240, 232, 0.14);
+}
+
+/* Every graphite surface across the app picks up the white glow */
+[class*="bg-graphite"] {
+  box-shadow:
+    0 0 0 1px rgba(245, 240, 232, 0.03),
+    0 0 18px rgba(245, 240, 232, 0.04),
+    0 0 56px rgba(245, 240, 232, 0.028);
+}
+
 /* Card container - no glassmorphism, flat but elevated */
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .card-elevated {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25), 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 /* Buttons - flat, no glass */
@@ -573,13 +603,15 @@ select.select-field {
   border: 1px solid var(--border-subtle);
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.2s ease;
 }
 
 .card-inner:hover {
-  border-color: var(--border-active);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  border-color: rgba(245, 240, 232, 0.24);
+  box-shadow:
+    0 0 0 1px rgba(245, 240, 232, 0.06),
+    0 0 24px rgba(245, 240, 232, 0.07),
+    0 0 72px rgba(245, 240, 232, 0.04);
 }
 
 /* Section container */
@@ -691,9 +723,12 @@ select.select-field {
 }
 
 .card-interactive:hover {
-  border-color: var(--border-active);
+  border-color: rgba(245, 240, 232, 0.24);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow:
+    0 0 0 1px rgba(245, 240, 232, 0.06),
+    0 0 24px rgba(245, 240, 232, 0.07),
+    0 0 72px rgba(245, 240, 232, 0.04);
 }
 
 /* Progress bar */
