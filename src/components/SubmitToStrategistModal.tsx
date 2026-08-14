@@ -99,7 +99,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-graphite/85 backdrop-blur-md animate-fadeIn">
       <div className="bg-graphite border-2 border-cream w-full max-w-xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] relative">
         {/* Header */}
-        <div className="p-6 bg-surface border-b border-slate-800 flex items-center justify-between">
+        <div className="p-6 bg-surface border-b border-white/5 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-cream flex items-center justify-center text-carbon-black shadow-md shadow-cream/20">
               <Mail className="w-5 h-5 stroke-[2.5]" />
@@ -141,7 +141,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
               </div>
 
               {/* Sent to list */}
-              <div className="w-full p-4 bg-surface/80 rounded-xl border border-slate-800 mt-2">
+              <div className="w-full p-4 bg-surface/80 rounded-xl border border-white/5 mt-2">
                 <div className="flex flex-col gap-2 text-xs">
                   <div className="flex items-center justify-center gap-2 text-cream font-bold">
                     <Zap className="w-3.5 h-3.5" />
@@ -170,14 +170,14 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
             /* DISPATCH FORM */
             <div className="flex flex-col gap-5">
               {/* Brand Summary Preview */}
-              <div className="p-4 bg-surface/90 rounded-2xl border border-slate-800">
+              <div className="p-4 bg-surface/90 rounded-2xl border border-white/5">
                 <div className="flex items-center gap-2 text-xs font-mono font-bold text-cream uppercase tracking-widest mb-3">
                   <Sparkles className="w-4 h-4" />
                   <span>Blueprint Payload Preview</span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 text-xs">
-                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
+                  <div className="p-3 bg-graphite rounded-xl border border-white/5">
                     <div className="flex items-center gap-1.5 text-brass mb-1">
                       <Heart className="w-3 h-3" />
                       <span className="font-bold">Brand Heart</span>
@@ -187,7 +187,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                     </p>
                   </div>
 
-                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
+                  <div className="p-3 bg-graphite rounded-xl border border-white/5">
                     <div className="flex items-center gap-1.5 text-amber-400 mb-1">
                       <Target className="w-3 h-3" />
                       <span className="font-bold">Golden Circle</span>
@@ -197,7 +197,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                     </p>
                   </div>
 
-                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
+                  <div className="p-3 bg-graphite rounded-xl border border-white/5">
                     <div className="flex items-center gap-1.5 text-purple-400 mb-1">
                       <Users className="w-3 h-3" />
                       <span className="font-bold">Archetype</span>
@@ -207,7 +207,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                     </p>
                   </div>
 
-                  <div className="p-3 bg-graphite rounded-xl border border-slate-800">
+                  <div className="p-3 bg-graphite rounded-xl border border-white/5">
                     <div className="flex items-center gap-1.5 text-brass mb-1">
                       <Sparkles className="w-3 h-3" />
                       <span className="font-bold">UVP</span>
@@ -287,7 +287,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
                 type="button"
                 onClick={handleDispatch}
                 disabled={loading || !clientEmail.trim()}
-                className="w-full py-4 bg-cream hover:bg-cream/90 disabled:bg-slate-800 disabled:text-slate-500 text-carbon-black font-black text-sm uppercase tracking-wider rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-cream/20"
+                className="w-full py-4 bg-cream hover:bg-cream/90 disabled:bg-graphite/60 disabled:text-cream/30 text-carbon-black font-black text-sm uppercase tracking-wider rounded-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-cream/20"
               >
                 {loading ? (
                   <>
@@ -303,7 +303,7 @@ export const SubmitToStrategistModal: React.FC<SubmitToStrategistModalProps> = (
               </button>
 
               {/* Subtle footer note */}
-              <p className="text-[10px] text-center text-slate-500 font-mono">
+              <p className="text-[10px] text-center text-cream/40 font-mono">
                 Includes Brand Heart, Golden Circle, Archetypes, Positioning Matrix, UVP & Mood Board link
               </p>
             </div>

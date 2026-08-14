@@ -106,7 +106,7 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
           value={customWord}
           onChange={(e) => setCustomWord(e.target.value)}
           placeholder="Add a custom trait keyword (e.g. 'Maverick', 'Anti-Corporate')..."
-          className="flex-1 bg-transparent px-3 py-2 text-sm text-cream/80 placeholder-slate-500 focus:outline-none"
+          className="flex-1 bg-transparent px-3 py-2 text-sm text-cream/80 placeholder-cream/30 focus:outline-none"
         />
         <button
           type="submit"

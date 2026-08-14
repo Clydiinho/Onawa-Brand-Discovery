@@ -167,7 +167,7 @@ export const PersonalitySlider: React.FC<PersonalitySliderProps> = ({
               </div>
 
               {/* Dynamic Verbal Descriptor */}
-              <div className="flex items-center justify-between text-[11px] text-slate-400">
+              <div className="flex items-center justify-between text-[11px] text-cream/40">
                 <span className={`transition-all ${val <= 40 ? "text-amber-300 font-semibold" : ""}`}>
                   {item.leftDesc}
                 </span>

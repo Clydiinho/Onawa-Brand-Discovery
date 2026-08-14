@@ -22,7 +22,7 @@ export const GoldenCircleSVG: React.FC<GoldenCircleSVGProps> = ({
   const isWhatFilled = what.trim().length > 0;
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-6 bg-slate-900/80 rounded-2xl border border-slate-800 shadow-2xl overflow-hidden backdrop-blur-xl">
+    <div className="relative flex flex-col items-center justify-center p-6 bg-graphite rounded-2xl border border-white/5 shadow-2xl overflow-hidden backdrop-blur-xl">
       {/* Background Subtle Gradient Glow */}
       <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 via-cyan-500/5 to-purple-500/5 pointer-events-none" />
 
@@ -95,7 +95,7 @@ export const GoldenCircleSVG: React.FC<GoldenCircleSVGProps> = ({
               x="200"
               y="68"
               textAnchor="middle"
-              className="fill-slate-400 text-[11px] font-medium pointer-events-none select-none"
+              className="fill-cream/40 text-[11px] font-medium pointer-events-none select-none"
             >
               Products & Services
             </text>
@@ -130,7 +130,7 @@ export const GoldenCircleSVG: React.FC<GoldenCircleSVGProps> = ({
               x="200"
               y="124"
               textAnchor="middle"
-              className="fill-slate-400 text-[11px] font-medium pointer-events-none select-none"
+              className="fill-cream/40 text-[11px] font-medium pointer-events-none select-none"
             >
               Process & Uniqueness
             </text>
@@ -201,7 +201,7 @@ export const GoldenCircleSVG: React.FC<GoldenCircleSVGProps> = ({
           className={`p-2 rounded-lg border transition-all ${
             isWhyFilled
               ? "bg-amber-500/20 border-amber-500/50 text-amber-300 font-medium"
-              : "bg-slate-800/50 border-slate-700/50 text-slate-400 hover:border-slate-600"
+              : "bg-graphite/60 border-white/10 text-cream/40 hover:border-white/15"
           } ${activeRing === "why" ? "ring-2 ring-amber-400" : ""}`}
         >
           <div className="flex items-center justify-center gap-1">
@@ -219,7 +219,7 @@ export const GoldenCircleSVG: React.FC<GoldenCircleSVGProps> = ({
           className={`p-2 rounded-lg border transition-all ${
             isHowFilled
               ? "bg-cyan-500/20 border-cyan-500/50 text-cyan-300 font-medium"
-              : "bg-slate-800/50 border-slate-700/50 text-slate-400 hover:border-slate-600"
+              : "bg-graphite/60 border-white/10 text-cream/40 hover:border-white/15"
           } ${activeRing === "how" ? "ring-2 ring-cyan-400" : ""}`}
         >
           <div className="flex items-center justify-center gap-1">
@@ -237,7 +237,7 @@ export const GoldenCircleSVG: React.FC<GoldenCircleSVGProps> = ({
           className={`p-2 rounded-lg border transition-all ${
             isWhatFilled
               ? "bg-purple-500/20 border-purple-500/50 text-purple-300 font-medium"
-              : "bg-slate-800/50 border-slate-700/50 text-slate-400 hover:border-slate-600"
+              : "bg-graphite/60 border-white/10 text-cream/40 hover:border-white/15"
           } ${activeRing === "what" ? "ring-2 ring-purple-400" : ""}`}
         >
           <div className="flex items-center justify-center gap-1">

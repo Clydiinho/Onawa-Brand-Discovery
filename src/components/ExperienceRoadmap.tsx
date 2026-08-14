@@ -169,7 +169,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
           <button
             type="button"
             onClick={handleResetRoadmap}
-            className="self-start sm:self-auto px-3 py-1.5 bg-surface border border-white/10 hover:border-slate-500 text-cream/70 hover:text-cream rounded-xl text-xs font-mono flex items-center gap-1.5 transition-all"
+            className="self-start sm:self-auto px-3 py-1.5 bg-surface border border-white/10 hover:border-white/15 text-cream/70 hover:text-cream rounded-xl text-xs font-mono flex items-center gap-1.5 transition-all"
           >
             <RotateCcw className="w-3.5 h-3.5 text-brass" />
             <span>Reset Default Roadmap</span>

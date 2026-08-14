@@ -895,7 +895,7 @@ export default function App() {
                       value={newValueInput}
                       onChange={(e) => setNewValueInput(e.target.value)}
                       placeholder="Add a core value (e.g., Radical Transparency, Craftsmanship)..."
-                      className="flex-1 bg-slate-950 border border-white/5 px-3 py-2 text-xs text-cream/80 rounded-xl focus:outline-none focus:border-amber-500"
+                      className="flex-1 bg-graphite border border-white/5 px-3 py-2 text-xs text-cream/80 rounded-xl focus:outline-none focus:border-amber-500"
                     />
                     <button
                       type="submit"
@@ -1023,7 +1023,7 @@ export default function App() {
                           {arch.traits.map((t) => (
                             <span
                               key={t}
-                              className="px-2 py-0.5 bg-slate-950 text-cream/60 border border-white/5 text-[10px] rounded-md"
+                              className="px-2 py-0.5 bg-graphite text-cream/60 border border-white/5 text-[10px] rounded-md"
                             >
                               {t}
                             </span>

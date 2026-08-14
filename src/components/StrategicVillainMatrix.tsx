@@ -235,7 +235,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
           {/* Quadrant Watermark Titles */}
           <div className="absolute inset-0 grid grid-cols-2 grid-rows-2 pointer-events-none p-8 text-[11px] font-mono font-extrabold uppercase">
             {/* Top-Left: Established Innovator */}
-            <div className="p-4 text-slate-600/70 flex flex-col justify-start items-start">
+            <div className="p-4 text-cream/30 flex flex-col justify-start items-start">
               <span>ESTABLISHED</span>
               <span>INNOVATOR</span>
             </div>
@@ -250,13 +250,13 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
             </div>
 
             {/* Bottom-Left: Legacy Incumbent */}
-            <div className="p-4 text-slate-700 flex flex-col justify-end items-start">
+            <div className="p-4 text-cream/30 flex flex-col justify-end items-start">
               <span>LEGACY</span>
               <span>INCUMBENT</span>
             </div>
 
             {/* Bottom-Right: Rebel Entrant */}
-            <div className="p-4 text-slate-600/70 flex flex-col justify-end items-end text-right">
+            <div className="p-4 text-cream/30 flex flex-col justify-end items-end text-right">
               <span>REBEL ENTRANT</span>
             </div>
           </div>

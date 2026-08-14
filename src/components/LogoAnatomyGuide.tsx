@@ -69,7 +69,7 @@ export const LogoAnatomyGuide: React.FC<LogoAnatomyGuideProps> = ({
               className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between gap-4 relative overflow-hidden ${
                 isSelected
                   ? "bg-graphite/90 border-amber-500 ring-2 ring-amber-500/50 shadow-xl shadow-amber-500/10"
-                  : "bg-slate-900/70 border-white/5 hover:border-white/15 hover:bg-graphite"
+                  : "bg-graphite/80 border-white/5 hover:border-white/15 hover:bg-graphite"
               }`}
             >
               {isSelected && (
