@@ -502,12 +502,12 @@ export default function App() {
             className="w-full flex-1 flex flex-col"
           >
             {/* Fixed Header with Onawa Studio Brand */}
-            <div className="bg-carbon-black border-b border-white/10 px-4 py-3 flex items-center justify-between sticky top-0 z-40 backdrop-blur-sm">
+            <div className="bg-carbon-black border-b border-white/10 px-4 py-2 flex items-center justify-between sticky top-0 z-40 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <img
                   src={onawaLogo}
                   alt="Onawa Studio logo"
-                  className="h-9 w-auto object-contain rounded-md bg-white/5 px-2 py-1 border border-white/10"
+                  className="h-11 w-auto object-contain"
                 />
                 <div>
                   <h2 className="text-sm font-bold text-cream">Onawa Studio</h2>
