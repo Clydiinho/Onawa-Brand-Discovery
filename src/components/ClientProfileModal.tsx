@@ -181,7 +181,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-cream/60 hover:text-cream bg-surface border border-slate-800 hover:border-white/10 rounded-full transition-all"
+          className="absolute top-4 right-4 p-2 text-cream/60 hover:text-cream bg-surface border border-white/5 hover:border-white/10 rounded-full transition-all"
         >
           <X className="w-4 h-4" />
         </button>
@@ -230,7 +230,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
 
         <div className="relative flex items-center justify-center my-4">
           <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-slate-800" />
+            <div className="w-full border-t border-white/5" />
           </div>
           <span className="relative px-3 bg-graphite text-[10px] font-mono text-cream/60 uppercase tracking-wider">
             Or Private Credentials
@@ -363,7 +363,7 @@ export const ClientProfileModal: React.FC<ClientProfileModalProps> = ({
         </div>
 
         {/* Footer info */}
-        <div className="mt-4 pt-3 border-t border-slate-900 text-center">
+        <div className="mt-4 pt-3 border-t border-white/5 text-center">
           <p className="text-[10px] text-cream/60 font-mono">
             {isSupabaseConfigured
               ? "Connected to Supabase PostgreSQL Database & Auth"

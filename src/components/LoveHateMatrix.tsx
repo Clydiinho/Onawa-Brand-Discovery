@@ -86,7 +86,7 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
   return (
     <div className="flex flex-col gap-6">
       {/* Intro Header */}
-      <div className="p-4 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-300 leading-relaxed flex items-center gap-3">
+      <div className="p-4 bg-graphite/80 rounded-xl border border-white/5 text-xs text-cream/60 leading-relaxed flex items-center gap-3">
         <Hash className="w-5 h-5 text-amber-400 shrink-0" />
         <div>
           <span className="font-semibold text-amber-300">
@@ -99,14 +99,14 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
       {/* Add Custom Word Input */}
       <form
         onSubmit={handleAddCustomWord}
-        className="flex items-center gap-2 p-2 bg-slate-900/80 rounded-xl border border-slate-800"
+        className="flex items-center gap-2 p-2 bg-graphite rounded-xl border border-white/5"
       >
         <input
           type="text"
           value={customWord}
           onChange={(e) => setCustomWord(e.target.value)}
           placeholder="Add a custom trait keyword (e.g. 'Maverick', 'Anti-Corporate')..."
-          className="flex-1 bg-transparent px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:outline-none"
+          className="flex-1 bg-transparent px-3 py-2 text-sm text-cream/80 placeholder-slate-500 focus:outline-none"
         />
         <button
           type="submit"
@@ -133,7 +133,7 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
 
           <div className="flex flex-wrap gap-2 mt-2">
             {keywords.love.length === 0 ? (
-              <span className="text-xs text-slate-500 italic">
+              <span className="text-xs text-cream/40 italic">
                 Click green 'Embrace' buttons below to add traits here...
               </span>
             ) : (
@@ -170,7 +170,7 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
 
           <div className="flex flex-wrap gap-2 mt-2">
             {keywords.hate.length === 0 ? (
-              <span className="text-xs text-slate-500 italic">
+              <span className="text-xs text-cream/40 italic">
                 Click red 'Avoid' buttons below to add traits here...
               </span>
             ) : (
@@ -195,10 +195,10 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
       </div>
 
       {/* Traits Selector Bank */}
-      <div className="p-5 bg-slate-900/80 rounded-2xl border border-slate-800 flex flex-col gap-4">
-        <div className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+      <div className="p-5 bg-graphite rounded-2xl border border-white/5 flex flex-col gap-4">
+        <div className="text-xs font-bold text-cream/60 uppercase tracking-wider flex items-center justify-between">
           <span>Select Trait Direction:</span>
-          <span className="text-slate-500 font-normal text-[11px]">
+          <span className="text-cream/40 font-normal text-[11px]">
             Tap green (+) to Embrace or red (-) to Avoid
           </span>
         </div>
@@ -216,7 +216,7 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
                     ? "bg-emerald-950/40 border-emerald-500/50 text-emerald-200"
                     : isHate
                     ? "bg-rose-950/40 border-rose-500/50 text-rose-200"
-                    : "bg-slate-800/40 border-slate-700/60 text-slate-300 hover:border-slate-600"
+                    : "bg-graphite/40 border-white/10 text-cream/60 hover:border-white/15"
                 }`}
               >
                 <span className="text-xs font-medium truncate">
@@ -231,7 +231,7 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
                     className={`px-2 py-1 rounded text-[11px] font-bold flex items-center gap-1 transition-all ${
                       isLove
                         ? "bg-emerald-500 text-slate-950"
-                        : "bg-slate-800 text-slate-400 hover:bg-emerald-500/20 hover:text-emerald-300"
+                        : "bg-graphite text-cream/40 hover:bg-emerald-500/20 hover:text-emerald-300"
                     }`}
                   >
                     <ThumbsUp className="w-3 h-3" />
@@ -244,7 +244,7 @@ export const LoveHateMatrix: React.FC<LoveHateMatrixProps> = ({
                     className={`px-2 py-1 rounded text-[11px] font-bold flex items-center gap-1 transition-all ${
                       isHate
                         ? "bg-rose-500 text-slate-950"
-                        : "bg-slate-800 text-slate-400 hover:bg-rose-500/20 hover:text-rose-300"
+                        : "bg-graphite text-cream/40 hover:bg-rose-500/20 hover:text-rose-300"
                     }`}
                   >
                     <ThumbsDown className="w-3 h-3" />

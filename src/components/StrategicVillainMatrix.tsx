@@ -132,7 +132,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
               )}
             </div>
           </div>
-          <p className="text-xs sm:text-sm text-slate-100 font-semibold italic leading-relaxed">
+          <p className="text-xs sm:text-sm text-cream font-semibold italic leading-relaxed">
             "To be a hero to your customers, you must first define the villain you are rescuing them from."
           </p>
         </div>
@@ -190,7 +190,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
 
       {/* MODULE 1.2: FUTURISTIC 2X2 POSITIONING MATRIX */}
       <div className="p-6 bg-graphite rounded-2xl border border-white/20 shadow-xl flex flex-col gap-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
           <div>
             <h2 className="text-base font-headline font-bold text-cream flex items-center gap-2">
               <Compass className="w-5 h-5 text-brass" />
@@ -210,7 +210,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
         </div>
 
         {/* Interactive Matrix SVG Canvas Container */}
-        <div className="relative w-full aspect-square max-w-xl mx-auto bg-graphite rounded-2xl border-2 border-slate-800 p-2 overflow-hidden shadow-2xl select-none">
+        <div className="relative w-full aspect-square max-w-xl mx-auto bg-graphite rounded-2xl border-2 border-white/5 p-2 overflow-hidden shadow-2xl select-none">
           {/* Axis Labels Overlay */}
           {/* Top Label: PROGRESSIVE */}
           <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none px-3 py-1 bg-surface border border-[#F5F0E8]/50 text-brass font-mono font-black text-[10px] tracking-widest uppercase rounded-full shadow-lg">
@@ -321,7 +321,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
         </div>
 
         {/* Selected Quadrant Summary Badge */}
-        <div className="p-4 bg-surface/60 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+        <div className="p-4 bg-surface/60 rounded-xl border border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4 text-cream" />
             <span className="text-cream/70 font-bold">Identified Market Position:</span>
@@ -335,7 +335,7 @@ export const StrategicVillainMatrix: React.FC<StrategicVillainMatrixProps> = ({
         </div>
 
         {/* Footer Mandatory Sign-off */}
-        <div className="pt-2 border-t border-slate-800 text-center">
+        <div className="pt-2 border-t border-white/5 text-center">
           <p className="text-[11px] font-mono font-bold text-cream/60 uppercase tracking-widest">
             Proprietary Strategic Framework by Clyde Strydom for Onawa Studio.
           </p>

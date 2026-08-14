@@ -301,7 +301,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
           <button
             type="button"
             onClick={handlePrint}
-            className="px-3 py-2 bg-slate-800 text-cream/80 hover:bg-slate-700 font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-white/10 transition-all"
+            className="px-3 py-2 bg-graphite text-cream/80 hover:bg-surface font-semibold text-xs rounded-xl flex items-center gap-1.5 border border-white/10 transition-all"
           >
             <Printer className="w-3.5 h-3.5" />
             <span>Print</span>
@@ -327,9 +327,9 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
       )}
 
       {/* PRINTABLE REPORT DOCUMENT CANVAS */}
-      <div className="p-8 md:p-12 bg-surface/95 rounded-3xl border border-slate-800 shadow-2xl flex flex-col gap-10 print:p-0 print:border-none print:shadow-none print:bg-white print:text-black">
+      <div className="p-8 md:p-12 bg-surface/95 rounded-3xl border border-white/5 shadow-2xl flex flex-col gap-10 print:p-0 print:border-none print:shadow-none print:bg-white print:text-black">
         {/* Document Header */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-slate-800 print:border-black">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-white/5 print:border-black">
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-0.5 bg-[#D4A574] text-carbon-black font-black font-mono text-[10px] uppercase rounded-full">
@@ -376,13 +376,13 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-800 print:border-gray-200">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-white/5 print:border-gray-200">
               {/* Refined UVP */}
               <div className="flex flex-col gap-2">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-amber-300 print:text-amber-800">
                   Refined UVP:
                 </h3>
-                <p className="text-xs font-semibold text-cream/80 leading-relaxed bg-graphite/60 p-3 rounded-xl border border-slate-800 print:bg-white print:border-gray-300 print:text-black">
+                <p className="text-xs font-semibold text-cream/80 leading-relaxed bg-graphite/60 p-3 rounded-xl border border-white/5 print:bg-white print:border-gray-300 print:text-black">
                   "{state.aiAnalysis.refinedUVP}"
                 </p>
               </div>
@@ -396,7 +396,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                   {state.aiAnalysis.taglineOptions.map((tag, idx) => (
                     <li
                       key={idx}
-                      className="bg-graphite/60 p-2.5 rounded-xl border border-slate-800 flex flex-col print:bg-white print:border-gray-300 print:text-black"
+                      className="bg-graphite/60 p-2.5 rounded-xl border border-white/5 flex flex-col print:bg-white print:border-gray-300 print:text-black"
                     >
                       <span className="font-bold text-amber-300 print:text-black">
                         "{tag.tagline}"
@@ -414,7 +414,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
 
         {/* SECTION 1: THE BRAND HEART */}
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
+          <div className="flex items-center justify-between border-b border-white/5 pb-2 print:border-black">
             <h2 className="text-lg font-headline font-bold text-amber-400 flex items-center gap-2 print:text-amber-800">
               <Heart className="w-5 h-5" />
               <span>1. The Brand Heart (Column Five)</span>
@@ -422,14 +422,14 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             <button
               type="button"
               onClick={() => onEditStep(3)}
-              className="text-xs text-slate-500 hover:text-amber-300 print:hidden"
+              className="text-xs text-cream/40 hover:text-amber-300 print:hidden"
             >
               Edit
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-white/5 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
               <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Purpose (Why):
               </span>
@@ -438,7 +438,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               </span>
             </div>
 
-            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-white/5 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
               <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Vision (Future):
               </span>
@@ -447,7 +447,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               </span>
             </div>
 
-            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-white/5 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
               <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Mission (How):
               </span>
@@ -456,7 +456,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               </span>
             </div>
 
-            <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800/80 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
+            <div className="p-4 bg-graphite/60 rounded-xl border border-white/5 flex flex-col gap-1 print:bg-gray-50 print:border-gray-200">
               <span className="font-bold text-cream/60 uppercase tracking-wider text-[10px] print:text-gray-600">
                 Core Values:
               </span>
@@ -471,7 +471,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                     </span>
                   ))
                 ) : (
-                  <span className="text-slate-500 italic">None defined</span>
+                  <span className="text-cream/40 italic">None defined</span>
                 )}
               </div>
             </div>
@@ -480,7 +480,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
 
         {/* SECTION 2: SIMON SINEK'S GOLDEN CIRCLE */}
         <div className="flex flex-col gap-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
+          <div className="flex items-center justify-between border-b border-white/5 pb-2 print:border-black">
             <h2 className="text-lg font-headline font-bold text-cyan-400 flex items-center gap-2 print:text-blue-800">
               <Target className="w-5 h-5" />
               <span>2. The Golden Circle (Simon Sinek)</span>
@@ -488,7 +488,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
             <button
               type="button"
               onClick={() => onEditStep(2)}
-              className="text-xs text-slate-500 hover:text-cyan-300 print:hidden"
+              className="text-xs text-cream/40 hover:text-cyan-300 print:hidden"
             >
               Edit
             </button>
@@ -528,7 +528,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Archetypes */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
+            <div className="flex items-center justify-between border-b border-white/5 pb-2 print:border-black">
               <h2 className="text-lg font-headline font-bold text-purple-400 flex items-center gap-2 print:text-purple-800">
                 <Users className="w-5 h-5" />
                 <span>3. 12 Archetypes</span>
@@ -536,18 +536,18 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               <button
                 type="button"
                 onClick={() => onEditStep(4)}
-                className="text-xs text-slate-500 hover:text-purple-300 print:hidden"
+                className="text-xs text-cream/40 hover:text-purple-300 print:hidden"
               >
                 Edit
               </button>
             </div>
 
             <div className="flex flex-col gap-3 text-xs">
-              <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
+              <div className="p-4 bg-graphite/60 rounded-xl border border-white/5 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider print:text-amber-800">
                   Primary Archetype:
                 </span>
-                <span className="text-base font-bold text-slate-100 print:text-black">
+                <span className="text-base font-bold text-cream print:text-black">
                   {primaryArchInfo?.name || "Not selected"}
                 </span>
                 {primaryArchInfo && (
@@ -557,11 +557,11 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                 )}
               </div>
 
-              <div className="p-4 bg-graphite/60 rounded-xl border border-slate-800 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
+              <div className="p-4 bg-graphite/60 rounded-xl border border-white/5 flex flex-col gap-1 print:bg-gray-50 print:border-gray-300">
                 <span className="text-[10px] font-bold text-cream/60 uppercase tracking-wider print:text-gray-600">
                   Secondary Archetype:
                 </span>
-                <span className="text-base font-bold text-slate-100 print:text-black">
+                <span className="text-base font-bold text-cream print:text-black">
                   {secondaryArchInfo?.name || "None"}
                 </span>
                 {secondaryArchInfo && (
@@ -575,7 +575,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
 
           {/* Personality Spectrum */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
+            <div className="flex items-center justify-between border-b border-white/5 pb-2 print:border-black">
               <h2 className="text-lg font-headline font-bold text-emerald-400 flex items-center gap-2 print:text-emerald-800">
                 <Sliders className="w-5 h-5" />
                 <span>4. Personality Spectrum</span>
@@ -583,38 +583,38 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               <button
                 type="button"
                 onClick={() => onEditStep(5)}
-                className="text-xs text-slate-500 hover:text-emerald-300 print:hidden"
+                className="text-xs text-cream/40 hover:text-emerald-300 print:hidden"
               >
                 Edit
               </button>
             </div>
 
             <div className="flex flex-col gap-2.5 text-xs">
-              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-white/5 print:bg-gray-50 print:border-gray-200">
                 <span>Traditional vs. Progressive</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.traditionalVsProgressive}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-white/5 print:bg-gray-50 print:border-gray-200">
                 <span>Corporate vs. Disruptive</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.corporateVsDisruptive}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-white/5 print:bg-gray-50 print:border-gray-200">
                 <span>Quiet vs. Bold</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.reservedVsBold}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-white/5 print:bg-gray-50 print:border-gray-200">
                 <span>Luxury vs. Accessible</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.exclusiveVsAccessible}%
                 </span>
               </div>
-              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-slate-800 print:bg-gray-50 print:border-gray-200">
+              <div className="flex justify-between items-center p-2 bg-graphite/60 rounded-lg border border-white/5 print:bg-gray-50 print:border-gray-200">
                 <span>Playful vs. Serious</span>
                 <span className="font-mono font-bold text-amber-400 print:text-black">
                   {state.personality.playfulVsSerious}%
@@ -628,7 +628,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Love / Hate Matrix */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
+            <div className="flex items-center justify-between border-b border-white/5 pb-2 print:border-black">
               <h2 className="text-lg font-headline font-bold text-pink-400 flex items-center gap-2 print:text-pink-800">
                 <Quote className="w-5 h-5" />
                 <span>5. Love/Hate Matrix</span>
@@ -636,7 +636,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               <button
                 type="button"
                 onClick={() => onEditStep(6)}
-                className="text-xs text-slate-500 hover:text-pink-300 print:hidden"
+                className="text-xs text-cream/40 hover:text-pink-300 print:hidden"
               >
                 Edit
               </button>
@@ -665,7 +665,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
 
           {/* Logo Anatomy & UVP */}
           <div className="flex flex-col gap-4">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-2 print:border-black">
+            <div className="flex items-center justify-between border-b border-white/5 pb-2 print:border-black">
               <h2 className="text-lg font-headline font-bold text-amber-400 flex items-center gap-2 print:text-amber-800">
                 <Layers className="w-5 h-5" />
                 <span>6. Mark & UVP Architecture</span>
@@ -673,14 +673,14 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
               <button
                 type="button"
                 onClick={() => onEditStep(8)}
-                className="text-xs text-slate-500 hover:text-amber-300 print:hidden"
+                className="text-xs text-cream/40 hover:text-amber-300 print:hidden"
               >
                 Edit
               </button>
             </div>
 
             <div className="flex flex-col gap-3 text-xs">
-              <div className="p-3 bg-graphite/60 rounded-xl border border-slate-800 flex flex-col gap-0.5 print:bg-gray-50 print:border-gray-300">
+              <div className="p-3 bg-graphite/60 rounded-xl border border-white/5 flex flex-col gap-0.5 print:bg-gray-50 print:border-gray-300">
                 <span className="text-[10px] font-bold text-cream/60 uppercase tracking-wider print:text-gray-600">
                   Chosen Logo Structure:
                 </span>
@@ -693,7 +693,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
                 <span className="text-[10px] font-bold text-amber-400 uppercase tracking-wider print:text-amber-800">
                   Unique Value Proposition:
                 </span>
-                <blockquote className="font-serif italic text-slate-100 font-semibold leading-relaxed print:text-black">
+                <blockquote className="font-serif italic text-cream font-semibold leading-relaxed print:text-black">
                   "Our {state.uvp.offering || "[offering]"} is the only{" "}
                   {state.uvp.category || "[category]"} that{" "}
                   {state.uvp.benefit || "[benefit]"} for{" "}
@@ -729,7 +729,7 @@ ${state.aiAnalysis.brandVoiceGuidelines.map((g) => `- ${g}`).join("\n")}
         </div>
 
         {/* MANDATORY FOOTER */}
-        <div className="pt-6 border-t border-slate-800 flex justify-center text-xs font-mono text-cream/60 print:text-gray-600">
+        <div className="pt-6 border-t border-white/5 flex justify-center text-xs font-mono text-cream/60 print:text-gray-600">
           © 2026 Onawa Studio | Strategy by Clyde Strydom
         </div>
       </div>

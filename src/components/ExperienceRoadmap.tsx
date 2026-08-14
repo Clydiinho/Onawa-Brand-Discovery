@@ -155,7 +155,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
 
       {/* TIMELINE SVG GRAPHIC HEADER */}
       <div className="p-6 bg-graphite/90 rounded-2xl border border-white/20 shadow-xl flex flex-col gap-6">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
           <div>
             <h2 className="text-base font-headline font-bold text-cream flex items-center gap-2">
               <Sparkles className="w-5 h-5 text-cream" />
@@ -189,7 +189,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
                 className={`p-4 rounded-2xl border-2 cursor-pointer transition-all flex flex-col justify-between gap-3 relative ${
                   isSelected
                     ? `${phase.borderColor} bg-surface ring-2 ring-white/20 shadow-xl scale-[1.02]`
-                    : "border-slate-800 bg-graphite/70 hover:border-white/10 hover:bg-surface/60 opacity-85"
+                    : "border-white/5 bg-graphite/70 hover:border-white/10 hover:bg-surface/60 opacity-85"
                 }`}
               >
                 {/* Stage Header */}
@@ -216,12 +216,12 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
                 </div>
 
                 {/* Assigned Touchpoint Chips List */}
-                <div className="flex flex-col gap-1.5 min-h-[90px] p-2 bg-graphite/90 rounded-xl border border-slate-800/80">
+                <div className="flex flex-col gap-1.5 min-h-[90px] p-2 bg-graphite/90 rounded-xl border border-white/5">
                   <span className="text-[10px] font-mono text-cream/60 uppercase tracking-wider font-bold">
                     Assigned ({assignedIds.length}):
                   </span>
                   {assignedIds.length === 0 ? (
-                    <span className="text-[11px] text-slate-500 italic py-2">
+                    <span className="text-[11px] text-cream/40 italic py-2">
                       Click touchpoints below to assign...
                     </span>
                   ) : (
@@ -268,7 +268,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
 
       {/* MODULE 2.2: THE CYBER-VAULT (TOUCHPOINTS GRID) */}
       <div className="p-6 bg-graphite/90 rounded-2xl border border-white/20 shadow-xl flex flex-col gap-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/5 pb-4">
           <div>
             <h2 className="text-base font-headline font-bold text-cream flex items-center gap-2">
               <Package className="w-5 h-5 text-brass" />
@@ -305,7 +305,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
                     ? "bg-[#D4A574]/15 border-[#D4A574] ring-1 ring-[#D4A574]/50 shadow-lg shadow-[#D4A574]/10 scale-[1.02]"
                     : assignedPhase
                     ? "bg-surface/90 border-white/10 hover:border-[#F5F0E8]"
-                    : "bg-graphite/80 border-slate-800/80 text-cream/60 hover:border-slate-600 hover:text-cream"
+                    : "bg-graphite/80 border-white/5 text-cream/60 hover:border-white/15 hover:text-cream"
                 }`}
               >
                 <div className="flex items-center justify-between w-full">
@@ -321,7 +321,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
                       {assignedPhaseConfig?.title.split(".")[1]?.trim()}
                     </span>
                   ) : (
-                    <span className="px-2 py-0.5 bg-surface text-slate-500 text-[9px] font-mono rounded-md border border-slate-800">
+                    <span className="px-2 py-0.5 bg-surface text-cream/40 text-[9px] font-mono rounded-md border border-white/5">
                       Unassigned
                     </span>
                   )}
@@ -336,7 +336,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between text-[10px] pt-2 border-t border-slate-800/80 font-bold">
+                <div className="flex items-center justify-between text-[10px] pt-2 border-t border-white/5 font-bold">
                   {isAssignedToCurrent ? (
                     <span className="text-cream flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" /> Assigned to Active
@@ -353,7 +353,7 @@ export const ExperienceRoadmap: React.FC<ExperienceRoadmapProps> = ({
         </div>
 
         {/* Footer Mandatory Sign-off */}
-        <div className="pt-2 border-t border-slate-800 text-center">
+        <div className="pt-2 border-t border-white/5 text-center">
           <p className="text-[11px] font-mono font-bold text-cream/60 uppercase tracking-widest">
             Proprietary Strategic Framework by Clyde Strydom for Onawa Studio.
           </p>

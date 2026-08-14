@@ -49,7 +49,7 @@ export const LogoAnatomyGuide: React.FC<LogoAnatomyGuideProps> = ({
   return (
     <div className="flex flex-col gap-6">
       {/* Intro info box */}
-      <div className="p-4 bg-slate-900/60 rounded-xl border border-slate-800 text-xs text-slate-300 flex items-center gap-3">
+      <div className="p-4 bg-graphite/80 rounded-xl border border-white/5 text-xs text-cream/60 flex items-center gap-3">
         <Layers className="w-5 h-5 text-amber-400 shrink-0" />
         <div>
           <span className="font-semibold text-amber-300">Logo Anatomy & Mark Strategy:</span>{" "}
@@ -68,8 +68,8 @@ export const LogoAnatomyGuide: React.FC<LogoAnatomyGuideProps> = ({
               onClick={() => onSelect(option.id)}
               className={`p-6 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between gap-4 relative overflow-hidden ${
                 isSelected
-                  ? "bg-slate-800/90 border-amber-500 ring-2 ring-amber-500/50 shadow-xl shadow-amber-500/10"
-                  : "bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900/90"
+                  ? "bg-graphite/90 border-amber-500 ring-2 ring-amber-500/50 shadow-xl shadow-amber-500/10"
+                  : "bg-slate-900/70 border-white/5 hover:border-white/15 hover:bg-graphite"
               }`}
             >
               {isSelected && (
@@ -80,7 +80,7 @@ export const LogoAnatomyGuide: React.FC<LogoAnatomyGuideProps> = ({
               )}
 
               {/* Top SVG Visual Diagram */}
-              <div className="w-full h-32 rounded-xl bg-slate-950/80 border border-slate-800 flex items-center justify-center p-4">
+              <div className="w-full h-32 rounded-xl bg-graphite/80 border border-white/5 flex items-center justify-center p-4">
                 {option.id === "logomark" && (
                   <svg viewBox="0 0 100 100" className="w-20 h-20 text-amber-400">
                     <polygon
@@ -107,7 +107,7 @@ export const LogoAnatomyGuide: React.FC<LogoAnatomyGuideProps> = ({
                       <circle cx="50" cy="50" r="14" fill="currentColor" />
                     </svg>
                     <div className="flex flex-col">
-                      <span className="font-sans font-black tracking-widest text-lg text-slate-100 uppercase">
+                      <span className="font-sans font-black tracking-widest text-lg text-cream uppercase">
                         AURA
                       </span>
                       <span className="text-[9px] font-mono tracking-widest text-purple-400 uppercase">
@@ -136,26 +136,26 @@ export const LogoAnatomyGuide: React.FC<LogoAnatomyGuideProps> = ({
 
               {/* Title & Description */}
               <div className="flex flex-col gap-1.5">
-                <h3 className="font-bold text-slate-100 text-sm flex items-center gap-2">
+                <h3 className="font-bold text-cream text-sm flex items-center gap-2">
                   <span>{option.title}</span>
                 </h3>
-                <p className="text-xs text-slate-300 font-medium">
+                <p className="text-xs text-cream/60 font-medium">
                   {option.subtitle}
                 </p>
-                <p className="text-[11px] text-slate-400 leading-relaxed mt-1">
+                <p className="text-[11px] text-cream/40 leading-relaxed mt-1">
                   {option.description}
                 </p>
               </div>
 
               {/* Best for & Examples */}
-              <div className="pt-3 border-t border-slate-800/80 flex flex-col gap-1.5 text-[11px]">
+              <div className="pt-3 border-t border-white/5 flex flex-col gap-1.5 text-[11px]">
                 <div>
                   <span className="text-amber-400 font-semibold">Best For: </span>
-                  <span className="text-slate-300">{option.bestFor}</span>
+                  <span className="text-cream/60">{option.bestFor}</span>
                 </div>
                 <div>
-                  <span className="text-slate-500 font-medium">Examples: </span>
-                  <span className="text-slate-400 italic">{option.examples}</span>
+                  <span className="text-cream/40 font-medium">Examples: </span>
+                  <span className="text-cream/40 italic">{option.examples}</span>
                 </div>
               </div>
             </div>

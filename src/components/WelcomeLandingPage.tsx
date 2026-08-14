@@ -35,7 +35,7 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
         <div className="absolute top-3 right-4 font-mono text-[10px] text-cream tracking-widest uppercase">
           [MODE: CYBER_STUDIO_STRATEGY]
         </div>
-        <div className="absolute bottom-3 left-4 font-mono text-[10px] text-slate-400">
+        <div className="absolute bottom-3 left-4 font-mono text-[10px] text-cream/30">
           010 — 020 — 030 — 040 — 050 — 060 — 070 — 080 — 090 — 100 CM
         </div>
         <div className="absolute bottom-3 right-4 font-mono text-[10px] text-[#FF002B]">
@@ -56,7 +56,7 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
             <span className="text-xs font-bold font-mono text-cream tracking-widest uppercase">
               ONAWA STUDIO
             </span>
-            <span className="text-[10px] font-bold text-slate-300">| Discovery Portal</span>
+            <span className="text-[10px] font-bold text-cream/70">| Discovery Portal</span>
           </div>
 
           <div className="flex items-center gap-2 px-4 py-1.5 bg-charcoal/50 border border-white/10 rounded-lg">
@@ -96,7 +96,7 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
             <span className="text-xs font-mono font-bold text-cream uppercase tracking-wider">
               Strategist's Perspective — Clyde Strydom
             </span>
-            <p className="text-xs sm:text-sm text-slate-200 italic leading-relaxed">
+            <p className="text-xs sm:text-sm text-cream/80 italic leading-relaxed">
               "To build a great brand, we must start with your 'Why' before we touch a single pixel. Branding is not a game of pretty visuals; it is a game of strategy. Prepare to build your true Brand DNA."
             </p>
           </div>
@@ -107,25 +107,25 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
           <div className="card p-3 flex flex-col items-center gap-1.5">
             <Target className="w-5 h-5 text-cream" />
             <span className="text-xs font-bold text-cream">Golden Circle</span>
-            <span className="text-[10px] text-slate-300">Why • How • What</span>
+            <span className="text-[10px] text-cream/50">Why • How • What</span>
           </div>
 
           <div className="card p-3 flex flex-col items-center gap-1.5">
             <Wand2 className="w-5 h-5 text-cream" />
             <span className="text-xs font-bold text-cream">12 Archetypes</span>
-            <span className="text-[10px] text-slate-300">3x4 Grid</span>
+            <span className="text-[10px] text-cream/50">3x4 Grid</span>
           </div>
 
           <div className="card p-3 flex flex-col items-center gap-1.5">
             <Heart className="w-5 h-5 text-[#FF002B]" />
             <span className="text-xs font-bold text-cream">Love/Hate Cloud</span>
-            <span className="text-[10px] text-slate-300">Embrace vs Avoid</span>
+            <span className="text-[10px] text-cream/50">Embrace vs Avoid</span>
           </div>
 
           <div className="card p-3 flex flex-col items-center gap-1.5">
             <Layers className="w-5 h-5 text-[#2B00FF]" />
             <span className="text-xs font-bold text-cream">Logo Architecture</span>
-            <span className="text-[10px] text-slate-300">Mark • Type • Combo</span>
+            <span className="text-[10px] text-cream/50">Mark • Type • Combo</span>
           </div>
         </div>
 
@@ -141,7 +141,7 @@ export const WelcomeLandingPage: React.FC<WelcomeLandingPageProps> = ({
             <ArrowRight className="w-5 h-5 text-carbon group-hover:translate-x-1 transition-transform" />
           </button>
 
-          <p className="text-xs font-mono text-slate-300 mt-2">
+          <p className="text-xs font-mono text-cream/50 mt-2">
             © 2026 Onawa Studio | Strategy by Clyde Strydom
           </p>
         </div>

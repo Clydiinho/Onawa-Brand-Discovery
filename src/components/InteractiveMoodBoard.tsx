@@ -373,13 +373,13 @@ export const InteractiveMoodBoard: React.FC<InteractiveMoodBoardProps> = ({
             <span className="text-xs font-mono font-bold text-cream uppercase tracking-wider">
               Clyde’s Perspective:
             </span>
-            <p className="text-xs sm:text-sm text-slate-100 font-semibold italic leading-relaxed">
+            <p className="text-xs sm:text-sm text-cream font-semibold italic leading-relaxed">
               "This is where we share the ownership of your brand's aesthetic. Move, rotate, and layer these elements to show me the vibe of your future."
             </p>
           </div>
         </div>
 
-        <div className="text-[11px] font-mono text-cream/60 shrink-0 border-l md:border-l border-slate-800 pl-3">
+        <div className="text-[11px] font-mono text-cream/60 shrink-0 border-l md:border-l border-white/5 pl-3">
           17+ Years Experience • Onawa Studio
         </div>
       </div>
@@ -387,9 +387,9 @@ export const InteractiveMoodBoard: React.FC<InteractiveMoodBoardProps> = ({
       {/* CONTROLS TOOLBAR & CANVAS WRAPPER */}
       <div className="p-6 bg-graphite rounded-2xl border border-white/20 shadow-xl flex flex-col gap-6">
         {/* Controls Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 border-b border-slate-800 pb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 border-b border-white/5 pb-6">
           {/* Tool 1: Upload Imagery */}
-          <div className="flex flex-col gap-2.5 p-4 bg-surface/90 rounded-xl border border-slate-800">
+          <div className="flex flex-col gap-2.5 p-4 bg-surface/90 rounded-xl border border-white/5">
             <span className="text-xs font-extrabold text-cream uppercase tracking-wider flex items-center gap-1.5">
               <ImageIcon className="w-4 h-4" />
               <span>1. Add Brand Imagery</span>
@@ -411,7 +411,7 @@ export const InteractiveMoodBoard: React.FC<InteractiveMoodBoardProps> = ({
           </div>
 
           {/* Tool 2: Pin Color Palette Swatches */}
-          <div className="flex flex-col gap-2.5 p-4 bg-surface/90 rounded-xl border border-slate-800">
+          <div className="flex flex-col gap-2.5 p-4 bg-surface/90 rounded-xl border border-white/5">
             <span className="text-xs font-extrabold text-brass uppercase tracking-wider flex items-center gap-1.5">
               <Palette className="w-4 h-4" />
               <span>2. Pin Color Swatches</span>
@@ -454,7 +454,7 @@ export const InteractiveMoodBoard: React.FC<InteractiveMoodBoardProps> = ({
           </div>
 
           {/* Tool 3: Typography & Brand Name Sandbox */}
-          <div className="flex flex-col gap-2.5 p-4 bg-surface/90 rounded-xl border border-slate-800">
+          <div className="flex flex-col gap-2.5 p-4 bg-surface/90 rounded-xl border border-white/5">
             <span className="text-xs font-extrabold text-purple-400 uppercase tracking-wider flex items-center gap-1.5">
               <Type className="w-4 h-4" />
               <span>3. Test Google Fonts</span>
@@ -493,7 +493,7 @@ export const InteractiveMoodBoard: React.FC<InteractiveMoodBoardProps> = ({
         </div>
 
         {/* Action Buttons Toolbar */}
-        <div className="flex flex-wrap items-center justify-between gap-3 bg-surface/60 p-3 rounded-xl border border-slate-800">
+        <div className="flex flex-wrap items-center justify-between gap-3 bg-surface/60 p-3 rounded-xl border border-white/5">
           <div className="flex items-center gap-2 text-xs text-cream/70 font-mono">
             <Layers className="w-4 h-4 text-cream" />
             <span>Click any object on canvas to move, rotate, resize or layer</span>
@@ -522,13 +522,13 @@ export const InteractiveMoodBoard: React.FC<InteractiveMoodBoardProps> = ({
         {/* FULL WIDTH FABRIC CANVAS CONTAINER */}
         <div
           ref={containerRef}
-          className="relative w-full rounded-2xl border-2 border-slate-800 overflow-hidden shadow-2xl bg-graphite min-h-[550px]"
+          className="relative w-full rounded-2xl border-2 border-white/5 overflow-hidden shadow-2xl bg-graphite min-h-[550px]"
         >
           <canvas ref={canvasRef} />
         </div>
 
         {/* Mandatory Footer */}
-        <div className="pt-2 border-t border-slate-800 text-center">
+        <div className="pt-2 border-t border-white/5 text-center">
           <p className="text-[11px] font-mono font-bold text-cream/60 uppercase tracking-widest">
             Custom tool for Onawa Studio clients • Simon Sinek’s Golden Circle + Clyde Strydom’s 17+ years experience
           </p>

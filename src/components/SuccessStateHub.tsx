@@ -174,7 +174,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Brand Heart Snapshot */}
         <div className="p-6 bg-graphite rounded-2xl border border-cream/40 flex flex-col justify-between gap-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div className="flex items-center justify-between border-b border-white/5 pb-3">
             <div className="flex items-center gap-2 text-cream font-bold text-sm">
               <Heart className="w-4 h-4" />
               <span>Brand Heart</span>
@@ -210,7 +210,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
 
         {/* Archetype Snapshot */}
         <div className="p-6 bg-graphite rounded-2xl border border-brass/40 flex flex-col justify-between gap-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div className="flex items-center justify-between border-b border-white/5 pb-3">
             <div className="flex items-center gap-2 text-brass font-bold text-sm">
               <Users className="w-4 h-4" />
               <span>Primary Archetype</span>
@@ -243,7 +243,7 @@ export const SuccessStateHub: React.FC<SuccessStateHubProps> = ({
 
         {/* Visual Strategy Snapshot */}
         <div className="p-6 bg-graphite rounded-2xl border border-brass/30 flex flex-col justify-between gap-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div className="flex items-center justify-between border-b border-white/5 pb-3">
             <div className="flex items-center gap-2 text-brass font-bold text-sm">
               <Layers className="w-4 h-4" />
               <span>Visual & Verbal Strategy</span>

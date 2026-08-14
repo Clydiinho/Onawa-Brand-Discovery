@@ -101,8 +101,8 @@ export const PersonalitySlider: React.FC<PersonalitySliderProps> = ({
   return (
     <div className="flex flex-col gap-6">
       {/* Quick Presets Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-slate-900/60 rounded-xl border border-slate-800">
-        <div className="flex items-center gap-2 text-xs text-slate-300 font-semibold">
+      <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-graphite/80 rounded-xl border border-white/5">
+        <div className="flex items-center gap-2 text-xs text-cream/60 font-semibold">
           <Sparkles className="w-4 h-4 text-amber-400" />
           <span>Quick Preset Dial:</span>
         </div>
@@ -110,21 +110,21 @@ export const PersonalitySlider: React.FC<PersonalitySliderProps> = ({
           <button
             type="button"
             onClick={() => applyPreset("disruptive_tech")}
-            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-cyan-300 hover:bg-slate-700 border border-cyan-500/30 transition-all"
+            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-graphite text-cyan-300 hover:bg-surface border border-cyan-500/30 transition-all"
           >
             🚀 Disruptive Tech
           </button>
           <button
             type="button"
             onClick={() => applyPreset("heritage_luxury")}
-            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-amber-300 hover:bg-slate-700 border border-amber-500/30 transition-all"
+            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-graphite text-amber-300 hover:bg-surface border border-amber-500/30 transition-all"
           >
             👑 Heritage Luxury
           </button>
           <button
             type="button"
             onClick={() => applyPreset("approachable_eco")}
-            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800 text-emerald-300 hover:bg-slate-700 border border-emerald-500/30 transition-all"
+            className="px-3 py-1.5 text-xs font-medium rounded-lg bg-graphite text-emerald-300 hover:bg-surface border border-emerald-500/30 transition-all"
           >
             🌱 Approachable & Eco
           </button>
@@ -138,16 +138,16 @@ export const PersonalitySlider: React.FC<PersonalitySliderProps> = ({
           return (
             <div
               key={item.key}
-              className="p-5 bg-slate-900/80 rounded-2xl border border-slate-800/90 shadow-lg flex flex-col gap-3 backdrop-blur-md"
+              className="p-5 bg-graphite rounded-2xl border border-white/5/90 shadow-lg flex flex-col gap-3 backdrop-blur-md"
             >
               <div className="flex items-center justify-between text-xs">
-                <span className="font-bold text-slate-200 uppercase tracking-wider">
+                <span className="font-bold text-cream/80 uppercase tracking-wider">
                   {item.leftLabel}
                 </span>
                 <span className="font-mono text-amber-400 font-bold bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
                   {val}%
                 </span>
-                <span className="font-bold text-slate-200 uppercase tracking-wider text-right">
+                <span className="font-bold text-cream/80 uppercase tracking-wider text-right">
                   {item.rightLabel}
                 </span>
               </div>
@@ -162,7 +162,7 @@ export const PersonalitySlider: React.FC<PersonalitySliderProps> = ({
                   onChange={(e) =>
                     handleSliderChange(item.key, parseInt(e.target.value, 10))
                   }
-                  className="w-full h-3 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
+                  className="w-full h-3 bg-graphite rounded-lg appearance-none cursor-pointer accent-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-500/50"
                 />
               </div>
 

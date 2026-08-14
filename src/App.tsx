@@ -611,7 +611,7 @@ export default function App() {
                       className={`p-4 rounded-xl border flex items-center gap-3 transition-all ${
                         state.projectType === "new_brand"
                           ? "bg-cream/20 border-cream text-cream shadow-lg shadow-cream/10"
-                          : "bg-surface/60 border-slate-800 text-slate-300 hover:border-white/10"
+                          : "bg-surface/60 border-white/5 text-cream/50 hover:border-white/10"
                       }`}
                     >
                       <Rocket className="w-5 h-5 text-cream shrink-0" />
@@ -619,7 +619,7 @@ export default function App() {
                         <div className="font-bold text-sm text-cream">
                           New Brand Launch
                         </div>
-                        <div className="text-[11px] text-slate-300">
+                        <div className="text-[11px] text-cream/50">
                           Building a fresh identity from zero
                         </div>
                       </div>
@@ -631,7 +631,7 @@ export default function App() {
                       className={`p-4 rounded-xl border flex items-center gap-3 transition-all ${
                         state.projectType === "rebrand"
                           ? "bg-brass/20 border-brass text-brass shadow-lg shadow-brass/10"
-                          : "bg-surface/60 border-slate-800 text-slate-300 hover:border-white/10"
+                          : "bg-surface/60 border-white/5 text-cream/50 hover:border-white/10"
                       }`}
                     >
                       <Building2 className="w-5 h-5 text-brass shrink-0" />
@@ -639,7 +639,7 @@ export default function App() {
                         <div className="font-bold text-sm text-cream">
                           Strategic Rebrand
                         </div>
-                        <div className="text-[11px] text-slate-300">
+                        <div className="text-[11px] text-cream/50">
                           Repositioning an existing brand
                         </div>
                       </div>
@@ -737,13 +737,13 @@ export default function App() {
                       className={`p-4 rounded-xl border transition-all ${
                         activeGoldenRing === "why"
                           ? "bg-amber-950/20 border-amber-500/80 ring-1 ring-amber-500/50"
-                          : "bg-surface/80 border-slate-800"
+                          : "bg-surface/80 border-white/5"
                       }`}
                       onClick={() => setActiveGoldenRing("why")}
                     >
                       <label className="text-xs font-bold text-amber-400 flex items-center justify-between mb-1">
                         <span>1. WHY (Core Purpose / Belief) *</span>
-                        <span className="text-[10px] text-slate-500">The Soul</span>
+                        <span className="text-[10px] text-cream/30">The Soul</span>
                       </label>
                       <p className="text-[11px] text-cream/60 mb-2">
                         Why does your brand exist beyond making money? What fundamental cause or belief drives you?
@@ -765,13 +765,13 @@ export default function App() {
                       className={`p-4 rounded-xl border transition-all ${
                         activeGoldenRing === "how"
                           ? "bg-cyan-950/20 border-cyan-500/80 ring-1 ring-cyan-500/50"
-                          : "bg-surface/80 border-slate-800"
+                          : "bg-surface/80 border-white/5"
                       }`}
                       onClick={() => setActiveGoldenRing("how")}
                     >
                       <label className="text-xs font-bold text-cyan-400 flex items-center justify-between mb-1">
                         <span>2. HOW (Process & Uniqueness)</span>
-                        <span className="text-[10px] text-slate-500">The Method</span>
+                        <span className="text-[10px] text-cream/30">The Method</span>
                       </label>
                       <p className="text-[11px] text-cream/60 mb-2">
                         How do you fulfill your why differently? What proprietary process, culture, or values set you apart?
@@ -793,13 +793,13 @@ export default function App() {
                       className={`p-4 rounded-xl border transition-all ${
                         activeGoldenRing === "what"
                           ? "bg-purple-950/20 border-purple-500/80 ring-1 ring-purple-500/50"
-                          : "bg-surface/80 border-slate-800"
+                          : "bg-surface/80 border-white/5"
                       }`}
                       onClick={() => setActiveGoldenRing("what")}
                     >
                       <label className="text-xs font-bold text-purple-400 flex items-center justify-between mb-1">
                         <span>3. WHAT (Products & Services)</span>
-                        <span className="text-[10px] text-slate-500">The Tangible Proof</span>
+                        <span className="text-[10px] text-cream/30">The Tangible Proof</span>
                       </label>
                       <p className="text-[11px] text-cream/60 mb-2">
                         What actual products or services do you sell to the market every day?
@@ -828,7 +828,7 @@ export default function App() {
                     <Heart className="w-4 h-4" />
                     <span>Stage 03 • Column Five's Brand Heart</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Purpose, Vision, Mission & Values
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -838,7 +838,7 @@ export default function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Purpose */}
-                  <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-2">
+                  <div className="p-5 bg-surface/80 rounded-2xl border border-white/5 flex flex-col gap-2">
                     <VoiceTextArea
                       label="Purpose (Why We Exist)"
                       rows={2}
@@ -853,7 +853,7 @@ export default function App() {
                   </div>
 
                   {/* Vision */}
-                  <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-2">
+                  <div className="p-5 bg-surface/80 rounded-2xl border border-white/5 flex flex-col gap-2">
                     <VoiceTextArea
                       label="Vision (The Future We Build)"
                       rows={2}
@@ -868,7 +868,7 @@ export default function App() {
                   </div>
 
                   {/* Mission */}
-                  <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-2 md:col-span-2">
+                  <div className="p-5 bg-surface/80 rounded-2xl border border-white/5 flex flex-col gap-2 md:col-span-2">
                     <VoiceTextArea
                       label="Mission (What We Do Daily To Deliver Vision)"
                       rows={2}
@@ -884,8 +884,8 @@ export default function App() {
                 </div>
 
                 {/* Values Tags Builder */}
-                <div className="p-5 bg-surface/80 rounded-2xl border border-slate-800 flex flex-col gap-3">
-                  <label className="text-xs font-bold text-slate-300">
+                <div className="p-5 bg-surface/80 rounded-2xl border border-white/5 flex flex-col gap-3">
+                  <label className="text-xs font-bold text-cream/50">
                     Core Operating Values & Principles
                   </label>
 
@@ -895,7 +895,7 @@ export default function App() {
                       value={newValueInput}
                       onChange={(e) => setNewValueInput(e.target.value)}
                       placeholder="Add a core value (e.g., Radical Transparency, Craftsmanship)..."
-                      className="flex-1 bg-slate-950 border border-slate-800 px-3 py-2 text-xs text-cream/80 rounded-xl focus:outline-none focus:border-amber-500"
+                      className="flex-1 bg-slate-950 border border-white/5 px-3 py-2 text-xs text-cream/80 rounded-xl focus:outline-none focus:border-amber-500"
                     />
                     <button
                       type="submit"
@@ -945,7 +945,7 @@ export default function App() {
                     <Users className="w-4 h-4 text-cream" />
                     <span>Stage 05 • Willow Marketing's 12 Brand Archetypes</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Archetype Personality Selection
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -954,14 +954,14 @@ export default function App() {
                 </div>
 
                 {/* Selection Indicators */}
-                <div className="flex flex-wrap items-center gap-4 p-3 bg-surface/80 rounded-xl border border-slate-800 text-xs">
+                <div className="flex flex-wrap items-center gap-4 p-3 bg-surface/80 rounded-xl border border-white/5 text-xs">
                   <div>
                     <span className="text-cream/60 font-medium">Primary Archetype: </span>
                     <span className="font-bold text-amber-400">
                       {BRAND_ARCHETYPES.find((a) => a.id === state.primaryArchetype)?.name || "None"}
                     </span>
                   </div>
-                  <div className="text-slate-600">|</div>
+                  <div className="text-cream/30">|</div>
                   <div>
                     <span className="text-cream/60 font-medium">Secondary Archetype: </span>
                     <span className="font-bold text-cyan-400">
@@ -984,14 +984,14 @@ export default function App() {
                             ? "bg-surface border-amber-500 ring-2 ring-amber-500/50 shadow-xl shadow-amber-500/10"
                             : isSecondary
                             ? "bg-surface border-cyan-500 ring-2 ring-cyan-500/50 shadow-xl shadow-cyan-500/10"
-                            : "bg-surface/60 border-slate-800 hover:border-white/10 hover:bg-surface/90"
+                            : "bg-surface/60 border-white/5 hover:border-white/10 hover:bg-surface/90"
                         }`}
                       >
                         {/* Header Badge */}
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             {renderArchetypeIcon(arch.iconName)}
-                            <h3 className="font-bold text-slate-100 text-base">
+                            <h3 className="font-bold text-cream text-base">
                               {arch.name}
                             </h3>
                           </div>
@@ -1013,7 +1013,7 @@ export default function App() {
                           <p className="text-xs font-serif italic font-semibold text-amber-300">
                             "{arch.motto}"
                           </p>
-                          <p className="text-[11px] text-slate-300 font-medium">
+                          <p className="text-[11px] text-cream/50 font-medium">
                             {arch.traitSummary}
                           </p>
                         </div>
@@ -1023,7 +1023,7 @@ export default function App() {
                           {arch.traits.map((t) => (
                             <span
                               key={t}
-                              className="px-2 py-0.5 bg-slate-950 text-cream/60 border border-slate-800 text-[10px] rounded-md"
+                              className="px-2 py-0.5 bg-slate-950 text-cream/60 border border-white/5 text-[10px] rounded-md"
                             >
                               {t}
                             </span>
@@ -1031,7 +1031,7 @@ export default function App() {
                         </div>
 
                         {/* Real-world Brand Examples */}
-                        <div className="text-[10px] text-slate-500 pt-2 border-t border-slate-800/80">
+                        <div className="text-[10px] text-cream/30 pt-2 border-t border-white/5/80">
                           Examples: <span className="text-cream/60 italic">{arch.examples.join(", ")}</span>
                         </div>
 
@@ -1050,7 +1050,7 @@ export default function App() {
                             className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                               isPrimary
                                 ? "bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20"
-                                : "bg-slate-800 text-slate-300 hover:bg-amber-500/20 hover:text-amber-300"
+                                : "bg-graphite/60 text-cream/50 hover:bg-amber-500/20 hover:text-amber-300"
                             }`}
                           >
                             Set Primary
@@ -1069,7 +1069,7 @@ export default function App() {
                             className={`px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
                               isSecondary
                                 ? "bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20"
-                                : "bg-slate-800 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-300"
+                                : "bg-graphite/60 text-cream/50 hover:bg-cyan-500/20 hover:text-cyan-300"
                             }`}
                           >
                             {isSecondary ? "Remove Sec" : "Set Secondary"}
@@ -1090,7 +1090,7 @@ export default function App() {
                     <Sliders className="w-4 h-4 text-cream" />
                     <span>Stage 06 • Personality Spectrum Sliders</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Brand Trait Dial & Spectrum Calibration
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1113,7 +1113,7 @@ export default function App() {
                     <Quote className="w-4 h-4 text-cream" />
                     <span>Stage 07 • Fernando Ifrán's Love/Hate Matrix</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Embrace vs. Avoid Keyword Matrix
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1136,7 +1136,7 @@ export default function App() {
                     <Layers className="w-4 h-4 text-cream" />
                     <span>Stage 08 • Visual Discovery & Logo Anatomy</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Logo Mark Architecture & Anatomy
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1176,7 +1176,7 @@ export default function App() {
                     <Sparkles className="w-4 h-4 text-cream" />
                     <span>Stage 11 • Dynamic UVP Builder</span>
                   </div>
-                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-slate-100 tracking-tight">
+                  <h1 className="text-2xl md:text-3xl font-headline font-bold text-cream tracking-tight">
                     Unique Value Proposition Architecture
                   </h1>
                   <p className="text-xs md:text-sm text-cream/60">
@@ -1272,7 +1272,7 @@ export default function App() {
                       className={`px-6 py-2.5 font-black text-xs uppercase tracking-wider rounded-xl flex items-center gap-2 transition-all ${
                         isCurrentStepComplete
                           ? "bg-cream hover:bg-cream/90 text-carbon-black"
-                          : "bg-charcoal text-slate-500 cursor-not-allowed border border-white/10"
+                          : "bg-charcoal text-cream/30 cursor-not-allowed border border-white/10"
                       }`}
                     >
                       <span>Continue to {QUESTIONNAIRE_STEPS[state.currentStep]?.title}</span>
